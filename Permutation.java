@@ -36,8 +36,9 @@ public interface Permutation extends Iterable<Integer> {
     List<Integer> cycle(int index) throws IllegalArgumentException;
     
     /**
+     * All the cycles of the image.
      * 
-     * @return Set
+     * @return Set the cycles
      */
     Set<List<Integer>> allCycles();
     

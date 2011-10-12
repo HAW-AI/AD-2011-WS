@@ -3,7 +3,7 @@ import java.util.Set;
 
 /**
  * @author      Ben Rexin <benjamin.rexin@haw-hamburg.de>
- * @author 		Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
+ * @author     	Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
  * @author 		Till Theis
  * @author 		Raimund Wege
  * @author		Andreas Wimmer

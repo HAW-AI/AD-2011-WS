@@ -49,9 +49,9 @@ public class TestPermut {
 	output41.add(4);
 		
 	output42.add(1);
-	output42.add(4);
-	output42.add(3);
 	output42.add(2);
+	output42.add(3);
+	output42.add(4);
 	
 	input71.add(1);
 	input71.add(2);
@@ -71,11 +71,11 @@ public class TestPermut {
 	
 	output71.add(1);
 	output71.add(2);
-	output71.add(5);
-	output71.add(4);
 	output71.add(3);
-	output71.add(7);
+	output71.add(4);
+	output71.add(5);
 	output71.add(6);
+	output71.add(7);
 	
 	output72.add(1);
 	output72.add(2);
@@ -107,16 +107,16 @@ public class TestPermut {
 	input102.add(9);
 	input102.add(10);
 	
-	output101.add(10);
-	output101.add(9);
-	output101.add(8);
-	output101.add(7);
-	output101.add(6);
-	output101.add(5);
-	output101.add(4);
-	output101.add(3);
-	output101.add(2);
 	output101.add(1);
+	output101.add(2);
+	output101.add(3);
+	output101.add(4);
+	output101.add(5);
+	output101.add(6);
+	output101.add(7);
+	output101.add(8);
+	output101.add(9);
+	output101.add(10);
 	
 	output102.add(1);
 	output102.add(2);

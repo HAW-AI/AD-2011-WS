@@ -1,8 +1,22 @@
+/**
+ * @author      Ben Rexin <benjamin.rexin@haw-hamburg.de>
+ * @author 		Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
+ * @author 		Till Theis
+ * @author 		Raimund Wege
+ * @author		Andreas Wimmer
+ * @author		Sebastian Krome
+ * @author		Daniel Liesener
+ * @author		Fenja Harbke
+ * @version     0.1
+ * @since       2011-10-12
+ */
+
 public PermutationImpl extends Permutation {
 	
-	/*
-	 * Block by Andy and Sebastian
-	 */
+	/**
+	  * @author Andreas Wimmer
+	  * @author Sebastian Krome
+	  */
 	public Permutation getInverse(){
 			//inverse:  List<Integer> --> List<Integer> --- gibt die Inverse Darstellung von Sigma aus (als Liste)
 			//Bsp.:     [1,2,3]->[1,2,3]; [3,4,2,1] -> [4,3,1,2] [1] ->[1]; [] -> []
@@ -34,9 +48,13 @@ public PermutationImpl extends Permutation {
 
 		}
 
-		// erzeugeArray: int --> List<Integer>  -- erzeugt einen Array mit der Laenge n, gefuellt mit Nullen
-		//Bsp.: erzeugeArray(3) -->[0,0,0]
+		/**
+		  * @author Andreas Wimmer
+		  * @author Sebastian Krome
+		  */
 		public static List<Integer> createAry(int n){
+			// erzeugeArray: int --> List<Integer>  -- erzeugt einen Array mit der Laenge n, gefuellt mit Nullen
+			//Bsp.: erzeugeArray(3) -->[0,0,0]
 			List<Integer> result = new ArrayList<Integer>();
 			for(int i = 0; i < n; i++){
 				result.add(0);
@@ -44,25 +62,30 @@ public PermutationImpl extends Permutation {
 			return result;
 		}
 
-
-		//invert Map<Integer,Integer> --> Map<Integer,Integer> -- vertaischt die keys und values
-		//Bsp.:  {1->2; 2->3; 3->1} --> {2->1; 3->2; 1->3}
+		/**
+		  * @author Andreas Wimmer
+		  * @author Sebastian Krome
+		  */
 		public static Map<Integer,Integer> invert(Map<Integer,Integer> m){
+			//invert Map<Integer,Integer> --> Map<Integer,Integer> -- vertaischt die keys und values
+			//Bsp.:  {1->2; 2->3; 3->1} --> {2->1; 3->2; 1->3}
 			Map<Integer,Integer> result = new HashMap<Integer,Integer>();
 			for(Map.Entry<Integer, Integer> entry : m.entrySet()){
 				result.put(entry.getValue(),entry.getKey());
 			}
 			return result;
 		}
-	/*
-	 * Block by Daniel and Fenja
-	 */ 
+
 	//Var für Permutation
 	private List<Integer> perm = new ArrayList<Integer>();
 
-	//Wandelt Permutation in Cycle Notation um
-	//Bsp.: [2,1,3] -> [[2,1][3]]
+	/**
+	  * @author Daniel Liesener
+	  * @author Fenja Harbke
+	  */
 	public List<List<Integer>> getAllCycles(){
+		//Wandelt Permutation in Cycle Notation um
+		//Bsp.: [2,1,3] -> [[2,1][3]]
 		List<Integer> permList = perm; //Permutationsvariable
 		List<List<Integer>> totalCycle = new ArrayList<List<Integer>>();
 		Map<Integer,Integer> map = new HashMap<Integer,Integer>();
@@ -76,8 +99,12 @@ public PermutationImpl extends Permutation {
 		return getAllCycles_(totalCycle,map,1);
 	}
 
-	//Hilfsfunktion für getAllCycles
+	/**
+	  * @author Daniel Liesener
+	  * @author Fenja Harbke
+	  */
 	private List<List<Integer>> getAllCycles_(List<List<Integer>> totalCycle,Map<Integer,Integer> map, int currentKey){
+		//Hilfsfunktion für getAllCycles
 		int newCurrentKey;
 		List<Integer> singleCycle = new ArrayList<Integer>();
 		//Einzelnen Cycle bestimmen
@@ -98,8 +125,12 @@ public PermutationImpl extends Permutation {
 		return totalCycle;
 	}
 
-	//Gibt i-ten Cycle zurück
+	/**
+	  * @author Daniel Liesener
+	  * @author Fenja Harbke
+	  */
 	public List<Integer> getCycle(int index){
+		//Gibt i-ten Cycle zurück
 		List<List<Integer>> allCycles = getAllCycles();
 		if(allCycles.size()<index || index <= 0){
 			throw new RuntimeException();
@@ -107,16 +138,21 @@ public PermutationImpl extends Permutation {
 		return allCycles.get(index-1);
 	}
 
-	//Gibt Cycle Notation als String zurück
+	/**
+	  * @author Daniel Liesener
+	  * @author Fenja Harbke
+	  */
 	public String cycleToString(){
+		//Gibt Cycle Notation als String zurück
 		return getAllCycles().toString();
 	}
 	/*
 	 * Block by Ben and Patrick
 	 */
-	/* (non-Javadoc)
-		 * @see Permutation#compose(Permutation)
-		 */
+	/**
+ 	  * @author      Ben Rexin <benjamin.rexin@haw-hamburg.de>
+ 	  * @author 		Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
+	  */
 		@Override
 		public Permutation compose(Permutation other) {
 			// Checks:
@@ -137,11 +173,19 @@ public PermutationImpl extends Permutation {
 			return result;
 		}
 
+		/**
+	 	  * @author      Ben Rexin <benjamin.rexin@haw-hamburg.de>
+	 	  * @author 		Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
+		  */
 		public int hashCode() {
 			// Delegate HashCode to element list
 			return getElements().hashCode();
 		}
 
+		/**
+	 	  * @author      Ben Rexin <benjamin.rexin@haw-hamburg.de>
+	 	  * @author 		Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
+		  */
 		public boolean equals(Object other) {
 			boolean result = false;
 
@@ -160,12 +204,18 @@ public PermutationImpl extends Permutation {
 			return result;
 		}
 
-		@Override
+		/**
+	 	  * @author      Ben Rexin <benjamin.rexin@haw-hamburg.de>
+	 	  * @author 		Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
+		  */
 		public Iterator<Integer> iterator() {
 			return getElements().iterator();
 		}
 
-		@Override
+		/**
+	 	  * @author      Ben Rexin <benjamin.rexin@haw-hamburg.de>
+	 	  * @author 		Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
+		  */
 		public Integer getSize() {
 			return getElements().size();
 		}

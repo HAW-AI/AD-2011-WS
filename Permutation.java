@@ -16,12 +16,6 @@ public interface Permutation {
     
     /**
      * 
-     * @return
-     */
-    List<Integer> getElements();
-    
-    /**
-     * 
      * @param i
      * @return
      * @throws IllegalArgumentException

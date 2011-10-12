@@ -83,7 +83,10 @@ public interface Permutation extends Iterable<Integer> {
     String toCycleNotationString();
     
     /**
-     * @return Integer of Elements, aka Sn-Class of Permutation
+     * The permutation class (i.e. the number of its images, aka Sn-class of
+     * Permutation)
+     *
+     * @return int the permutation class
      */
     int permutationClass();
 

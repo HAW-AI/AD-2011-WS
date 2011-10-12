@@ -222,7 +222,7 @@ public class PermutationImpl implements Permutation {
 	 * @author Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
 	 */
 	@Override
-	public Permutation compose(Permutation other) {
+	public Permutation compose(Permutation other) throws NullPointerException, IllegalArgumentException {
 		// Checks:
 		// Same cardinality
 		// Same range (1...n)
@@ -232,6 +232,13 @@ public class PermutationImpl implements Permutation {
 		// [2,4,5,1,3] this
 		// [3,5,1,4,2] other
 		// [5,4,2,3,1] composite
+		if (other == null) {
+			throw new NullPointerException();
+		}
+		
+		if (permutationClass() != other.permutationClass()) {
+			throw new IllegalArgumentException();
+		}
 
 		ArrayList<Integer> resultList = new ArrayList<Integer>();
 		for (Integer element : this) {

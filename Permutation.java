@@ -63,7 +63,8 @@ public interface Permutation extends Iterable<Integer> {
     
     /**
      *
-     * @return String
+     * @return String the permutation in mathematical notation
+     * @see    #toCycleNotationString()
      */
     public String toString();
 

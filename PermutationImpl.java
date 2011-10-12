@@ -50,4 +50,61 @@ public PermutationImpl extends Permutation {
 			}
 			return result;
 		}
+	/*
+	 * Block by Daniel and Fenja
+	 */ 
+	//Var für Permutation
+	private List<Integer> perm = new ArrayList<Integer>();
+
+	//Wandelt Permutation in Cycle Notation um
+	//Bsp.: [2,1,3] -> [[2,1][3]]
+	public List<List<Integer>> getAllCycles(){
+		List<Integer> permList = perm; //Permutationsvariable
+		List<List<Integer>> totalCycle = new ArrayList<List<Integer>>();
+		Map<Integer,Integer> map = new HashMap<Integer,Integer>();
+
+		//Array zu Map für Bearbeitung
+		for (ListIterator<Integer> Iter = permList.listIterator(); Iter.hasNext(); ) {
+			int index = Iter.nextIndex();
+			map.put(index+1, permList.get(index));
+			Iter.next();
+		}
+		return getAllCycles_(totalCycle,map,1);
+	}
+
+	//Hilfsfunktion für getAllCycles
+	private List<List<Integer>> getAllCycles_(List<List<Integer>> totalCycle,Map<Integer,Integer> map, int currentKey){
+		int newCurrentKey;
+		List<Integer> singleCycle = new ArrayList<Integer>();
+		//Einzelnen Cycle bestimmen
+		while(map.containsKey(currentKey)){
+			 newCurrentKey = map.get(currentKey);	//Wert bestimmen durch Key
+			 singleCycle.add(newCurrentKey); 		//Wert zum Cycle hinzufügen
+			 map.remove(currentKey);				//Wert aus Map entfernen
+			 currentKey = newCurrentKey;			//Wert für nächsten Key festlegen
+		}
+		//Wenn singleCycle leer ist nicht zum Endergebnis hinzufügen
+		if(!singleCycle.isEmpty()){
+			totalCycle.add(singleCycle);	
+		}		
+		//Wenn Map nicht leer ist weiter suchen
+		if(!map.isEmpty()){
+			getAllCycles_(totalCycle,map, currentKey+1);
+		}
+		return totalCycle;
+	}
+
+	//Gibt i-ten Cycle zurück
+	public List<Integer> getCycle(int index){
+		List<List<Integer>> allCycles = getAllCycles();
+		if(allCycles.size()<index || index <= 0){
+			throw new RuntimeException();
+		}
+		return allCycles.get(index-1);
+	}
+
+	//Gibt Cycle Notation als String zurück
+	public String cycleToString(){
+		return getAllCycles().toString();
+	}
 }

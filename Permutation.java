@@ -1,10 +1,20 @@
 import java.util.List;
 import java.util.Set;
 
-// import Set, List, int, Integer, String
+/**
+ * @author      Ben Rexin <benjamin.rexin@haw-hamburg.de>
+ * @author 		Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
+ * @author 		Till Theis
+ * @author 		Raimund Wege
+ * @author		Andreas Wimmer
+ * @author		Sebastian Krome
+ * @author		Daniel Liesener
+ * @author		Fenja Harbke
+ * @version     0.1
+ * @since       2011-10-12
+ */
 
-
-public interface Permutation {
+public interface Permutation extends Iterable<Integer> {
     /**
      * Documentation...
      * 
@@ -12,7 +22,7 @@ public interface Permutation {
      * @return
      * @throws IllegalArgumentException
      */
-    int sigma(int i) throws IllegalArgumentException;
+    int sigma(int index) throws IllegalArgumentException;
     
     /**
      * 
@@ -54,4 +64,9 @@ public interface Permutation {
      * @return
      */
     String cycleToString();
+    
+    /**
+     * @return Integer number of Elements, aka Sn-Class of Permutation
+     */
+    Integer permutationClass();
 }

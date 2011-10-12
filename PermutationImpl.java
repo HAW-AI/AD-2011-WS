@@ -1,3 +1,12 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.ListIterator;
+import java.util.Map;
+import java.util.List;
+import java.util.Set;
+
 /**
  * @author      Ben Rexin <benjamin.rexin@haw-hamburg.de>
  * @author 		Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
@@ -11,7 +20,30 @@
  * @since       2011-10-12
  */
 
-public PermutationImpl extends Permutation {
+public class PermutationImpl implements Permutation {
+	
+	public PermutationImpl(List<Integer> result) {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public PermutationImpl(ArrayList<Integer> resultList) {
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @author Ben Rexin <benjamin.rexin@haw-hamburg.de>
+	 * 
+	 * internal representation of permutation elements
+	 */
+	private ArrayList<Integer> elements = new ArrayList<Integer>();
+
+	/**
+	 * accessor method for permutation elements
+	 * @return ArrayList<Integer>
+	 */
+	protected ArrayList<Integer> getElements() {
+		return elements;
+	}
 
 	/**
 	 * @author Andreas Wimmer
@@ -20,25 +52,16 @@ public PermutationImpl extends Permutation {
 	public Permutation getInverse(){
 		//inverse:  List<Integer> --> List<Integer> --- gibt die Inverse Darstellung von Sigma aus (als Liste)
 		//Bsp.:     [1,2,3]->[1,2,3]; [3,4,2,1] -> [4,3,1,2] [1] ->[1]; [] -> []
-
-		Map<Integer,Integer> funktion = new HashMap<Integer,Integer>();
 		Map<Integer,Integer> inverse = new HashMap<Integer,Integer>();
 		List<Integer> result = new ArrayList<Integer>();
 
-		//stellt Sigma als Map dar
-		//Bsp.:
-		//[2,1,4,3] -->  {1->2;2->1;3->4;4->3}
-		for(int i = 0; i < this.getInternList().size();i++){
-			funktion.put(i+1,this.getInternList().get(i));
-		}
-
 		//map funktion invertieren, d.h. keys werden values und values werden keys
-		inverse = invert(funktion);
+		inverse = invert(getElementsAsMap());
 
-		//result erzeugen mit der n√∂tigen groe√üe, gefellt mit Nullen
-		result = createAry(this.getInternList().size());
+		//result erzeugen mit der nötigen größe, gefellt mit Nullen
+		result = createArray(this.getElements().size());
 
-		//inverse in Array gie√üen
+		//inverse in Array gießen
 
 		for(Map.Entry<Integer, Integer> entry : inverse.entrySet()){
 			result.set(entry.getKey() - 1,entry.getValue());
@@ -52,7 +75,7 @@ public PermutationImpl extends Permutation {
 	 * @author Andreas Wimmer
 	 * @author Sebastian Krome
 	 */
-	public static List<Integer> createAry(int n){
+	public static List<Integer> createArray(int n){
 		// erzeugeArray: int --> List<Integer>  -- erzeugt einen Array mit der Laenge n, gefuellt mit Nullen
 		//Bsp.: erzeugeArray(3) -->[0,0,0]
 		List<Integer> result = new ArrayList<Integer>();
@@ -76,45 +99,62 @@ public PermutationImpl extends Permutation {
 		return result;
 	}
 
-	//Var f√ºr Permutation
-	private List<Integer> perm = new ArrayList<Integer>();
-
 	/**
 	 * @author Daniel Liesener
 	 * @author Fenja Harbke
 	 */
-	public List<List<Integer>> getAllCycles(){
+	public Set<List<Integer>> getAllCycles(){
 		//Wandelt Permutation in Cycle Notation um
 		//Bsp.: [2,1,3] -> [[2,1][3]]
-		List<Integer> permList = perm; //Permutationsvariable
-		List<List<Integer>> totalCycle = new ArrayList<List<Integer>>();
-		Map<Integer,Integer> map = new HashMap<Integer,Integer>();
+		Map<Integer,Integer> elementsMap = getElementsAsMap();
+		
+		return (Set<List<Integer>>) getAllCycles_(new ArrayList<List<Integer>>(), elementsMap, 1);
+	}
+	
+	/**
+	 * @author      Ben Rexin <benjamin.rexin@haw-hamburg.de>
+	 * @author 		Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
+	 * @author		Andreas Wimmer
+	 * @author		Sebastian Krome
+	 * @return
+	 */
+	private List<List<Integer>> getAllCyclesAsList() {
+		Map<Integer,Integer> elementsMap = getElementsAsMap();
+		
+		return getAllCycles_(new ArrayList<List<Integer>>(), elementsMap, 1);	
+	}
 
-		//Array zu Map f√ºr Bearbeitung
-		for (ListIterator<Integer> Iter = permList.listIterator(); Iter.hasNext(); ) {
-			int index = Iter.nextIndex();
-			map.put(index+1, permList.get(index));
-			Iter.next();
+	/**
+	 * @author      Ben Rexin <benjamin.rexin@haw-hamburg.de>
+	 * @author 		Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
+	 * @author		Andreas Wimmer
+	 * @author		Sebastian Krome
+	 * @return
+	 */
+	private Map<Integer, Integer> getElementsAsMap() {
+		Map<Integer,Integer> result = new HashMap<Integer,Integer>();
+		for (ListIterator<Integer> iter = getElements().listIterator(); iter.hasNext(); ) {
+			result.put(iter.nextIndex(), iter.next());
 		}
-		return getAllCycles_(totalCycle,map,1);
+		return result;
 	}
 
 	/**
 	 * @author Daniel Liesener
 	 * @author Fenja Harbke
 	 */
-	private List<List<Integer>> getAllCycles_(List<List<Integer>> totalCycle,Map<Integer,Integer> map, int currentKey){
-		//Hilfsfunktion f√ºr getAllCycles
+	private List<List<Integer>> getAllCycles_(List<List<Integer>> totalCycle, Map<Integer,Integer> map, int currentKey){
+		//Hilfsfunktion für getAllCycles
 		int newCurrentKey;
 		List<Integer> singleCycle = new ArrayList<Integer>();
 		//Einzelnen Cycle bestimmen
 		while(map.containsKey(currentKey)){
 			newCurrentKey = map.get(currentKey);	//Wert bestimmen durch Key
-			singleCycle.add(newCurrentKey); 		//Wert zum Cycle hinzuf√ºgen
+			singleCycle.add(newCurrentKey); 		//Wert zum Cycle hinzufügen
 			map.remove(currentKey);				//Wert aus Map entfernen
-			currentKey = newCurrentKey;			//Wert f√ºr n√§chsten Key festlegen
+			currentKey = newCurrentKey;			//Wert für nächsten Key festlegen
 		}
-		//Wenn singleCycle leer ist nicht zum Endergebnis hinzuf√ºgen
+		//Wenn singleCycle leer ist nicht zum Endergebnis hinzufügen
 		if(!singleCycle.isEmpty()){
 			totalCycle.add(singleCycle);	
 		}		
@@ -126,16 +166,20 @@ public PermutationImpl extends Permutation {
 	}
 
 	/**
-	 * @author Daniel Liesener
-	 * @author Fenja Harbke
+	 * @author      Ben Rexin <benjamin.rexin@haw-hamburg.de>
+	 * @author 		Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
+	 * @author		Andreas Wimmer
+	 * @author		Sebastian Krome
+	 * @author 		Daniel Liesener
+	 * @author 		Fenja Harbke
 	 */
-	public List<Integer> getCycle(int index){
-		//Gibt i-ten Cycle zur√ºck
-		List<List<Integer>> allCycles = getAllCycles();
-		if(allCycles.size()<index || index <= 0){
-			throw new RuntimeException();
+	public List<Integer> getCycle(int index) throws IllegalArgumentException {
+		try {
+			return getAllCyclesAsList().get(index - 1);
 		}
-		return allCycles.get(index-1);
+		catch (Exception e) {
+			throw new IllegalArgumentException();
+		}
 	}
 
 	/**
@@ -146,9 +190,7 @@ public PermutationImpl extends Permutation {
 		//Gibt Cycle Notation als String zur√ºck
 		return getAllCycles().toString();
 	}
-	/*
-	 * Block by Ben and Patrick
-	 */
+
 	/**
 	 * @author      Ben Rexin <benjamin.rexin@haw-hamburg.de>
 	 * @author 		Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
@@ -196,8 +238,8 @@ public PermutationImpl extends Permutation {
 		// Type test (instanceof)
 		else if (other instanceof Permutation) {
 			// Attribute test
-			if (this.getSize() == ((Permutation)other).getSize()
-					&& this.getElements().equals(((Permutation)other).getElements())) {
+			if (this.permutationClass() == ((Permutation)other).permutationClass()
+					&& this.getElements().equals(((PermutationImpl)other).getElements())) {
 				result = true;
 			}
 		}
@@ -215,8 +257,40 @@ public PermutationImpl extends Permutation {
 	/**
 	 * @author      Ben Rexin <benjamin.rexin@haw-hamburg.de>
 	 * @author 		Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
+	 * @author		Andreas Wimmer
+	 * @author		Sebastian Krome
 	 */
-	public Integer getSize() {
+	@Override
+	public int sigma(int index) throws IllegalArgumentException {
+		try {
+			return getElements().get(index - 1); // -1 cause typicaly sigma starts at 1, arrays at 0
+		} 
+		catch (Exception e) {
+			throw new IllegalArgumentException();
+		}
+	}
+
+	/**
+	 * @author      Ben Rexin <benjamin.rexin@haw-hamburg.de>
+	 * @author 		Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
+	 * @author		Andreas Wimmer
+	 * @author		Sebastian Krome
+	 */
+	@Override
+	public Set<Integer> getFixedPoints() {
+		Set<Integer> result = new HashSet<Integer>();
+		
+		for (Map.Entry<Integer, Integer> e: getElementsAsMap().entrySet()) {
+			if (e.getKey().equals(e.getValue())) {
+				result.add(e.getValue());
+			}
+		}
+		
+		return result;
+	}
+
+	@Override
+	public Integer permutationClass() {
 		return getElements().size();
 	}
 }

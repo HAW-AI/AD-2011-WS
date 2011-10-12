@@ -1,4 +1,8 @@
 public PermutationImpl extends Permutation {
+	
+	/*
+	 * Block by Andy and Sebastian
+	 */
 	public Permutation getInverse(){
 			//inverse:  List<Integer> --> List<Integer> --- gibt die Inverse Darstellung von Sigma aus (als Liste)
 			//Bsp.:     [1,2,3]->[1,2,3]; [3,4,2,1] -> [4,3,1,2] [1] ->[1]; [] -> []

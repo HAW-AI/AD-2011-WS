@@ -91,6 +91,10 @@ public interface Permutation extends Iterable<Integer> {
     int permutationClass();
 
     /**
+     * Test for structural equality.
+     * Two permutations are considered equal if they describe the same
+     * relation.
+     *
      * @return boolean
      */
     public boolean equals(Object other);

@@ -57,11 +57,13 @@ public interface Permutation extends Iterable<Integer> {
     Permutation inverse();
     
     /**
+     * Compose this permutation with the other one.
      * 
-     * @param other Permutation
-     * @return Permutation
-     * @throws IllegalArgumentException
-     * @throws NullPointerException
+     * @param other the Permutation to compose with
+     * @return Permutation the composition
+     * @throws IllegalArgumentException if the classes of both permutations are
+     *                                  not the same
+     * @throws NullPointerException     if the argument is null
      */
     Permutation compose(Permutation other) throws IllegalArgumentException, NullPointerException;
     

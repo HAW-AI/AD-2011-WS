@@ -446,5 +446,24 @@ public class TestPermut {
 			
 		}
 		
+		@Test
+		public void testEquals(){
+			
+			assertTrue(pInput41.equals(pInput41));
+			assertTrue(pOutput41.equals(pInput41));
+			assertTrue(pInput72.equals(pOutput71));
+			assertTrue(pOutput102.equals(pInput101));
+			assertTrue(pInput41.equals(pOutput42));
+			
+			assertFalse(pInput42.equals(pOutput42));
+			assertFalse(pInput72.equals(pOutput42));
+			assertFalse(pInput102.equals(pOutput71));
+			assertFalse(pInput42.equals("Hallo Welt"));
+			assertFalse(pInput42.equals(7));
+			assertFalse(pInput42.equals(input42));
+			assertFalse(pInput42.equals(-1337));
+			
+		}
+		
 	}
 

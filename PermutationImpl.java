@@ -1,7 +1,10 @@
+package permutation;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.List;
 import java.util.Set;
@@ -15,7 +18,9 @@ import java.util.Set;
  * @author Sebastian Krome
  * @author Daniel Liesener
  * @author Fenja Harbke
- * @version 0.1
+ * @author Felix Schmidt
+ * @author Berthold Wiblishauser
+ * @version 0.2
  * @since 2011-10-12
  */
 
@@ -66,7 +71,6 @@ public class PermutationImpl implements Permutation {
 	 * @author Andreas Wimmer
 	 * @author Sebastian Krome
 	 */
-	@Override
 	public Permutation inverse() {
 		// inverse: List<Integer> --> List<Integer> --- gibt die Inverse
 		// Darstellung von Sigma aus (als Liste)
@@ -125,7 +129,6 @@ public class PermutationImpl implements Permutation {
 	 * @author Daniel Liesener
 	 * @author Fenja Harbke
 	 */
-	@Override
 	public Set<List<Integer>> allCycles() {
 		// Wandelt Permutation in Cycle Notation um
 		// Bsp.: [2,1,3] -> [[2,1][3]]
@@ -198,7 +201,6 @@ public class PermutationImpl implements Permutation {
 	 * @author Daniel Liesener
 	 * @author Fenja Harbke
 	 */
-	@Override
 	public List<Integer> cycle(int index) throws IllegalArgumentException {
 		try {
 			return getAllCyclesAsList().get(index - 1);
@@ -211,8 +213,7 @@ public class PermutationImpl implements Permutation {
 	 * @author Daniel Liesener
 	 * @author Fenja Harbke
 	 */
-	@Override
-	public String toCycleNotationString() {
+	public String cycleToString() {
 		// Gibt Cycle Notation als String zurÃ¼ck
 		return allCycles().toString();
 	}
@@ -317,32 +318,18 @@ public class PermutationImpl implements Permutation {
 		return result;
 	}
 
-	/**
-	 * @author Ben Rexin <benjamin.rexin@haw-hamburg.de>
-	 * @author Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
-	 * @author Andreas Wimmer
-	 * @author Sebastian Krome
-	 */
 	@Override
 	public Integer permutationClass() {
 		return getElements().size();
 	}
 
-	/**
-	 * @author Sebastian Krome
-	 */
 	public String toString() {
 		return this.getElements().toString();
 	}
 
-	/**
-	 * @author Sebastian Krome
-	 * @param List
-	 * @return Set
-	 */
-	private Set<List<Integer>> listToSet(List<List<Integer>> list) {
+	private Set<List<Integer>> listToSet(List<List<Integer>> l) {
 		Set<List<Integer>> result = new HashSet<List<Integer>>();
-		for (List<Integer> elem : list) {
+		for (List<Integer> elem : l) {
 			result.add(elem);
 		}
 		return result;

@@ -107,4 +107,62 @@ public PermutationImpl extends Permutation {
 	public String cycleToString(){
 		return getAllCycles().toString();
 	}
+	/*
+	 * Block by Ben and Patrick
+	 */
+	/* (non-Javadoc)
+		 * @see Permutation#compose(Permutation)
+		 */
+		@Override
+		public Permutation compose(Permutation other) {
+			// Checks:
+			// Same cardinality
+			// Same range (1...n)
+			// -> Both are Permutation objects, should be valid
+
+			// Example:
+			// [2,4,5,1,3] this
+			// [3,5,1,4,2] other
+			// [5,4,2,3,1] composite
+
+			ArrayList<Integer> resultList = new ArrayList<Integer>();
+			for(Integer element: this) {
+				resultList.add(other.sigma(element));
+			}
+			Permutation result = new PermutationImpl(resultList);
+			return result;
+		}
+
+		public int hashCode() {
+			// Delegate HashCode to element list
+			return getElements().hashCode();
+		}
+
+		public boolean equals(Object other) {
+			boolean result = false;
+
+			// Reference Test
+			if (this == other) {
+				result = true;
+			}
+			// Type test (instanceof)
+			else if (other instanceof Permutation) {
+				// Attribute test
+				if (this.getSize() == ((Permutation)other).getSize()
+					&& this.getElements().equals(((Permutation)other).getElements())) {
+					result = true;
+				}
+			}
+			return result;
+		}
+
+		@Override
+		public Iterator<Integer> iterator() {
+			return getElements().iterator();
+		}
+
+		@Override
+		public Integer getSize() {
+			return getElements().size();
+		}
 }

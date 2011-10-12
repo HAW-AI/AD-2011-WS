@@ -43,8 +43,9 @@ public interface Permutation extends Iterable<Integer> {
     Set<List<Integer>> allCycles();
     
     /**
+     * All the fixed points.
      * 
-     * @return List
+     * @return List the fixed points
      */
     Set<Integer> fixedPoints();
     

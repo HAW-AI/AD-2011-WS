@@ -18,13 +18,13 @@ import java.util.Set;
 
 public interface Permutation extends Iterable<Integer> {
     /**
-     * Documentation...
+     * Return the image of a value.
      * 
-     * @param index
-     * @return Integer
-     * @throws IllegalArgumentException
+     * @param  inverseImage the inverse image
+     * @return int the image
+     * @throws IllegalArgumentException unless 1 <= inverseImage <= permutationClass()
      */
-    int sigma(int index) throws IllegalArgumentException;
+    int sigma(int inverseImage) throws IllegalArgumentException;
     
     /**
      * 

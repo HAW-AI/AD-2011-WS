@@ -62,6 +62,12 @@ public interface Permutation extends Iterable<Integer> {
     Permutation compose(Permutation other) throws IllegalArgumentException, NullPointerException;
     
     /**
+     *
+     * @return String
+     */
+    public String toString();
+
+    /**
      * 
      * @return String in CycleNotation (See: http://en.wikipedia.org/wiki/Cycle_notation )
      */
@@ -71,4 +77,9 @@ public interface Permutation extends Iterable<Integer> {
      * @return Integer of Elements, aka Sn-Class of Permutation
      */
     Integer permutationClass();
+
+    /**
+     * @return boolean
+     */
+    public boolean equals(Object other);
 }

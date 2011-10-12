@@ -162,15 +162,27 @@ public class TestPermut {
 		}
 
 		@Test (expected=IllegalArgumentException.class)
-		public void testSigmaException(){
-			
+		public void testSigmaException1(){
 			assertEquals(3, pInput41.sigma(5));
+		}
+		@Test (expected=IllegalArgumentException.class)
+		public void testSigmaException2(){
 			assertEquals(3, pInput42.sigma(-1));
-			
+		}
+		@Test (expected=IllegalArgumentException.class)
+		public void testSigmaException3(){
 			assertEquals(3, pInput71.sigma(8));
+		}
+		@Test (expected=IllegalArgumentException.class)
+		public void testSigmaException4(){
 			assertEquals(3, pInput72.sigma(-1));
-			
+		}
+		@Test (expected=IllegalArgumentException.class)
+		public void testSigmaException5(){
 			assertEquals(3, pInput101.sigma(11));
+		}
+		@Test (expected=IllegalArgumentException.class)
+		public void testSigmaException6(){
 			assertEquals(3, pInput102.sigma(-1));
 		}
 		
@@ -210,15 +222,27 @@ public class TestPermut {
 		}
 		
 		@Test (expected=IllegalArgumentException.class)
-		public void testCycleException(){
-			
+		public void testCycleException1(){
 			assertEquals(3, pInput41.cycle(5));
+		}
+		@Test (expected=IllegalArgumentException.class)
+		public void testCycleException2(){
 			assertEquals(3, pInput42.cycle(-1));
-			
+		}
+		@Test (expected=IllegalArgumentException.class)
+		public void testCycleException3(){
 			assertEquals(3, pInput71.cycle(5));
+		}
+		@Test (expected=IllegalArgumentException.class)
+		public void testCycleException4(){
 			assertEquals(3, pInput72.cycle(-1));
-			
+		}
+		@Test (expected=IllegalArgumentException.class)
+		public void testCycleException5(){
 			assertEquals(3, pInput101.cycle(5));
+		}
+		@Test (expected=IllegalArgumentException.class)
+		public void testCycleException6(){
 			assertEquals(3, pInput102.cycle(-1));
 		}
 		
@@ -553,13 +577,17 @@ public class TestPermut {
 	}
 	
     	@Test(expected = IllegalArgumentException.class)
-    	public void testComposeException() {
-    		
+    	public void testComposeException1() {
     		assertEquals(pInput42.compose(pInput73),pInput44);
-    		assertEquals(pInput71.compose(pInput103),pInput74);
-    		assertEquals(pInput102.compose(pInput43),pInput104);
-    		
 	}
+    	@Test(expected = IllegalArgumentException.class)
+    	public void testComposeException2() {
+    		assertEquals(pInput71.compose(pInput103),pInput74);
+    	}
+    	@Test(expected = IllegalArgumentException.class)
+    	public void testComposeException3() {
+    		assertEquals(pInput102.compose(pInput43),pInput104);
+    	}
 			
 		@Test
 		public void testPermutationClass(){

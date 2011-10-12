@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -125,8 +124,8 @@ public class PermutationAxiomTest {
 			test42i.add(4);
 			
 			test4c.add(3);
-			test4c.add(2);
 			test4c.add(1);
+			test4c.add(2);
 			test4c.add(4);
 			
     }

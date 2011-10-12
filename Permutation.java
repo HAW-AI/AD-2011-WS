@@ -50,8 +50,9 @@ public interface Permutation extends Iterable<Integer> {
     Set<Integer> fixedPoints();
     
     /**
+     * The inverse permutation.
      * 
-     * @return Permutation
+     * @return Permutation the inverse permutation
      */
     Permutation inverse();
     

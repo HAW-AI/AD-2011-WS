@@ -1,5 +1,3 @@
-package permutation;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -213,7 +211,8 @@ public class PermutationImpl implements Permutation {
 	 * @author Daniel Liesener
 	 * @author Fenja Harbke
 	 */
-	public String cycleToString() {
+	@Override
+	public String toCycleNotationString() {
 		// Gibt Cycle Notation als String zurÃ¼ck
 		return allCycles().toString();
 	}

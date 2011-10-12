@@ -66,7 +66,8 @@ public class PermutationImpl implements Permutation {
 	 * @author Andreas Wimmer
 	 * @author Sebastian Krome
 	 */
-	public Permutation getInverse() {
+	@Override
+	public Permutation inverse() {
 		// inverse: List<Integer> --> List<Integer> --- gibt die Inverse
 		// Darstellung von Sigma aus (als Liste)
 		// Bsp.: [1,2,3]->[1,2,3]; [3,4,2,1] -> [4,3,1,2] [1] ->[1]; [] -> []
@@ -124,7 +125,8 @@ public class PermutationImpl implements Permutation {
 	 * @author Daniel Liesener
 	 * @author Fenja Harbke
 	 */
-	public Set<List<Integer>> getAllCycles() {
+	@Override
+	public Set<List<Integer>> allCycles() {
 		// Wandelt Permutation in Cycle Notation um
 		// Bsp.: [2,1,3] -> [[2,1][3]]
 		Map<Integer, Integer> elementsMap = getElementsAsMap();
@@ -196,7 +198,8 @@ public class PermutationImpl implements Permutation {
 	 * @author Daniel Liesener
 	 * @author Fenja Harbke
 	 */
-	public List<Integer> getCycle(int index) throws IllegalArgumentException {
+	@Override
+	public List<Integer> cycle(int index) throws IllegalArgumentException {
 		try {
 			return getAllCyclesAsList().get(index - 1);
 		} catch (Exception e) {
@@ -208,9 +211,10 @@ public class PermutationImpl implements Permutation {
 	 * @author Daniel Liesener
 	 * @author Fenja Harbke
 	 */
-	public String cycleToString() {
+	@Override
+	public String toCycleNotationString() {
 		// Gibt Cycle Notation als String zurÃ¼ck
-		return getAllCycles().toString();
+		return allCycles().toString();
 	}
 
 	/**
@@ -301,7 +305,7 @@ public class PermutationImpl implements Permutation {
 	 * @author Sebastian Krome
 	 */
 	@Override
-	public Set<Integer> getFixedPoints() {
+	public Set<Integer> fixedPoints() {
 		Set<Integer> result = new HashSet<Integer>();
 
 		for (Map.Entry<Integer, Integer> e : getElementsAsMap().entrySet()) {

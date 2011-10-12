@@ -30,25 +30,25 @@ public interface Permutation extends Iterable<Integer> {
      * @return
      * @throws IllegalArgumentException
      */
-    List<Integer> getCycle(int i) throws IllegalArgumentException;
+    List<Integer> cycle(int i) throws IllegalArgumentException;
     
     /**
      * 
      * @return
      */
-    Set<List<Integer>> getAllCycles();
+    Set<List<Integer>> allCycles();
     
     /**
      * 
      * @return
      */
-    Set<Integer> getFixedPoints();
+    Set<Integer> fixedPoints();
     
     /**
      * 
      * @return
      */
-    Permutation getInverse();
+    Permutation inverse();
     
     /**
      * 
@@ -63,7 +63,7 @@ public interface Permutation extends Iterable<Integer> {
      * 
      * @return
      */
-    String cycleToString();
+    String toCycleNotationString();
     
     /**
      * @return Integer number of Elements, aka Sn-Class of Permutation

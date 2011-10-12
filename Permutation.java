@@ -77,7 +77,7 @@ public interface Permutation extends Iterable<Integer> {
     /**
      * @return Integer of Elements, aka Sn-Class of Permutation
      */
-    Integer permutationClass();
+    int permutationClass();
 
     /**
      * @return boolean

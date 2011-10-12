@@ -325,7 +325,7 @@ public class PermutationImpl implements Permutation {
 	}
 
 	@Override
-	public Integer permutationClass() {
+	public int permutationClass() {
 		return getElements().size();
 	}
 

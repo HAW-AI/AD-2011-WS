@@ -431,6 +431,20 @@ public class TestPermut {
 				assertEquals(erg102, pInput102.fixedPoints());
 				
 			}
+			
+		@Test
+		public void testPermutationClass(){
+			
+			assertEquals(4, pInput41.permutationClass());
+			assertEquals(4, pInput42.permutationClass());
+			
+			assertEquals(7, pInput71.permutationClass());
+			assertEquals(7, pInput72.permutationClass());
+			
+			assertEquals(10, pInput101.permutationClass());
+			assertEquals(10, pInput102.permutationClass());
+			
+		}
 		
 	}
 

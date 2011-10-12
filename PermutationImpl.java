@@ -80,7 +80,7 @@ public class PermutationImpl implements Permutation {
 		// keys
 		inverse = invert(getElementsAsMap());
 
-		// result erzeugen mit der nštigen grš§e, gefellt mit Nullen
+		// result erzeugen mit der noetigen groesse, gefuellt mit Nullen
 		result = createArray(this.getElements().size());
 
 		// inverse in Array gie§en

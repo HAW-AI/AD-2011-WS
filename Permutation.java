@@ -1,6 +1,4 @@
-package permutation;
-
-    import java.util.List;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -20,57 +18,57 @@ import java.util.Set;
 
 public interface Permutation extends Iterable<Integer> {
     /**
-* Documentation...
-*
-* @param i
-* @return
-* @throws IllegalArgumentException
-*/
+     * Documentation...
+     * 
+     * @param index
+     * @return Integer
+     * @throws IllegalArgumentException
+     */
     int sigma(int index) throws IllegalArgumentException;
     
     /**
-*
-* @param i
-* @return
-* @throws IllegalArgumentException
-*/
-    List<Integer> cycle(int i) throws IllegalArgumentException;
+     * 
+     * @param index
+     * @return List
+     * @throws IllegalArgumentException
+     */
+    List<Integer> cycle(int index) throws IllegalArgumentException;
     
     /**
-*
-* @return
-*/
+     * 
+     * @return Set
+     */
     Set<List<Integer>> allCycles();
     
     /**
-*
-* @return
-*/
+     * 
+     * @return List
+     */
     Set<Integer> fixedPoints();
     
     /**
-*
-* @return
-*/
+     * 
+     * @return Permutation
+     */
     Permutation inverse();
     
     /**
-*
-* @param p
-* @return
-* @throws IllegalArgumentException
-* @throws NullPointerException
-*/
-    Permutation compose(Permutation p) throws IllegalArgumentException, NullPointerException;
+     * 
+     * @param other Permutation
+     * @return Permutation
+     * @throws IllegalArgumentException
+     * @throws NullPointerException
+     */
+    Permutation compose(Permutation other) throws IllegalArgumentException, NullPointerException;
     
     /**
-*
-* @return
-*/
-    String cycleToString();
+     * 
+     * @return String in CycleNotation (See: http://en.wikipedia.org/wiki/Cycle_notation )
+     */
+    String toCycleNotationString();
     
     /**
-* @return Integer number of Elements, aka Sn-Class of Permutation
-*/
+     * @return Integer of Elements, aka Sn-Class of Permutation
+     */
     Integer permutationClass();
 }

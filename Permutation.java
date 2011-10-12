@@ -27,10 +27,11 @@ public interface Permutation extends Iterable<Integer> {
     int sigma(int inverseImage) throws IllegalArgumentException;
     
     /**
+     * Return the n-th cycle of the permutation.
      * 
-     * @param index
-     * @return List
-     * @throws IllegalArgumentException
+     * @param index the cycle index (beginning at 1)
+     * @return List the cycle
+     * @throws IllegalArgumentException unless 1 <= index <= permutationClass()
      */
     List<Integer> cycle(int index) throws IllegalArgumentException;
     

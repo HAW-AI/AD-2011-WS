@@ -1,72 +1,76 @@
-import java.util.List;
+package permutation;
+
+    import java.util.List;
 import java.util.Set;
 
 /**
- * @author      Ben Rexin <benjamin.rexin@haw-hamburg.de>
- * @author     	Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
- * @author 		Till Theis
- * @author 		Raimund Wege
- * @author		Andreas Wimmer
- * @author		Sebastian Krome
- * @author		Daniel Liesener
- * @author		Fenja Harbke
- * @version     0.1
- * @since       2011-10-12
- */
+* @author Ben Rexin <benjamin.rexin@haw-hamburg.de>
+* @author Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
+* @author Till Theis
+* @author Raimund Wege
+* @author Andreas Wimmer
+* @author Sebastian Krome
+* @author Daniel Liesener
+* @author Fenja Harbke
+* @author Felix Schmidt
+* @author Berthold Wiblishauser
+* @version 0.2
+* @since 2011-10-12
+*/
 
 public interface Permutation extends Iterable<Integer> {
     /**
-     * Documentation...
-     * 
-     * @param i
-     * @return
-     * @throws IllegalArgumentException
-     */
+* Documentation...
+*
+* @param i
+* @return
+* @throws IllegalArgumentException
+*/
     int sigma(int index) throws IllegalArgumentException;
     
     /**
-     * 
-     * @param i
-     * @return
-     * @throws IllegalArgumentException
-     */
+*
+* @param i
+* @return
+* @throws IllegalArgumentException
+*/
     List<Integer> cycle(int i) throws IllegalArgumentException;
     
     /**
-     * 
-     * @return
-     */
+*
+* @return
+*/
     Set<List<Integer>> allCycles();
     
     /**
-     * 
-     * @return
-     */
+*
+* @return
+*/
     Set<Integer> fixedPoints();
     
     /**
-     * 
-     * @return
-     */
+*
+* @return
+*/
     Permutation inverse();
     
     /**
-     * 
-     * @param p
-     * @return
-     * @throws IllegalArgumentException
-     * @throws NullPointerException
-     */
+*
+* @param p
+* @return
+* @throws IllegalArgumentException
+* @throws NullPointerException
+*/
     Permutation compose(Permutation p) throws IllegalArgumentException, NullPointerException;
     
     /**
-     * 
-     * @return
-     */
-    String toCycleNotationString();
+*
+* @return
+*/
+    String cycleToString();
     
     /**
-     * @return Integer number of Elements, aka Sn-Class of Permutation
-     */
+* @return Integer number of Elements, aka Sn-Class of Permutation
+*/
     Integer permutationClass();
 }

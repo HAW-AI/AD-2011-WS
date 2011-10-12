@@ -76,8 +76,9 @@ public interface Permutation extends Iterable<Integer> {
     public String toString();
 
     /**
+     * The mathematical cycle notation ({@link http://en.wikipedia.org/wiki/Cycle_notation})
      * 
-     * @return String in CycleNotation (See: http://en.wikipedia.org/wiki/Cycle_notation )
+     * @return String the cycle notation
      */
     String toCycleNotationString();
     

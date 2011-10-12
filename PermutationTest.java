@@ -431,6 +431,135 @@ public class TestPermut {
 				assertEquals(erg102, pInput102.fixedPoints());
 				
 			}
+
+	static List<Integer> iInput42 = new ArrayList<Integer>();
+	static Permutation ipInput42 = PermutationImpl.valueOf(iInput42);
+
+	static List<Integer> iInput71 = new ArrayList<Integer>();
+	static Permutation ipInput72 = PermutationImpl.valueOf(iInput71);
+
+	static List<Integer> iInput101 = new ArrayList<Integer>();
+	static Permutation ipInput102 = PermutationImpl.valueOf(iInput101);
+	
+	@Test
+	public void testInverse() {
+		
+
+		iInput42.add(1);
+		iInput42.add(4);
+		iInput42.add(3);
+		iInput42.add(2);
+		
+		iInput71.add(1);
+		iInput71.add(2);
+		iInput71.add(5);
+		iInput71.add(4);
+		iInput71.add(3);
+		iInput71.add(7);
+		iInput71.add(6);
+
+		iInput101.add(1);
+		iInput101.add(2);
+		iInput101.add(3);
+		iInput101.add(5);
+		iInput101.add(4);
+		iInput101.add(8);
+		iInput101.add(7);
+		iInput101.add(6);
+		iInput101.add(9);
+		iInput101.add(10);
+		
+		assertEquals(pInput42.inverse(),ipInput42);
+		assertEquals(pInput71.inverse(),ipInput72);
+		assertEquals(pInput102.inverse(),ipInput102);
+
+	}
+	static List<Integer> Input43 = new ArrayList<Integer>();
+	static Permutation pInput43 = PermutationImpl.valueOf(Input43);
+
+	static List<Integer> Input73 = new ArrayList<Integer>();
+	static Permutation pInput73 = PermutationImpl.valueOf(Input73);
+
+	static List<Integer> Input103 = new ArrayList<Integer>();
+	static Permutation pInput103 = PermutationImpl.valueOf(Input103);
+	
+	static List<Integer> Input44 = new ArrayList<Integer>();
+	static Permutation pInput44 = PermutationImpl.valueOf(Input44);
+
+	static List<Integer> Input74 = new ArrayList<Integer>();
+	static Permutation pInput74 = PermutationImpl.valueOf(Input74);
+
+	static List<Integer> Input104 = new ArrayList<Integer>();
+	static Permutation pInput104 = PermutationImpl.valueOf(Input104);
+	
+	@Test
+	public void testCompose() {
+
+		Input43.add(4);
+		Input43.add(3);
+		Input43.add(1);
+		Input43.add(2);
+
+		Input44.add(4);
+		Input44.add(2);
+		Input44.add(1);
+		Input44.add(3);
+		
+
+		Input73.add(4);
+		Input73.add(6);
+		Input73.add(2);
+		Input73.add(1);
+		Input73.add(7);
+		Input73.add(5);
+		Input73.add(3);
+
+		Input74.add(4);
+		Input74.add(6);
+		Input74.add(7);
+		Input74.add(1);
+		Input74.add(2);
+		Input74.add(3);
+		Input74.add(5);
+		
+
+		Input103.add(4);
+		Input103.add(7);
+		Input103.add(9);
+		Input103.add(2);
+		Input103.add(6);
+		Input103.add(8);
+		Input103.add(10);
+		Input103.add(1);
+		Input103.add(3);
+		Input103.add(5);
+
+		Input104.add(4);
+		Input104.add(7);
+		Input104.add(9);
+		Input104.add(6);
+		Input104.add(2);
+		Input104.add(1);
+		Input104.add(10);
+		Input104.add(8);
+		Input104.add(3);
+		Input104.add(5);
+
+		assertEquals(pInput42.compose(pInput43),pInput44);
+		assertEquals(pInput71.compose(pInput73),pInput74);
+		assertEquals(pInput102.compose(pInput103),pInput104);
+		
+
+	}
+	
+    	@Test(expected = IllegalArgumentException.class)
+    	public void testComposeException() {
+    		
+    		assertEquals(pInput42.compose(pInput73),pInput44);
+    		assertEquals(pInput71.compose(pInput103),pInput74);
+    		assertEquals(pInput102.compose(pInput43),pInput104);
+    		
+	}
 			
 		@Test
 		public void testPermutationClass(){

@@ -68,8 +68,9 @@ public interface Permutation extends Iterable<Integer> {
     Permutation compose(Permutation other) throws IllegalArgumentException, NullPointerException;
     
     /**
+     * The permutation in mathematical notation.
      *
-     * @return String the permutation in mathematical notation
+     * @return String the mathematical notation
      * @see    #toCycleNotationString()
      */
     public String toString();

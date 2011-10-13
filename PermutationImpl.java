@@ -133,8 +133,8 @@ public class PermutationImpl implements Permutation {
 		// Bsp.: [2,1,3] -> [[2,1][3]]
 		Map<Integer, Integer> elementsMap = getElementsAsMap();
 
-		return listToSet(getAllCycles_(new ArrayList<List<Integer>>(),
-				elementsMap, 1));
+        return new HashSet<List<Integer>>(getAllCycles_(new ArrayList<List<Integer>>(),
+                                          elementsMap, 1));
 	}
 
 	/**
@@ -373,12 +373,4 @@ public class PermutationImpl implements Permutation {
 
 		return builder.toString();
     }
-
-	private Set<List<Integer>> listToSet(List<List<Integer>> l) {
-		Set<List<Integer>> result = new HashSet<List<Integer>>();
-		for (List<Integer> elem : l) {
-			result.add(elem);
-		}
-		return result;
-	}
 }

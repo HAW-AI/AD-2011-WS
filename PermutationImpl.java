@@ -352,16 +352,24 @@ public class PermutationImpl implements Permutation {
         return builder.toString();
 	}
 
+    /**
+     * Return a the String representation of a List that is compatible with
+     * the cycle notation.
+     *
+     * Arrays.asList(1,2,3).toString() == "[1, 2, 3]"
+     * listToString(Arrays.asList(1,2,3)) == "(1 2 3)"
+     */
     private String listToString(List<Integer> elems) {
+        // use StringBuilder for faster String construction.
         StringBuilder builder = new StringBuilder();
 
-        builder.append("(");
+        builder.append("("); // open surrounding parentheses
         for (int elem : elems) {
             builder.append(elem);
             builder.append(" ");
         }
-        builder.deleteCharAt(builder.length()-1);
-        builder.append(")");
+        builder.deleteCharAt(builder.length()-1); // remove space at the end
+        builder.append(")"); // close surrounding parentheses
 
 		return builder.toString();
     }

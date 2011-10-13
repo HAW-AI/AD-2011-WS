@@ -1,5 +1,3 @@
-package permutation;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -8,7 +6,6 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static permutation.Permutations.*;
 
 public class PermutationTest {
   

@@ -202,7 +202,4 @@ public class PermutationAxiomTest {
 			assertTrue(p72.compose(p71.compose(p7)).equals((p72.compose(p71)).compose(p7)));
 			assertTrue(p101.compose(p10.compose(p102)).equals((p101.compose(p10)).compose(p102)));
 		}
-	
-
-		
-		}
+}

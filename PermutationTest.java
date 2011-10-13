@@ -491,6 +491,11 @@ public class PermutationTest {
 		assertEquals(erg102, pInput102.fixedPoints());
 		
 	}
+	
+	//Erstellen zusätzlicher Ergebniswerte
+	// ipInput42: [1, 4, 3, 2]
+	// ipInput72: [1, 2, 5, 4, 3, 7, 6]
+	// ipInput102: [1, 2, 3, 5, 4, 8, 7, 6, 9, 10]
 
 	static List<Integer> iInput42 = new ArrayList<Integer>();
 	static Permutation ipInput42 = PermutationImpl.valueOf(iInput42);
@@ -500,6 +505,8 @@ public class PermutationTest {
 
 	static List<Integer> iInput101 = new ArrayList<Integer>();
 	static Permutation ipInput102 = PermutationImpl.valueOf(iInput101);
+	
+	// Test von inverse()
 	
 	@Test
 	public void testInverse() {
@@ -534,6 +541,15 @@ public class PermutationTest {
 		assertEquals(pInput102.inverse(),ipInput102);
 
 	}
+	
+	// Erstellen zusätzlicher Ergebniswerte
+	// pInput43: [4, 3, 1, 2]
+	// pInput44: [4, 2, 1, 3]
+	// pInput73: [4, 6, 2, 1, 7, 5, 3]
+	// pInput74: [4, 6, 7, 1, 2, 3, 5]
+	// pInput103: [4, 7, 9, 2, 6, 8, 10, 1, 3, 5]
+	// pInput104: [4, 7, 9, 6, 2, 1, 10, 8, 3, 5]
+	
 	static List<Integer> Input43 = new ArrayList<Integer>();
 	static Permutation pInput43 = PermutationImpl.valueOf(Input43);
 
@@ -551,6 +567,8 @@ public class PermutationTest {
 
 	static List<Integer> Input104 = new ArrayList<Integer>();
 	static Permutation pInput104 = PermutationImpl.valueOf(Input104);
+	
+	// Test von compose()
 	
 	@Test
 	public void testCompose() {

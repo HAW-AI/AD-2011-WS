@@ -691,17 +691,5 @@ public class PermutationTest {
 		assertEquals("(1 2 3 5 4 8 7 6 9 10)", pInput102.toString());
 	}
 	
-	// Test von toCycleNotationString
-	
-	@Test
-	public void testToCycleNotationString(){
-		assertEquals("(1)(2)(3)(4)", pInput41.toCycleNotationString());
-		assertEquals("(1)(2 4)(3)", pInput42.toCycleNotationString());
-		assertEquals("(1)(2)(3 5)(4)(6 7)", pInput71.toCycleNotationString());
-		assertEquals("(1)(2)(3)(4)(5)(6)(7)", pInput72.toCycleNotationString());
-		assertEquals("(1)(2)(3)(4)(5)(6)(7)(8)(9)(10)", pInput101.toCycleNotationString());
-		assertEquals("(1)(2)(3)(5 4)(6 8)(7)(9)(10)", pInput102.toCycleNotationString());
-	}
-	
 }
 

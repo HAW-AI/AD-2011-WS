@@ -10,7 +10,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static permutation.Permutations.*;
 
-public class TestPermut {
+public class PermutationTest {
   
 	static List<Integer> input41 = new ArrayList<Integer>();
 	static List<Integer> input42 = new ArrayList<Integer>();

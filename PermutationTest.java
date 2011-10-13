@@ -9,6 +9,17 @@ import static org.junit.Assert.*;
 
 public class PermutationTest {
   
+	// Erstellen häufig verwendeter Permutationen
+	// pInput41: [1, 2, 3, 4]
+	// pInput42: [1, 4, 3, 2]
+	// pInput71: [1, 2, 5, 4, 3, 7, 6]
+	// pInput72: [1, 2, 3, 4, 5, 6, 7]
+	// pInput101: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+	// pInput102: [1, 2, 3, 5, 4, 8, 7, 6, 9, 10]
+	// pOutput41: [1, 2, 3, 4]
+	// pOutput71: [1, 2, 3, 4, 5, 6, 7]
+	// pOutput101: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  
 	static List<Integer> input41 = new ArrayList<Integer>();
 	static List<Integer> input42 = new ArrayList<Integer>();
 	static List<Integer> output41 = new ArrayList<Integer>();
@@ -26,105 +37,104 @@ public class PermutationTest {
 	
 
 	
-		@BeforeClass
-		public static void setUpClass() throws Exception{
+	@BeforeClass
+	public static void setUpClass() throws Exception{
 	
-	
-	input41.add(1);
-	input41.add(2);
-	input41.add(3);
-	input41.add(4);
+		input41.add(1);
+		input41.add(2);
+		input41.add(3);
+		input41.add(4);
+			
+		input42.add(1);
+		input42.add(4);
+		input42.add(3);
+		input42.add(2);
 		
-	input42.add(1);
-	input42.add(4);
-	input42.add(3);
-	input42.add(2);
-	
-	output41.add(1);
-	output41.add(2);
-	output41.add(3);
-	output41.add(4);
+		output41.add(1);
+		output41.add(2);
+		output41.add(3);
+		output41.add(4);
+			
+		output42.add(1);
+		output42.add(2);
+		output42.add(3);
+		output42.add(4);
 		
-	output42.add(1);
-	output42.add(2);
-	output42.add(3);
-	output42.add(4);
-	
-	input71.add(1);
-	input71.add(2);
-	input71.add(5);
-	input71.add(4);
-	input71.add(3);
-	input71.add(7);
-	input71.add(6);
-	
-	input72.add(1);
-	input72.add(2);
-	input72.add(3);
-	input72.add(4);
-	input72.add(5);
-	input72.add(6);
-	input72.add(7);
-	
-	output71.add(1);
-	output71.add(2);
-	output71.add(3);
-	output71.add(4);
-	output71.add(5);
-	output71.add(6);
-	output71.add(7);
-	
-	output72.add(1);
-	output72.add(2);
-	output72.add(3);
-	output72.add(4);
-	output72.add(5);
-	output72.add(6);
-	output72.add(7);
+		input71.add(1);
+		input71.add(2);
+		input71.add(5);
+		input71.add(4);
+		input71.add(3);
+		input71.add(7);
+		input71.add(6);
 		
-	input101.add(1);
-	input101.add(2);
-	input101.add(3);
-	input101.add(4);
-	input101.add(5);
-	input101.add(6);
-	input101.add(7);
-	input101.add(8);
-	input101.add(9);
-	input101.add(10);
-	
-	input102.add(1);
-	input102.add(2);
-	input102.add(3);
-	input102.add(5);
-	input102.add(4);
-	input102.add(8);
-	input102.add(7);
-	input102.add(6);
-	input102.add(9);
-	input102.add(10);
-	
-	output101.add(1);
-	output101.add(2);
-	output101.add(3);
-	output101.add(4);
-	output101.add(5);
-	output101.add(6);
-	output101.add(7);
-	output101.add(8);
-	output101.add(9);
-	output101.add(10);
-	
-	output102.add(1);
-	output102.add(2);
-	output102.add(3);
-	output102.add(4);
-	output102.add(5);
-	output102.add(6);
-	output102.add(7);
-	output102.add(8);
-	output102.add(9);
-	output102.add(10);
+		input72.add(1);
+		input72.add(2);
+		input72.add(3);
+		input72.add(4);
+		input72.add(5);
+		input72.add(6);
+		input72.add(7);
+		
+		output71.add(1);
+		output71.add(2);
+		output71.add(3);
+		output71.add(4);
+		output71.add(5);
+		output71.add(6);
+		output71.add(7);
+		
+		output72.add(1);
+		output72.add(2);
+		output72.add(3);
+		output72.add(4);
+		output72.add(5);
+		output72.add(6);
+		output72.add(7);
+			
+		input101.add(1);
+		input101.add(2);
+		input101.add(3);
+		input101.add(4);
+		input101.add(5);
+		input101.add(6);
+		input101.add(7);
+		input101.add(8);
+		input101.add(9);
+		input101.add(10);
+		
+		input102.add(1);
+		input102.add(2);
+		input102.add(3);
+		input102.add(5);
+		input102.add(4);
+		input102.add(8);
+		input102.add(7);
+		input102.add(6);
+		input102.add(9);
+		input102.add(10);
+		
+		output101.add(1);
+		output101.add(2);
+		output101.add(3);
+		output101.add(4);
+		output101.add(5);
+		output101.add(6);
+		output101.add(7);
+		output101.add(8);
+		output101.add(9);
+		output101.add(10);
+		
+		output102.add(1);
+		output102.add(2);
+		output102.add(3);
+		output102.add(4);
+		output102.add(5);
+		output102.add(6);
+		output102.add(7);
+		output102.add(8);
+		output102.add(9);
+		output102.add(10);
 	
 
 	
@@ -145,313 +155,342 @@ public class PermutationTest {
 	static Permutation pOutput101 = PermutationImpl.valueOf(output101);
 	static Permutation pOutput102 = PermutationImpl.valueOf(output102);
 
-		@Test
-		public void testSigma(){
-			assertEquals(3, pInput41.sigma(3));		
-			assertEquals(4, pInput42.sigma(2));
-			
-			assertEquals(5, pInput71.sigma(3));		
-			assertEquals(2, pInput72.sigma(2));
-			
-			assertEquals(3, pInput101.sigma(3));		
-			assertEquals(2, pInput102.sigma(2));
-			
-		}
+	// Positivtest von sigma()
 
-		@Test (expected=IllegalArgumentException.class)
-		public void testSigmaException1(){
-			assertEquals(3, pInput41.sigma(5));
-		}
-		@Test (expected=IllegalArgumentException.class)
-		public void testSigmaException2(){
-			assertEquals(3, pInput42.sigma(-1));
-		}
-		@Test (expected=IllegalArgumentException.class)
-		public void testSigmaException3(){
-			assertEquals(3, pInput71.sigma(8));
-		}
-		@Test (expected=IllegalArgumentException.class)
-		public void testSigmaException4(){
-			assertEquals(3, pInput72.sigma(-1));
-		}
-		@Test (expected=IllegalArgumentException.class)
-		public void testSigmaException5(){
-			assertEquals(3, pInput101.sigma(11));
-		}
-		@Test (expected=IllegalArgumentException.class)
-		public void testSigmaException6(){
-			assertEquals(3, pInput102.sigma(-1));
-		}
+	@Test
+	public void testSigma(){
+		assertEquals(3, pInput41.sigma(3));		
+		assertEquals(4, pInput42.sigma(2));
 		
-		@Test
-		public void testCycle(){
-			
-			List<Integer> erg41 = new ArrayList<Integer>();
-			erg41.add(4);
-			erg41.add(2);
-			
-			List<Integer> erg42 = new ArrayList<Integer>();
-			erg42.add(1);
-			
-			assertEquals(erg41, pInput42.cycle(2));
-			assertEquals(erg42, pInput42.cycle(1));
-			
-			List<Integer> erg71 = new ArrayList<Integer>();
-			erg71.add(5);
-			erg71.add(3);
-			
-			List<Integer> erg72 = new ArrayList<Integer>();
-			erg72.add(5);
-			
-			assertEquals(erg71, pInput71.cycle(3));
-			assertEquals(erg72, pInput72.cycle(5));
-
-			List<Integer> erg101 = new ArrayList<Integer>();
-			erg101.add(4);
-			
-			List<Integer> erg102 = new ArrayList<Integer>();
-			erg102.add(5);
-			erg102.add(4);
-			
-			assertEquals(erg101, pInput101.cycle(4));
-			assertEquals(erg102, pInput102.cycle(4));
-
-		}
+		assertEquals(5, pInput71.sigma(3));		
+		assertEquals(2, pInput72.sigma(2));
 		
-		@Test (expected=IllegalArgumentException.class)
-		public void testCycleException1(){
-			assertEquals(3, pInput41.cycle(5));
-		}
-		@Test (expected=IllegalArgumentException.class)
-		public void testCycleException2(){
-			assertEquals(3, pInput42.cycle(-1));
-		}
-		@Test (expected=IllegalArgumentException.class)
-		public void testCycleException3(){
-			assertEquals(3, pInput71.cycle(8));
-		}
-		@Test (expected=IllegalArgumentException.class)
-		public void testCycleException4(){
-			assertEquals(3, pInput72.cycle(-1));
-		}
-		@Test (expected=IllegalArgumentException.class)
-		public void testCycleException5(){
-			assertEquals(3, pInput101.cycle(11));
-		}
-		@Test (expected=IllegalArgumentException.class)
-		public void testCycleException6(){
-			assertEquals(3, pInput102.cycle(-1));
-		}
+		assertEquals(3, pInput101.sigma(3));		
+		assertEquals(2, pInput102.sigma(2));
 		
-		@Test
-		public void testAllCycles(){
-			List<Integer> inErg411 = new ArrayList<Integer>();
-			List<Integer> inErg412 = new ArrayList<Integer>();
-			List<Integer> inErg413 = new ArrayList<Integer>();
-			List<Integer> inErg414 = new ArrayList<Integer>();
-			Set<List<Integer>> erg41 = new HashSet<List<Integer>>();
-			
-			List<Integer> inErg421 = new ArrayList<Integer>();
-			List<Integer> inErg422 = new ArrayList<Integer>();
-			List<Integer> inErg423 = new ArrayList<Integer>();
-			Set<List<Integer>> erg42 = new HashSet<List<Integer>>();
-			
-			List<Integer> inErg711 = new ArrayList<Integer>();
-			List<Integer> inErg712 = new ArrayList<Integer>();
-			List<Integer> inErg713 = new ArrayList<Integer>();
-			List<Integer> inErg714 = new ArrayList<Integer>();
-			List<Integer> inErg715 = new ArrayList<Integer>();
-			Set<List<Integer>> erg71 = new HashSet<List<Integer>>();
-			
-			List<Integer> inErg721 = new ArrayList<Integer>();
-			List<Integer> inErg722 = new ArrayList<Integer>();
-			List<Integer> inErg723 = new ArrayList<Integer>();
-			List<Integer> inErg724 = new ArrayList<Integer>();
-			List<Integer> inErg725 = new ArrayList<Integer>();
-			List<Integer> inErg726 = new ArrayList<Integer>();
-			List<Integer> inErg727 = new ArrayList<Integer>();
-			Set<List<Integer>> erg72 = new HashSet<List<Integer>>();
-			
-			List<Integer> inErg1011 = new ArrayList<Integer>();
-			List<Integer> inErg1012 = new ArrayList<Integer>();
-			List<Integer> inErg1013 = new ArrayList<Integer>();
-			List<Integer> inErg1014 = new ArrayList<Integer>();
-			List<Integer> inErg1015 = new ArrayList<Integer>();
-			List<Integer> inErg1016 = new ArrayList<Integer>();
-			List<Integer> inErg1017 = new ArrayList<Integer>();
-			List<Integer> inErg1018 = new ArrayList<Integer>();
-			List<Integer> inErg1019 = new ArrayList<Integer>();
-			List<Integer> inErg10110 = new ArrayList<Integer>();
-			Set<List<Integer>> erg101 = new HashSet<List<Integer>>();
-			
-			List<Integer> inErg1021 = new ArrayList<Integer>();
-			List<Integer> inErg1022 = new ArrayList<Integer>();
-			List<Integer> inErg1023 = new ArrayList<Integer>();
-			List<Integer> inErg1024 = new ArrayList<Integer>();
-			List<Integer> inErg1025 = new ArrayList<Integer>();
-			List<Integer> inErg1026 = new ArrayList<Integer>();
-			List<Integer> inErg1027 = new ArrayList<Integer>();
-			List<Integer> inErg1028 = new ArrayList<Integer>();
-			Set<List<Integer>> erg102 = new HashSet<List<Integer>>();
-			
-			inErg411.add(1);
-			inErg412.add(2);
-			inErg413.add(3);
-			inErg414.add(4);
-				
-			inErg421.add(1);
-			inErg422.add(4);
-			inErg423.add(3);
-			inErg422.add(2);
-			
-			inErg711.add(1);
-			inErg712.add(2);
-			inErg713.add(5);
-			inErg714.add(4);
-			inErg713.add(3);
-			inErg715.add(7);
-			inErg715.add(6);
-			
-			inErg721.add(1);
-			inErg722.add(2);
-			inErg723.add(3);
-			inErg724.add(4);
-			inErg725.add(5);
-			inErg726.add(6);
-			inErg727.add(7);
-				
-			inErg1011.add(1);
-			inErg1012.add(2);
-			inErg1013.add(3);
-			inErg1014.add(4);
-			inErg1015.add(5);
-			inErg1016.add(6);
-			inErg1017.add(7);
-			inErg1018.add(8);
-			inErg1019.add(9);
-			inErg10110.add(10);
-			
-			inErg1021.add(1);
-			inErg1022.add(2);
-			inErg1023.add(3);
-			inErg1024.add(5);
-			inErg1024.add(4);
-			inErg1025.add(8);
-			inErg1028.add(7);
-			inErg1025.add(6);
-			inErg1026.add(9);
-			inErg1027.add(10);
+	}
 
-			erg41.add(inErg411);
-			erg41.add(inErg412);
-			erg41.add(inErg413);
-			erg41.add(inErg414);
-			
-			erg42.add(inErg421);
-			erg42.add(inErg422);
-			erg42.add(inErg423);
-			
-			erg71.add(inErg711);
-			erg71.add(inErg712);
-			erg71.add(inErg713);
-			erg71.add(inErg714);
-			erg71.add(inErg715);
-			
-			erg72.add(inErg721);
-			erg72.add(inErg722);
-			erg72.add(inErg723);
-			erg72.add(inErg724);
-			erg72.add(inErg725);
-			erg72.add(inErg726);
-			erg72.add(inErg727);
-			
-			erg101.add(inErg1011);
-			erg101.add(inErg1012);
-			erg101.add(inErg1013);
-			erg101.add(inErg1014);
-			erg101.add(inErg1015);
-			erg101.add(inErg1016);
-			erg101.add(inErg1017);
-			erg101.add(inErg1018);
-			erg101.add(inErg1019);
-			erg101.add(inErg10110);
-			
-			erg102.add(inErg1021);
-			erg102.add(inErg1022);
-			erg102.add(inErg1023);
-			erg102.add(inErg1024);
-			erg102.add(inErg1025);
-			erg102.add(inErg1026);
-			erg102.add(inErg1027);
-			erg102.add(inErg1028);
-			
-			assertEquals(erg41, pInput41.allCycles());
-			assertEquals(erg42, pInput42.allCycles());
-			
-			assertEquals(erg71, pInput71.allCycles());
-			assertEquals(erg72, pInput72.allCycles());
-			
-			assertEquals(erg101, pInput101.allCycles());
-			assertEquals(erg102, pInput102.allCycles());
-		}
+	// Negativtest von sigma()
+
+	@Test (expected=IllegalArgumentException.class)
+	public void testSigmaException1(){
+		assertEquals(3, pInput41.sigma(5));
+	}
+	@Test (expected=IllegalArgumentException.class)
+	public void testSigmaException2(){
+		assertEquals(3, pInput42.sigma(-1));
+	}
+	@Test (expected=IllegalArgumentException.class)
+	public void testSigmaException3(){
+		assertEquals(3, pInput71.sigma(8));
+	}
+	@Test (expected=IllegalArgumentException.class)
+	public void testSigmaException4(){
+		assertEquals(3, pInput72.sigma(-1));
+	}
+	@Test (expected=IllegalArgumentException.class)
+	public void testSigmaException5(){
+		assertEquals(3, pInput101.sigma(11));
+	}
+	@Test (expected=IllegalArgumentException.class)
+	public void testSigmaException6(){
+		assertEquals(3, pInput102.sigma(-1));
+	}
+	
+	// Positivtest von cycle()
+	
+	@Test
+	public void testCycle(){
 		
-		@Test
-		public void testFixedPoints(){
-				
-				Set<Integer> erg41 = new HashSet<Integer>();
-				erg41.add(4);
-				erg41.add(2);
-				erg41.add(1);
-				erg41.add(3);
-				
-				Set<Integer> erg42 = new HashSet<Integer>();
-				erg42.add(1);
-				erg42.add(3);
-				
-				assertEquals(erg41, pInput41.fixedPoints());
-				assertEquals(erg42, pInput42.fixedPoints());
-				
-				Set<Integer> erg71 = new HashSet<Integer>();
-				erg71.add(1);
-				erg71.add(2);
-				erg71.add(4);
-				
-				Set<Integer> erg72 = new HashSet<Integer>();
-				erg72.add(1);
-				erg72.add(2);
-				erg72.add(3);
-				erg72.add(4);
-				erg72.add(5);
-				erg72.add(6);
-				erg72.add(7);
-				
-				assertEquals(erg71, pInput71.fixedPoints());
-				assertEquals(erg72, pInput72.fixedPoints());
+		List<Integer> erg41 = new ArrayList<Integer>();
+		erg41.add(4);
+		erg41.add(2);
+		
+		List<Integer> erg42 = new ArrayList<Integer>();
+		erg42.add(1);
+		
+		assertEquals(erg41, pInput42.cycle(2));
+		assertEquals(erg42, pInput42.cycle(1));
+		
+		List<Integer> erg71 = new ArrayList<Integer>();
+		erg71.add(5);
+		erg71.add(3);
+		
+		List<Integer> erg72 = new ArrayList<Integer>();
+		erg72.add(5);
+		
+		assertEquals(erg71, pInput71.cycle(3));
+		assertEquals(erg72, pInput72.cycle(5));
 
-				Set<Integer> erg101 = new HashSet<Integer>();
-				erg101.add(1);
-				erg101.add(2);
-				erg101.add(3);
-				erg101.add(4);
-				erg101.add(5);
-				erg101.add(6);
-				erg101.add(7);
-				erg101.add(8);
-				erg101.add(9);
-				erg101.add(10);
-				
-				Set<Integer> erg102 = new HashSet<Integer>();
-				erg102.add(1);
-				erg102.add(2);
-				erg102.add(3);
-				erg102.add(7);
-				erg102.add(9);
-				erg102.add(10);
-				
-				assertEquals(erg101, pInput101.fixedPoints());
-				assertEquals(erg102, pInput102.fixedPoints());
-				
-			}
+		List<Integer> erg101 = new ArrayList<Integer>();
+		erg101.add(4);
+		
+		List<Integer> erg102 = new ArrayList<Integer>();
+		erg102.add(5);
+		erg102.add(4);
+		
+		assertEquals(erg101, pInput101.cycle(4));
+		assertEquals(erg102, pInput102.cycle(4));
+
+	}
+	
+	// Negativtest von cycle()
+	
+	@Test (expected=IllegalArgumentException.class)
+	public void testCycleException1(){
+		assertEquals(3, pInput41.cycle(5));
+	}
+	@Test (expected=IllegalArgumentException.class)
+	public void testCycleException2(){
+		assertEquals(3, pInput42.cycle(-1));
+	}
+	@Test (expected=IllegalArgumentException.class)
+	public void testCycleException3(){
+		assertEquals(3, pInput71.cycle(8));
+	}
+	@Test (expected=IllegalArgumentException.class)
+	public void testCycleException4(){
+		assertEquals(3, pInput72.cycle(-1));
+	}
+	@Test (expected=IllegalArgumentException.class)
+	public void testCycleException5(){
+		assertEquals(3, pInput101.cycle(11));
+	}
+	@Test (expected=IllegalArgumentException.class)
+	public void testCycleException6(){
+		assertEquals(3, pInput102.cycle(-1));
+	}
+	
+	// Test von allCycles()
+	
+	@Test
+	public void testAllCycles(){
+		
+		// Erstellen zusätzlicher Ergebniswerte
+		//erg41: [[3], [4], [1], [2]]
+		//erg42: [[3], [1], [4, 2]]
+		//erg71: [[4], [5, 3], [1], [7, 6], [2]]
+		//erg72: [[3], [4], [1], [2], [7], [5], [6]]
+		//erg101: [[3], [4], [1], [2], [7], [8], [5], [6], [9], [10]]
+		//erg102: [[3], [1], [2], [7], [9], [10], [8, 6], [5, 4]]
+		
+		List<Integer> inErg411 = new ArrayList<Integer>();
+		List<Integer> inErg412 = new ArrayList<Integer>();
+		List<Integer> inErg413 = new ArrayList<Integer>();
+		List<Integer> inErg414 = new ArrayList<Integer>();
+		Set<List<Integer>> erg41 = new HashSet<List<Integer>>();
+		
+		List<Integer> inErg421 = new ArrayList<Integer>();
+		List<Integer> inErg422 = new ArrayList<Integer>();
+		List<Integer> inErg423 = new ArrayList<Integer>();
+		Set<List<Integer>> erg42 = new HashSet<List<Integer>>();
+		
+		List<Integer> inErg711 = new ArrayList<Integer>();
+		List<Integer> inErg712 = new ArrayList<Integer>();
+		List<Integer> inErg713 = new ArrayList<Integer>();
+		List<Integer> inErg714 = new ArrayList<Integer>();
+		List<Integer> inErg715 = new ArrayList<Integer>();
+		Set<List<Integer>> erg71 = new HashSet<List<Integer>>();
+		
+		List<Integer> inErg721 = new ArrayList<Integer>();
+		List<Integer> inErg722 = new ArrayList<Integer>();
+		List<Integer> inErg723 = new ArrayList<Integer>();
+		List<Integer> inErg724 = new ArrayList<Integer>();
+		List<Integer> inErg725 = new ArrayList<Integer>();
+		List<Integer> inErg726 = new ArrayList<Integer>();
+		List<Integer> inErg727 = new ArrayList<Integer>();
+		Set<List<Integer>> erg72 = new HashSet<List<Integer>>();
+		
+		List<Integer> inErg1011 = new ArrayList<Integer>();
+		List<Integer> inErg1012 = new ArrayList<Integer>();
+		List<Integer> inErg1013 = new ArrayList<Integer>();
+		List<Integer> inErg1014 = new ArrayList<Integer>();
+		List<Integer> inErg1015 = new ArrayList<Integer>();
+		List<Integer> inErg1016 = new ArrayList<Integer>();
+		List<Integer> inErg1017 = new ArrayList<Integer>();
+		List<Integer> inErg1018 = new ArrayList<Integer>();
+		List<Integer> inErg1019 = new ArrayList<Integer>();
+		List<Integer> inErg10110 = new ArrayList<Integer>();
+		Set<List<Integer>> erg101 = new HashSet<List<Integer>>();
+		
+		List<Integer> inErg1021 = new ArrayList<Integer>();
+		List<Integer> inErg1022 = new ArrayList<Integer>();
+		List<Integer> inErg1023 = new ArrayList<Integer>();
+		List<Integer> inErg1024 = new ArrayList<Integer>();
+		List<Integer> inErg1025 = new ArrayList<Integer>();
+		List<Integer> inErg1026 = new ArrayList<Integer>();
+		List<Integer> inErg1027 = new ArrayList<Integer>();
+		List<Integer> inErg1028 = new ArrayList<Integer>();
+		Set<List<Integer>> erg102 = new HashSet<List<Integer>>();
+		
+		inErg411.add(1);
+		inErg412.add(2);
+		inErg413.add(3);
+		inErg414.add(4);
+			
+		inErg421.add(1);
+		inErg422.add(4);
+		inErg423.add(3);
+		inErg422.add(2);
+		
+		inErg711.add(1);
+		inErg712.add(2);
+		inErg713.add(5);
+		inErg714.add(4);
+		inErg713.add(3);
+		inErg715.add(7);
+		inErg715.add(6);
+		
+		inErg721.add(1);
+		inErg722.add(2);
+		inErg723.add(3);
+		inErg724.add(4);
+		inErg725.add(5);
+		inErg726.add(6);
+		inErg727.add(7);
+			
+		inErg1011.add(1);
+		inErg1012.add(2);
+		inErg1013.add(3);
+		inErg1014.add(4);
+		inErg1015.add(5);
+		inErg1016.add(6);
+		inErg1017.add(7);
+		inErg1018.add(8);
+		inErg1019.add(9);
+		inErg10110.add(10);
+		
+		inErg1021.add(1);
+		inErg1022.add(2);
+		inErg1023.add(3);
+		inErg1024.add(5);
+		inErg1024.add(4);
+		inErg1025.add(8);
+		inErg1028.add(7);
+		inErg1025.add(6);
+		inErg1026.add(9);
+		inErg1027.add(10);
+
+		erg41.add(inErg411);
+		erg41.add(inErg412);
+		erg41.add(inErg413);
+		erg41.add(inErg414);
+		
+		erg42.add(inErg421);
+		erg42.add(inErg422);
+		erg42.add(inErg423);
+		
+		erg71.add(inErg711);
+		erg71.add(inErg712);
+		erg71.add(inErg713);
+		erg71.add(inErg714);
+		erg71.add(inErg715);
+		
+		erg72.add(inErg721);
+		erg72.add(inErg722);
+		erg72.add(inErg723);
+		erg72.add(inErg724);
+		erg72.add(inErg725);
+		erg72.add(inErg726);
+		erg72.add(inErg727);
+		
+		erg101.add(inErg1011);
+		erg101.add(inErg1012);
+		erg101.add(inErg1013);
+		erg101.add(inErg1014);
+		erg101.add(inErg1015);
+		erg101.add(inErg1016);
+		erg101.add(inErg1017);
+		erg101.add(inErg1018);
+		erg101.add(inErg1019);
+		erg101.add(inErg10110);
+		
+		erg102.add(inErg1021);
+		erg102.add(inErg1022);
+		erg102.add(inErg1023);
+		erg102.add(inErg1024);
+		erg102.add(inErg1025);
+		erg102.add(inErg1026);
+		erg102.add(inErg1027);
+		erg102.add(inErg1028);
+		
+		assertEquals(erg41, pInput41.allCycles());
+		assertEquals(erg42, pInput42.allCycles());
+		
+		assertEquals(erg71, pInput71.allCycles());
+		assertEquals(erg72, pInput72.allCycles());
+		
+		assertEquals(erg101, pInput101.allCycles());
+		assertEquals(erg102, pInput102.allCycles());
+	}
+	
+	// Test von fixedPoints()
+	
+	@Test
+	public void testFixedPoints(){
+		
+		// Erstellen zusätzlicher Ergebniswerte
+		// erg41: [1, 2, 3, 4]
+		// erg42: [1, 3]
+		// erg71: [1, 2, 4]
+		// erg72: [1, 2, 3, 4, 5, 6, 7]
+		// erg101: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+		// erg102: [1, 2, 3, 7, 9, 10]
+
+		Set<Integer> erg41 = new HashSet<Integer>();
+		erg41.add(4);
+		erg41.add(2);
+		erg41.add(1);
+		erg41.add(3);
+		
+		Set<Integer> erg42 = new HashSet<Integer>();
+		erg42.add(1);
+		erg42.add(3);
+		
+		assertEquals(erg41, pInput41.fixedPoints());
+		assertEquals(erg42, pInput42.fixedPoints());
+		
+		Set<Integer> erg71 = new HashSet<Integer>();
+		erg71.add(1);
+		erg71.add(2);
+		erg71.add(4);
+		
+		Set<Integer> erg72 = new HashSet<Integer>();
+		erg72.add(1);
+		erg72.add(2);
+		erg72.add(3);
+		erg72.add(4);
+		erg72.add(5);
+		erg72.add(6);
+		erg72.add(7);
+		
+		assertEquals(erg71, pInput71.fixedPoints());
+		assertEquals(erg72, pInput72.fixedPoints());
+
+		Set<Integer> erg101 = new HashSet<Integer>();
+		erg101.add(1);
+		erg101.add(2);
+		erg101.add(3);
+		erg101.add(4);
+		erg101.add(5);
+		erg101.add(6);
+		erg101.add(7);
+		erg101.add(8);
+		erg101.add(9);
+		erg101.add(10);
+		
+		Set<Integer> erg102 = new HashSet<Integer>();
+		erg102.add(1);
+		erg102.add(2);
+		erg102.add(3);
+		erg102.add(7);
+		erg102.add(9);
+		erg102.add(10);
+		
+		assertEquals(erg101, pInput101.fixedPoints());
+		assertEquals(erg102, pInput102.fixedPoints());
+		
+	}
 
 	static List<Integer> iInput42 = new ArrayList<Integer>();
 	static Permutation ipInput42 = PermutationImpl.valueOf(iInput42);
@@ -585,39 +624,43 @@ public class PermutationTest {
     	public void testComposeException3() {
     		assertEquals(pInput102.compose(pInput43),pInput104);
     	}
-			
-		@Test
-		public void testPermutationClass(){
-			
-			assertEquals(4, pInput41.permutationClass());
-			assertEquals(4, pInput42.permutationClass());
-			
-			assertEquals(7, pInput71.permutationClass());
-			assertEquals(7, pInput72.permutationClass());
-			
-			assertEquals(10, pInput101.permutationClass());
-			assertEquals(10, pInput102.permutationClass());
-			
-		}
+	
+	// Test von permutationClass()
+	
+	@Test
+	public void testPermutationClass(){
 		
-		@Test
-		public void testEquals(){
-			
-			assertTrue(pInput41.equals(pInput41));
-			assertTrue(pOutput41.equals(pInput41));
-			assertTrue(pInput72.equals(pOutput71));
-			assertTrue(pOutput102.equals(pInput101));
-			assertTrue(pInput41.equals(pOutput42));
-			
-			assertFalse(pInput42.equals(pOutput42));
-			assertFalse(pInput72.equals(pOutput42));
-			assertFalse(pInput102.equals(pOutput71));
-			assertFalse(pInput42.equals("Hallo Welt"));
-			assertFalse(pInput42.equals(7));
-			assertFalse(pInput42.equals(input42));
-			assertFalse(pInput42.equals(-1337));
-			
-		}
+		assertEquals(4, pInput41.permutationClass());
+		assertEquals(4, pInput42.permutationClass());
+		
+		assertEquals(7, pInput71.permutationClass());
+		assertEquals(7, pInput72.permutationClass());
+		
+		assertEquals(10, pInput101.permutationClass());
+		assertEquals(10, pInput102.permutationClass());
 		
 	}
+	
+	// Test von equals()
+	
+	@Test
+	public void testEquals(){
+		
+		assertTrue(pInput41.equals(pInput41));
+		assertTrue(pOutput41.equals(pInput41));
+		assertTrue(pInput72.equals(pOutput71));
+		assertTrue(pOutput102.equals(pInput101));
+		assertTrue(pInput41.equals(pOutput42));
+		
+		assertFalse(pInput42.equals(pOutput42));
+		assertFalse(pInput72.equals(pOutput42));
+		assertFalse(pInput102.equals(pOutput71));
+		assertFalse(pInput42.equals("Hallo Welt"));
+		assertFalse(pInput42.equals(7));
+		assertFalse(pInput42.equals(input42));
+		assertFalse(pInput42.equals(-1337));
+		
+	}
+	
+}
 

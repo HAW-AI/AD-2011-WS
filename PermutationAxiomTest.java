@@ -10,40 +10,39 @@ import static org.junit.Assert.*;
 public class PermutationAxiomTest {
 
       	static List<Integer> test = new ArrayList<Integer>();
+      		//p = [1]
 			static Permutation p = PermutationImpl.valueOf(test);
-
+		//p4 = [1,2,3,4]
     		static List<Integer> test4 = new ArrayList<Integer>();
 			static Permutation p4 = PermutationImpl.valueOf(test4);
-			
+		//p7 = [1,2,3,4,5,6,7]
     		static List<Integer> test7 = new ArrayList<Integer>();
 			static Permutation p7 = PermutationImpl.valueOf(test7);
-			
+		//p10 = [1,2,3,4,5,6,7,8,9,10]
     		static List<Integer> test10 = new ArrayList<Integer>();
 			static Permutation p10 = PermutationImpl.valueOf(test10);
-			
+		//p41 = [3,2,4,1]
     		static List<Integer> test41 = new ArrayList<Integer>();
 			static Permutation p41 = PermutationImpl.valueOf(test41);
-			
+		//p71 = [3,2,4,1,7,6,5]
     		static List<Integer> test71 = new ArrayList<Integer>();
 			static Permutation p71 = PermutationImpl.valueOf(test71);
-			
+		//p101 = [3,2,4,1,7,6,5,10,9,8]
     		static List<Integer> test101 = new ArrayList<Integer>();
 			static Permutation p101 = PermutationImpl.valueOf(test101);
-			
+		//p42 = [2,3,1,4]
     		static List<Integer> test42 = new ArrayList<Integer>();
 			static Permutation p42 = PermutationImpl.valueOf(test42);
-			
+		//p72 = [2,3,1,4,7,5,6]
     		static List<Integer> test72 = new ArrayList<Integer>();
 			static Permutation p72 = PermutationImpl.valueOf(test72);
-			
+		//p102 = [2,3,1,4,7,5,6,9,8,10]
     		static List<Integer> test102 = new ArrayList<Integer>();
 			static Permutation p102 = PermutationImpl.valueOf(test102);
-			
+		//p42i = [3,1,2,4]
     		static List<Integer> test42i = new ArrayList<Integer>();
 			static Permutation p42i = PermutationImpl.valueOf(test42i);
 			
-    		static List<Integer> test4c = new ArrayList<Integer>();
-			static Permutation p4c = PermutationImpl.valueOf(test4c);
 
 		
     @BeforeClass
@@ -96,6 +95,7 @@ public class PermutationAxiomTest {
 			test101.add(8);
 			
 
+		
 			test42.add(2);
 			test72.add(2);
 			test102.add(2);
@@ -122,11 +122,6 @@ public class PermutationAxiomTest {
 			test42i.add(1);
 			test42i.add(2);
 			test42i.add(4);
-			
-			test4c.add(3);
-			test4c.add(1);
-			test4c.add(2);
-			test4c.add(4);
 			
     }
     
@@ -209,14 +204,8 @@ public class PermutationAxiomTest {
 			assertTrue(p4.compose(p42.compose(p41)).equals((p4.compose(p42)).compose(p41)));
 			assertTrue(p72.compose(p71.compose(p7)).equals((p72.compose(p71)).compose(p7)));
 			assertTrue(p101.compose(p10.compose(p102)).equals((p101.compose(p10)).compose(p102)));
-
-			
-          System.out.println(p4c);
-	        System.out.println(p42);
-	        System.out.println(p4c.allCycles());
-	        System.out.println(p42.allCycles());
-			assertTrue(p4c.equals(p42));
-			}
+		}
+	
 
 		
 		}

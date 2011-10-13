@@ -228,7 +228,7 @@ public class PermutationTest {
 		}
 		@Test (expected=IllegalArgumentException.class)
 		public void testCycleException3(){
-			assertEquals(3, pInput71.cycle(5));
+			assertEquals(3, pInput71.cycle(8));
 		}
 		@Test (expected=IllegalArgumentException.class)
 		public void testCycleException4(){
@@ -236,7 +236,7 @@ public class PermutationTest {
 		}
 		@Test (expected=IllegalArgumentException.class)
 		public void testCycleException5(){
-			assertEquals(3, pInput101.cycle(5));
+			assertEquals(3, pInput101.cycle(11));
 		}
 		@Test (expected=IllegalArgumentException.class)
 		public void testCycleException6(){

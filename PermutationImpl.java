@@ -335,7 +335,7 @@ public class PermutationImpl implements Permutation {
 	 */
 	@Override
 	public String toCycleNotationString() {
-        Set<List<Integer>> cycles = allCycles();
+        List<List<Integer>> cycles = getAllCyclesAsList();
 
         StringBuilder builder = new StringBuilder();
 

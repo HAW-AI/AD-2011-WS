@@ -21,7 +21,7 @@ public interface Permutation extends Iterable<Integer> {
      * Return the image of a value.
      * 
      * @param  inverseImage the inverse image
-     * @return int the image
+     * @return the image
      * @throws IllegalArgumentException unless 1 <= inverseImage <= permutationClass()
      */
     int sigma(int inverseImage) throws IllegalArgumentException;
@@ -30,7 +30,7 @@ public interface Permutation extends Iterable<Integer> {
      * Return the n-th cycle of the permutation.
      * 
      * @param index the cycle index (beginning at 1)
-     * @return List the cycle
+     * @return the cycle
      * @throws IllegalArgumentException unless 1 <= index <= permutationClass()
      */
     List<Integer> cycle(int index) throws IllegalArgumentException;
@@ -38,21 +38,21 @@ public interface Permutation extends Iterable<Integer> {
     /**
      * All the cycles of the image.
      * 
-     * @return Set the cycles
+     * @return the cycles
      */
     Set<List<Integer>> allCycles();
     
     /**
      * All the fixed points.
      * 
-     * @return Set the fixed points
+     * @return the fixed points
      */
     Set<Integer> fixedPoints();
     
     /**
      * The inverse permutation.
      * 
-     * @return Permutation the inverse permutation
+     * @return the inverse permutation
      */
     Permutation inverse();
     
@@ -60,7 +60,7 @@ public interface Permutation extends Iterable<Integer> {
      * Compose this permutation with the other one.
      * 
      * @param other the Permutation to compose with
-     * @return Permutation the composition
+     * @return the composition
      * @throws IllegalArgumentException if the classes of both permutations are
      *                                  not the same
      * @throws NullPointerException     if the argument is null
@@ -70,7 +70,7 @@ public interface Permutation extends Iterable<Integer> {
     /**
      * The permutation in mathematical notation.
      *
-     * @return String the mathematical notation
+     * @return the mathematical notation
      * @see    #toCycleNotationString()
      */
     public String toString();
@@ -78,7 +78,7 @@ public interface Permutation extends Iterable<Integer> {
     /**
      * The mathematical cycle notation ({@link http://en.wikipedia.org/wiki/Cycle_notation})
      * 
-     * @return String the cycle notation
+     * @return the cycle notation
      */
     String toCycleNotationString();
     
@@ -86,7 +86,7 @@ public interface Permutation extends Iterable<Integer> {
      * The permutation class (i.e. the number of its images, aka Sn-class of
      * Permutation)
      *
-     * @return int the permutation class
+     * @return the permutation class
      */
     int permutationClass();
 

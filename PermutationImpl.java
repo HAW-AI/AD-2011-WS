@@ -6,6 +6,7 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.List;
 import java.util.Set;
+import java.lang.StringBuilder;
 
 /**
  * @author Ben Rexin <benjamin.rexin@haw-hamburg.de>
@@ -208,16 +209,6 @@ public class PermutationImpl implements Permutation {
 	}
 
 	/**
-	 * @author Daniel Liesener
-	 * @author Fenja Harbke
-	 */
-	@Override
-	public String toCycleNotationString() {
-		// Gibt Cycle Notation als String zurÃ¼ck
-		return allCycles().toString();
-	}
-
-	/**
 	 * @author Ben Rexin <benjamin.rexin@haw-hamburg.de>
 	 * @author Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
 	 */
@@ -328,9 +319,45 @@ public class PermutationImpl implements Permutation {
 		return getElements().size();
 	}
 
+    /**
+     * @author Raimund Wege
+     * @author Till Theis
+     */
+    @Override
 	public String toString() {
-		return this.getElements().toString();
+        return listToString(getElements());
 	}
+
+	/**
+	 * @author Raimund Wege
+	 * @author Till Theis
+	 */
+	@Override
+	public String toCycleNotationString() {
+        Set<List<Integer>> cycles = allCycles();
+
+        StringBuilder builder = new StringBuilder();
+
+        for (List<Integer> cycle : cycles) {
+            builder.append(listToString(cycle));
+        }
+
+        return builder.toString();
+	}
+
+    private String listToString(List<Integer> elems) {
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("(");
+        for (int elem : elems) {
+            builder.append(elem);
+            builder.append(" ");
+        }
+        builder.deleteCharAt(builder.length()-1);
+        builder.append(")");
+
+		return builder.toString();
+    }
 
 	private Set<List<Integer>> listToSet(List<List<Integer>> l) {
 		Set<List<Integer>> result = new HashSet<List<Integer>>();

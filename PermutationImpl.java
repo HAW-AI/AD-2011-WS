@@ -129,7 +129,7 @@ public class PermutationImpl implements Permutation {
 	 * @author Sebastian Krome
 	 */
 	public static Map<Integer, Integer> invert(Map<Integer, Integer> m) {
-		// invert Map<Integer,Integer> --> Map<Integer,Integer> -- vertaischt
+		// invert Map<Integer,Integer> --> Map<Integer,Integer> -- vertauscht
 		// die keys und values
 		// Bsp.: {1->2; 2->3; 3->1} --> {2->1; 3->2; 1->3}
 		Map<Integer, Integer> result = new HashMap<Integer, Integer>();
@@ -186,17 +186,17 @@ public class PermutationImpl implements Permutation {
 	 */
 	private List<List<Integer>> getAllCycles_(List<List<Integer>> totalCycle,
 			Map<Integer, Integer> map, int currentKey) {
-		// Hilfsfunktion fŸr getAllCycles
+		// Hilfsfunktion fuer getAllCycles() , getAllCyclesAsList()
 		int newCurrentKey;
 		List<Integer> singleCycle = new ArrayList<Integer>();
 		// Einzelnen Cycle bestimmen
 		while (map.containsKey(currentKey)) {
-			newCurrentKey = map.get(currentKey); // Wert bestimmen durch Key
-			singleCycle.add(newCurrentKey); // Wert zum Cycle hinzufŸgen
-			map.remove(currentKey); // Wert aus Map entfernen
-			currentKey = newCurrentKey; // Wert fŸr nŠchsten Key festlegen
+			newCurrentKey = map.get(currentKey); 	// Wert bestimmen durch Key
+			singleCycle.add(newCurrentKey); 	// Wert zum Cycle hinzufŸgen
+			map.remove(currentKey); 		// Wert aus Map entfernen
+			currentKey = newCurrentKey; 		// Wert fuer naechsten Key festlegen
 		}
-		// Wenn singleCycle leer ist nicht zum Endergebnis hinzufŸgen
+		// Wenn singleCycle leer ist nicht zum Endergebnis hinzufuegen
 		if (!singleCycle.isEmpty()) {
 			totalCycle.add(singleCycle);
 		}

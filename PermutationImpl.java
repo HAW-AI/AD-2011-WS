@@ -262,9 +262,10 @@ public class PermutationImpl implements Permutation {
 		// Type test (instanceof)
 		else if (other instanceof Permutation) {
 			// Attribute test
-			if (this.permutationClass() == ((Permutation) other).permutationClass()
-				&& allCycles().containsAll(((Permutation) other).allCycles())
-				) {
+			if (this.permutationClass() == ((Permutation) other)
+					.permutationClass()
+					&& this.getElements().equals(
+							((PermutationImpl) other).getElements())) {
 				result = true;
 			}
 		}

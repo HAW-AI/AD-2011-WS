@@ -18,7 +18,9 @@ import java.lang.StringBuilder;
  * @author Fenja Harbke
  * @author Felix Schmidt
  * @author Berthold Wiblishauser
- * @version 0.2
+ * @author Oliver Behncke <oliver.behncke@haw-hamburg.de>
+ * @author Panagiotis Filippidis <panagiotis.filippidis@haw-hamburg.de>
+ * @version 0.3
  * @since 2011-10-12
  */
 
@@ -29,32 +31,46 @@ public class PermutationImpl implements Permutation {
 		this.elements = imageList;
 	}
 
-	public static PermutationImpl valueOf(List<Integer> imageList) {
-		checkPreconditionList(imageList, imageList.size());
-		return new PermutationImpl(imageList);
-	}
+	/**
+     * Create a new permutation
+     * 
+     * @param imageList a n-size list of integer [a1, ..., an]
+     * @return a new permutation object from symmetric group S(n) where \u03c3(i)=ai for all 1\u2264i\u2264n
+     * @throws IllegalArgumentException if \u03c3(i)=\u03c3(j) for i\u2260j or if not 1\u2264\u03c3(i)\u2264n for all 1<\u2264i\u2264n
+     * @throws NullPointerException if the argument is null
+     * 
+     */
+    public static PermutationImageList valueOf(List<Integer> imageList) throws NullPointerException, IllegalArgumentException {
+        if (imageList == null) {
+            throw new NullPointerException();
+        } else if (!checkPreconditionList(imageList, imageList.size())) {
+            throw new IllegalArgumentException();
+        }
+        return new PermutationImageList(imageList);
+    }
 
-	private static void checkForDuplicatesInList(List<Integer> list)
-			throws RuntimeException {
-		if (list.size() != (new HashSet(list)).size()) {
-			throw new RuntimeException();
-		}
 
-	}
+    private static boolean checkForDuplicatesInList(List<Integer> list) {
+        boolean result = true;
+        if (list.size() != (new HashSet<Integer>(list)).size()) {
+            result = false;
+        }
+        return result;
+    }
 
-	private static void checkForElementsOutOfRange(List<Integer> list, int size)
-			throws RuntimeException {
-		for (int i : list) {
-			if (i < 1 || i > size) {
-				throw new RuntimeException();
-			}
-		}
-	}
+    private static boolean checkForElementsOutOfRange(List<Integer> list, int size) {
+        boolean result = true;
+        for (int i : list) {
+            if (i < 1 || i > size) {
+                	result = false;
+            	}
+        }
+        	return result;
+    	}
 
-	private static void checkPreconditionList(List<Integer> list, int size) {
-		checkForDuplicatesInList(list);
-		checkForElementsOutOfRange(list, size);
-	}
+  	  private static boolean checkPreconditionList(List<Integer> list, int size) {
+        	return checkForDuplicatesInList(list) && checkForElementsOutOfRange(list, size);
+    	}
 
 	/**
 	 * accessor method for permutation elements

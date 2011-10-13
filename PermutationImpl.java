@@ -335,8 +335,14 @@ public class PermutationImpl implements Permutation {
 	 */
 	@Override
 	public String toCycleNotationString() {
+        // use the list variant to have an order wich is 'nicer' to read
+        // (cycles which include lower values are put first).
+        //
+        // where allCycles() would return (5 3)(2 4 1), getAllCyclesAsList()
+        // returns (2 4 1)(5 3).
         List<List<Integer>> cycles = getAllCyclesAsList();
 
+        // use StringBuilder for faster String construction.
         StringBuilder builder = new StringBuilder();
 
         for (List<Integer> cycle : cycles) {

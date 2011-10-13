@@ -40,13 +40,13 @@ public class PermutationImpl implements Permutation {
      * @throws NullPointerException if the argument is null
      * 
      */
-    public static PermutationImageList valueOf(List<Integer> imageList) throws NullPointerException, IllegalArgumentException {
+    public static Permutation valueOf(List<Integer> imageList) throws NullPointerException, IllegalArgumentException {
         if (imageList == null) {
             throw new NullPointerException();
         } else if (!checkPreconditionList(imageList, imageList.size())) {
             throw new IllegalArgumentException();
         }
-        return new PermutationImageList(imageList);
+        return new PermutationImpl(imageList);
     }
 
 

@@ -48,8 +48,15 @@ public class PermutationImpl implements Permutation {
         }
         return new PermutationImpl(imageList);
     }
-
-
+    
+    public static Permutation s(int...ints){
+    	List<Integer> result = new ArrayList<Integer>();
+    	for(int elem : ints){
+    		result.add(elem);
+    	}
+    	return PermutationImpl.valueOf(result);
+    }
+    
     private static boolean checkForDuplicatesInList(List<Integer> list) {
         boolean result = true;
         if (list.size() != (new HashSet<Integer>(list)).size()) {

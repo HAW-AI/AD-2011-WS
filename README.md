@@ -57,19 +57,30 @@ toString:</td>
 </tr></table> 
 
 Axioms
-------
+=====
 **σ: Permutation σ ∈ S1**
+
 cycle(σ ,1) = fixedPoints(σ)
+
 inverse(σ) = σ
+
 inverse(σ) = compose(σ,σ)
+
 compose(σ,inverse(σ)) = σ
+
 equals(σ,σ) = true
 
 
 **σ1,σ2, σ3 :Permutation σ1,σ2, σ3 ∈ Sn**
+
 compose(σ1,compose(σ2,σ3)) = compose(compose(σ1,σ2),σ3)
+
 equals(σ1,id) = true & equals(σ1,σ2) = false => fixedPoints(σ1) != fixedPoints(σ2)
+
 inverse(inverse(σ3)) = σ3
+
 equals(σ1,σ2) = equals(σ2,σ1)
+
 equals(σ1,σ2) = equals(cycle(σ1), cycle(σ2))
+
 equals(σ1,σ2) => equals(inverse(σ1), inverse(σ2))

@@ -4,8 +4,11 @@ Algorithmen und Datenstrukturen 2011 WS
 ADT
 ---
 **Type**    	  	Permutation
+
 **Import**   		int, String, Bool, Menge, Sequenz 
+
 **Literals** 		idn (für jede Permutationsgruppe Sn)
+
  
 Operations
 ---------

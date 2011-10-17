@@ -9,6 +9,7 @@ import java.util.Set;
 import java.lang.StringBuilder;
 
 /**
+ * Gruppe1
  * @author Ben Rexin <benjamin.rexin@haw-hamburg.de>
  * @author Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
  * @author Till Theis
@@ -23,6 +24,8 @@ import java.lang.StringBuilder;
  * @author Panagiotis Filippidis <panagiotis.filippidis@haw-hamburg.de>
  * @version 0.3
  * @since 2011-10-12
+ * 
+ * @author Kai Bielenberg
  */
 
 public class PermutationImpl implements Permutation {
@@ -403,6 +406,8 @@ public class PermutationImpl implements Permutation {
 	 * @author Tobias Mainusch
 	 */
     // Gibt die Order der Permutation aus.
+    // Order als KGV der Größe der einzelnen Cycles implementiert
+    // BSP: (1 2 3)(4 5)(6) = KGV(3, 2, 1) = 6
     public int order(){
     	if (this.getElements().isEmpty()) 
     		return 0;
@@ -450,6 +455,36 @@ public class PermutationImpl implements Permutation {
     		result = kgv(result, it.next());
     	}	
     	return result;   	
+    }
+    
+	/**
+	 * @author Kai Bielenberg
+	 * @author Tobias Mainusch
+	 */
+    //Performante Implementation von Potenzen z.b. (1, 2, 3, 4)^4
+    // Keine Änderungen bei: n == 1
+    //						 id bei n == 0
+    public Permutation permPower(int n){
+    	Permutation result = PermutationImpl.valueOf(this.getElements());
+    	if(n>1){
+    		for(int i = 1; i < (n % (this.order() + 1)); i++) {
+    			result = result.compose(this);
+    		}
+    	}
+    	else if(n == 0) {
+    		result = result.id();
+    	}
+    	else if(n<0){
+    			result =  this.inverse().permPower(n*-1);
+    	}
+    	return result;
+    }
+	/**
+	 * @author Kai Bielenberg
+	 * @author Tobias Mainusch
+	 */
+    public Permutation id(){
+    	return this.compose(this.inverse());
     }
   
 }

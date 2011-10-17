@@ -3,7 +3,7 @@ Algorithmen und Datenstrukturen 2011 WS
 
 ADT
 ---
-**Type**    	  	Permutation
+**Type**       	Permutation
 
 **Import**   		int, String, Bool, Menge, Sequenz 
 

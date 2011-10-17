@@ -38,7 +38,7 @@ public class PermutationImpl implements Permutation {
      * @param imageList a n-size list of integer [a1, ..., an]
      * @return a new permutation object from symmetric group S(n) where \u03c3(i)=ai for all 1\u2264i\u2264n
      * @throws IllegalArgumentException if \u03c3(i)=\u03c3(j) for i\u2260j or if not 1\u2264\u03c3(i)\u2264n for all 1<\u2264i\u2264n
-     * @throws NullPointerException if the argument is null
+     * @throws NullPointerException if the argument is null 
      * 
      */
     public static Permutation valueOf(List<Integer> imageList) throws NullPointerException, IllegalArgumentException {

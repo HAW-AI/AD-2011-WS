@@ -91,7 +91,7 @@ public interface Permutation extends Iterable<Integer> {
     int permutationClass();
 
     /**
-     * Test for structural equality.
+     * Test for structural equality. 
      * Two permutations are considered equal if they describe the same
      * relation.
      *

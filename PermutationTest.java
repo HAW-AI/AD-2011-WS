@@ -11,7 +11,7 @@ public class PermutationTest {
 	// Erstellen häufig verwendeter Permutationen
 	// pInput41: [1, 2, 3, 4]
 	// pInput42: [1, 4, 3, 2]
-	// pInput71: [1, 2, 5, 4, 3, 7, 6]
+	// pInput71: [1, 2, 5, 4, 3, 7, 6] 
 	// pInput72: [1, 2, 3, 4, 5, 6, 7]
 	// pInput101: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 	// pInput102: [1, 2, 3, 5, 4, 8, 7, 6, 9, 10]

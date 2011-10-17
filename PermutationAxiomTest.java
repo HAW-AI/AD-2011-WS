@@ -27,7 +27,7 @@ public class PermutationAxiomTest {
 		//p101 = [3,2,4,1,7,6,5,10,9,8]
     		static List<Integer> test101 = new ArrayList<Integer>();
 			static Permutation p101 = PermutationImpl.valueOf(test101);
-		//p42 = [2,3,1,4]
+		//p42 = [2,3,1,4]//
     		static List<Integer> test42 = new ArrayList<Integer>();
 			static Permutation p42 = PermutationImpl.valueOf(test42);
 		//p72 = [2,3,1,4,7,5,6]

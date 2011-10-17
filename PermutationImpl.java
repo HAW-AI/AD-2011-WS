@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -395,4 +396,60 @@ public class PermutationImpl implements Permutation {
 
 		return builder.toString();
     }
+    
+    
+	/**
+	 * @author Kai Bielenberg
+	 * @author Tobias Mainusch
+	 */
+    // Gibt die Order der Permutation aus.
+    public int order(){
+    	if (this.getElements().isEmpty()) 
+    		return 0;
+    	else{
+    		Set<List<Integer>> pCycle = this.allCycles();
+    		List<Integer> cycleLength = new ArrayList<Integer>();
+    	for(List<Integer> cycle : pCycle){
+    		cycleLength.add(cycle.size());
+    	}
+    	return kgv(cycleLength);}
+    }
+	/**
+	 * @author Kai Bielenberg
+	 * @author Tobias Mainusch
+	 */
+    //Berechnet ggt von 2 Zahlen, benötigt zur KGV berechnung.
+    private int ggt(int m, int n) {
+    	if(n == 0) return m;
+    	else return ggt(n,m%n);
+    }
+    
+	/**
+	 * @author Kai Bielenberg
+	 * @author Tobias Mainusch
+	 */
+    //KGV Berechnung 2er Zahlen
+    private int kgv(int m, int n){
+    	int o = 0;
+    	o = ggt(m,n);
+    	return (m*n) / o;	
+    }
+    
+	/**
+	 * @author Kai Bielenberg
+	 * @author Tobias Mainusch
+	 */
+    //KGV Berechnung mehrerer Integer in einer Liste
+    private int kgv(List<Integer> l)throws IllegalArgumentException{
+    	if (l.isEmpty()){throw new IllegalArgumentException("KGV von einer Liste ohne Elemente nicht berechenbar"); }
+    	
+    	Iterator<Integer> it = l.iterator();	
+    	int result = it.next();   	
+    	
+    	while(it.hasNext()) {
+    		result = kgv(result, it.next());
+    	}	
+    	return result;   	
+    }
+  
 }

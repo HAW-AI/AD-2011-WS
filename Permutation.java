@@ -98,4 +98,10 @@ public interface Permutation extends Iterable<Integer> {
      * @return boolean
      */
     public boolean equals(Object other);
+
+    /**
+     * Calculates the Order of a given Permutation
+     * @return int
+     */
+	int order();
 }

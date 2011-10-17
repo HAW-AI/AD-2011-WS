@@ -1,9 +1,9 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import static org.junit.Assert.*;
 
 public class PermutationTest {
@@ -689,6 +689,29 @@ public class PermutationTest {
 		assertEquals("(1 2 3 4 5 6 7)", pInput72.toString());
 		assertEquals("(1 2 3 4 5 6 7 8 9 10)", pInput101.toString());
 		assertEquals("(1 2 3 5 4 8 7 6 9 10)", pInput102.toString());
+	}
+	
+//	@Test
+//	public void testKgv() {
+//		List<Integer> l1 = new ArrayList<Integer>(Arrays.asList(12,36,6,36));
+//		assertEquals(36,PermutationImpl.kgv(l1));
+//	}
+	
+	@Test
+	public void testOrder() {
+		Permutation p1 = PermutationImpl.s(1,2,3,4,5);
+		Permutation p2 = PermutationImpl.s(2,1,3,5,6,4);
+		Permutation p3 = PermutationImpl.s(1,2,3,4,5,6);
+		Permutation p4 = PermutationImpl.s();
+
+		// Order = 1
+		assertEquals(1, p1.order());
+		// Order = 6
+		assertEquals(6, p2.order());
+		// p2^6 = id 
+		assertEquals(p3, p2.compose(p2.compose(p2.compose(p2.compose(p2.compose(p2))))));
+		// Order einer leeren Permutation = 0
+		assertEquals(0, p4.order());		
 	}
 	
 }

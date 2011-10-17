@@ -57,6 +57,22 @@ toString:</td>
 <td>permutationClass:</td>
 <td>Permutation ---> int</td>
 <td>Gibt die Anzahl der Elemente der Permutation</td>
+</tr><tr>
+<td>permPower:</td>
+<td>Permutation x int ---> Permutation</td>
+<td>Gibt die Permutation^n an</td>
+</tr><tr>
+<td>permPower:</td>
+<td>Permutation x int ---> Permutation</td>
+<td>Gibt die Permutation^n an</td>
+</tr><tr>
+<td>order:</td>
+<td>Permutation ---> int</td>
+<td>Gibt die Ordnung der Permutation an</td>
+</tr><tr>
+<td>id:</td>
+<td>Permutation ---> Permutation</td>
+<td>Gibt die Id der Permutation an</td>
 </tr></table> 
 
 Axioms
@@ -74,7 +90,11 @@ compose(σ,inverse(σ)) = σ
 equals(σ,σ) = true
 
 
-**σ1,σ2, σ3 :Permutation σ1,σ2, σ3 ∈ Sn**
+**σ1,σ2,σ3,id :Permutation σ1,σ2,σ3,id ∈ Sn**
+**n : Integer n ∈N && n!=0
+id(σ1) = id;
+
+id(id) = id;
 
 compose(σ1,compose(σ2,σ3)) = compose(compose(σ1,σ2),σ3)
 
@@ -87,3 +107,13 @@ equals(σ1,σ2) = equals(σ2,σ1)
 equals(σ1,σ2) = equals(cycle(σ1), cycle(σ2))
 
 equals(σ1,σ2) => equals(inverse(σ1), inverse(σ2))
+
+permPower(σ1,0) = id
+
+permPower(σ1,1) = σ1
+
+permPower(σ1,-1) = inverse(σ1)
+
+permPower(σ1, order(σ1)) = id
+
+permPower(σ1,-n) = permPower(inverse(σ1), n)

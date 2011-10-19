@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -61,7 +62,7 @@ public interface Permutation extends Iterable<Integer> {
      * 
      * @param other the Permutation to compose with
      * @return the composition
-     * @throws IllegalArgumentException if the classes of both permutations are
+     * @throws IllegalArgumentException if the classes of both permutations are 
      *                                  not the same
      * @throws NullPointerException     if the argument is null
      */
@@ -117,5 +118,16 @@ public interface Permutation extends Iterable<Integer> {
      */
 	Permutation permPower(int n);
 	
+    /**
+     * CycleType as String
+     * @return String
+     */
+	public String toCycleTypeString();
+    
+	/**
+	 * CylceType as Map
+	 * @return Map<Integer,Integer>
+	 */
+    public Map<Integer,Integer> cycleType();
 
 }

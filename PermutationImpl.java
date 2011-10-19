@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -26,7 +25,10 @@ import java.lang.StringBuilder;
  * @since 2011-10-12
  * 
  * @author Kai Bielenberg
+ * @author Tobias Meurer
+ * @author Stephan Berngruber
  */
+
 
 public class PermutationImpl implements Permutation {
 	private List<Integer> elements;
@@ -159,6 +161,12 @@ public class PermutationImpl implements Permutation {
      * @throws IllegalArgumentException if \u03c3(i)=\u03c3(j) for i\u2260j or if not 1\u2264\u03c3(i)\u2264n for all 1<\u2264i\u2264n
      * @throws NullPointerException if the argument is null 
      * 
+     */
+    /**
+     * @param imageList
+     * @return
+     * @throws NullPointerException
+     * @throws IllegalArgumentException
      */
     public static Permutation valueOf(List<Integer> imageList) throws NullPointerException, IllegalArgumentException {
         if (imageList == null) {
@@ -520,47 +528,36 @@ public class PermutationImpl implements Permutation {
 	/**
 	 * @author Kai Bielenberg
 	 * @author Tobias Mainusch
+	 * 
+	 * Gibt die Order der Permutation aus.
+	 * Order als KGV der Größe der einzelnen Cycles implementiert
+	 * BSP: (1 2 3)(4 5)(6) = KGV(3, 2, 1) = 6
+	 * @return int (order of the permutation)
 	 */
-    // Gibt die Order der Permutation aus.
-    // Order als KGV der Größe der einzelnen Cycles implementiert
-    // BSP: (1 2 3)(4 5)(6) = KGV(3, 2, 1) = 6
     public int order(){
+    	// Order = 0 bei leerer Permutation
     	if (this.getElements().isEmpty()) 
     		return 0;
     	else{
+    		// pCycle enthällt alle Cycle als Liste.
     		Set<List<Integer>> pCycle = this.allCycles();
+    		// Liste mit allen Cyclelängen
     		List<Integer> cycleLength = new ArrayList<Integer>();
     	for(List<Integer> cycle : pCycle){
     		cycleLength.add(cycle.size());
     	}
+    	//KGV aller Cycle Längen entspricht der Ordnung
     	return kgv(cycleLength);}
     }
-	/**
-	 * @author Kai Bielenberg
-	 * @author Tobias Mainusch
-	 */
-    //Berechnet ggt von 2 Zahlen, benötigt zur KGV berechnung.
-    private int ggt(int m, int n) {
-    	if(n == 0) return m;
-    	else return ggt(n,m%n);
-    }
     
 	/**
 	 * @author Kai Bielenberg
 	 * @author Tobias Mainusch
+	 * 
+	 * Kleinstes gemeinsames Vielfaches, Berechnung aus mehrerern Integer in einer Liste
+	 * @return int (KGV aller Integer der Liste)
 	 */
-    //KGV Berechnung 2er Zahlen
-    private int kgv(int m, int n){
-    	int o = 0;
-    	o = ggt(m,n);
-    	return (m*n) / o;	
-    }
-    
-	/**
-	 * @author Kai Bielenberg
-	 * @author Tobias Mainusch
-	 */
-    //KGV Berechnung mehrerer Integer in einer Liste
+    //
     private int kgv(List<Integer> l)throws IllegalArgumentException{
     	if (l.isEmpty()){throw new IllegalArgumentException("KGV von einer Liste ohne Elemente nicht berechenbar"); }
     	
@@ -576,10 +573,39 @@ public class PermutationImpl implements Permutation {
 	/**
 	 * @author Kai Bielenberg
 	 * @author Tobias Mainusch
+	 * 
+	 * KGV Berechnung 2er ganzer Zahlen
+	 * Implementation mittels GGT-KGV Beziehung: ggt(m,n) * kgv(m,n) = |m*n| -> kgv(m,n) = |m*n| / ggt(m,n)
+	 * @return int 
 	 */
-    //Performante Implementation von Potenzen z.b. (1, 2, 3, 4)^4
-    // Keine Änderungen bei: n == 1
-    //						 id bei n == 0
+    //
+    private int kgv(int m, int n){
+    	return (m*n) / ggt(m,n);	
+    }
+    
+	/**
+	 * @author Kai Bielenberg
+	 * @author Tobias Mainusch
+	 * 
+	 * Berechnet ggt von 2 Zahlen, benötigt zur KGV Berechnung.
+	 * @return int  (ggt(m,n))
+	 */
+    
+    private int ggt(int m, int n) {
+    	if(n == 0) return m;
+    	else return ggt(n,m%n);
+    }
+
+    
+	/**
+	 * @author Kai Bielenberg
+	 * @author Tobias Mainusch
+	 * 
+	 * Performante Implementation von Potenzen z.b. (1, 2, 3, 4)^4
+	 *  Keine Änderungen bei: n == 1
+	 *  					  id bei n == 0
+	 */
+
     public Permutation permPower(int n){
     	Permutation result = PermutationImpl.valueOf(this.getElements());
     	if(n>1){
@@ -598,9 +624,40 @@ public class PermutationImpl implements Permutation {
 	/**
 	 * @author Kai Bielenberg
 	 * @author Tobias Mainusch
+	 * 
+	 * Angabe der ID der Permutationsklasse
 	 */
     public Permutation id(){
     	return this.compose(this.inverse());
     }
-  
+    /**
+     * @author Kathrin Kahlhšfer
+     * @author Aleksandr Nosov
+     */
+    public Map<Integer,Integer> cycleType(){
+      Map<Integer,Integer> typeMap = new HashMap<Integer,Integer>();
+      for (List<Integer> c: allCycles()) {
+            int type = c.size();
+            if (typeMap.containsKey(type)) {
+                  typeMap.put(type, typeMap.get(type) + 1);
+            } else {
+                  typeMap.put(type, 1);
+            }
+      }
+      return typeMap;
+    }
+   
+    public String toCycleTypeString(){
+      String cycleTypeString = "[";
+      int i = 1;
+      for(Map.Entry<Integer,Integer> e: cycleType().entrySet()){
+            cycleTypeString += e.getKey() + "^" + e.getValue();
+            if (i < cycleType().size()){
+                  cycleTypeString += ", ";
+                  i += 1;
+            }
+      }
+      cycleTypeString += "]";
+      return cycleTypeString;
+    }  
 }

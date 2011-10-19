@@ -747,7 +747,8 @@ public class PermutationTest {
 		Permutation p2 = PermutationImpl.s(2,1,3,5,6,4);
 		Permutation p3 = PermutationImpl.s(1,2,3,4,5,6);
 		Permutation p4 = PermutationImpl.s();
-
+		Permutation p5 = PermutationImpl.s(2,3,1,4);
+		
 		// Order = 1
 		assertEquals(1, p1.order());
 		// Order = 6
@@ -756,6 +757,40 @@ public class PermutationTest {
 		assertEquals(p3, p2.compose(p2.compose(p2.compose(p2.compose(p2.compose(p2))))));
 		// Order einer leeren Permutation = 0
 		assertEquals(0, p4.order());		
+	}
+	
+	@Test
+	public void testId(){
+		Permutation p1 = PermutationImpl.s(1,2,3,4,5);
+		Permutation p2 = PermutationImpl.s(2,1,3,5,4);
+		
+		assertEquals(p1, p1.id());
+		assertEquals(p1, p2.id());	
+	}
+	
+	@Test
+	public void testPermPower(){
+		Permutation p1 = PermutationImpl.s(2,1,3,5,6,4);
+		Permutation p2 = PermutationImpl.s(1,2,3,6,4,5);
+		Permutation p3 = PermutationImpl.s(2,1,3,4,5,6);
+		Permutation p4 = PermutationImpl.s(1,2,3,5,6,4);
+		Permutation p5 = PermutationImpl.s(2,1,3,6,4,5);
+		Permutation id = PermutationImpl.s(1,2,3,4,5,6);
+		assertEquals(p1,p1.permPower(1));
+		assertEquals(p2,p1.permPower(2));
+		assertEquals(p3,p1.permPower(3));
+		assertEquals(p4,p1.permPower(4));
+		assertEquals(p5,p1.permPower(5));
+		assertEquals(id,p1.permPower(6));
+		assertEquals(p1,p1.permPower(7));
+		assertEquals(p1,p1.permPower(14));
+		assertEquals(p1,p1.permPower(7000000));
+		
+		assertEquals(p1.id(), p1.permPower(0));
+		
+		assertEquals(p1.inverse(), p1.permPower(-1));
+		
+		assertEquals(p1.inverse().permPower(100), p1.permPower(-100));
 	}
 	
 }

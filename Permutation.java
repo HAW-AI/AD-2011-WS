@@ -104,4 +104,18 @@ public interface Permutation extends Iterable<Integer> {
      * @return int
      */
 	int order();
+	
+	  /**
+     * Returns the ID(Identity) of the Permutation
+     * @return Permutation
+     */
+	Permutation id();
+	
+	  /**
+     * Calculates the Potentenz of the Permutation
+     * @return Permutation
+     */
+	Permutation permPower(int n);
+	
+
 }

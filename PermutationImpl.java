@@ -656,5 +656,57 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
       }
       cycleTypeString += "]";
       return cycleTypeString;
-    }  
+    }
+    
+    /**
+	 * @author Andrej Braining
+	 * @author Marc Wüseke
+	 */
+    public List<List<Integer>> toTranspositions() {
+    	
+    	List<List<Integer>> list = this.getAllCyclesAsList(); 
+    	List<List<Integer>> result = new ArrayList<List<Integer>>(); 
+    	
+    	for (int i = 0; i < list.size(); i++) {
+    		
+			for (int j = list.get(i).size(); j > 1; j--) {
+				List<Integer> tempList = new ArrayList<Integer>();
+				tempList.add(list.get(i).get(0));
+				tempList.add(list.get(i).get(j-1));
+				result.add(tempList);
+			}
+    		
+		}
+    	
+		return result;
+	}
+    
+    /**
+     * @author Marc Wüseke
+     * 
+     */
+    public String toTranspositionString(){
+
+    	List<List<Integer>> list = this.toTranspositions();
+    	StringBuilder resStr = new StringBuilder();
+
+        resStr.append("(");
+        for (List<Integer> listInt : list){
+        	resStr.append("("); //braket for every 2-cycle
+        	for (int elem : listInt) {
+        		resStr.append(elem);
+        	}
+        	resStr.append(")");
+    	}
+        resStr.append(")");
+
+		return resStr.toString();
+    }
+    
+    /**
+     * @author Marc Wüseke
+     */
+    public int sign(){
+    	return (int) ( Math.pow((-1.0), this.toTranspositions().size()) );
+    }
 }

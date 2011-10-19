@@ -819,5 +819,27 @@ public class PermutationTest {
 	        assertEquals("[1^1, 2^1, 3^1]",p1.toCycleTypeString());
 	        assertEquals("[1^6]",p2.toCycleTypeString());
 	  }
+	  
+	  @Test
+		public void testToTranspositions() {
+			
+			Permutation p1 = PermutationImpl.s(3,4,6,5,7,1,2);
+			Permutation p2 = PermutationImpl.s(1,2,3,4,5,7,6);
+			Permutation p3 = PermutationImpl.s(4,6,3,1,2,5);
+			
+			assertEquals("((31)(36)(42)(47)(45))",p1.toTranspositionString());
+			
+		}
+		
+		@Test
+		public void testSign() {
+			Permutation p1 = PermutationImpl.s(3,4,6,5,7,1,2);
+			Permutation p2 = PermutationImpl.s(1,2,3,4,5,7,6);
+			
+			assertEquals(-1, p1.sign());
+			assertEquals(-1, p2.sign());
+		}
+	  
+	  
 }
 

@@ -30,7 +30,123 @@ import java.lang.StringBuilder;
 
 public class PermutationImpl implements Permutation {
 	private List<Integer> elements;
+	
+	/**
+     * Create a new permutation, based on cycle-notation
+     *
+     * @author Tobias Meurer
+     * @author Stephan Berngruber
+     *
+     * @param String in cycle format. Space ignored, cycle opens with "(" and closes with ")". Elements in one cycle seperated by ",". e.g.: "(2) ( 3,1) (4,6,7)(5) "
+     * @return a new permutation object from symmetric group S(n) where \u03c3(i)=ai for all 1\u2264i\u2264n
+     * @throws IllegalArgumentException if \u03c3(i)=\u03c3(j) for i\u2260j or if not 1\u2264\u03c3(i)\u2264n for all 1<\u2264i\u2264n
+     * @throws IllegalArgumentException if parameter cString does not match cycle notation
+     * @throws NullPointerException if the argument is null
+     *
+     */
+    public static Permutation createCycle(String cString) {
+        if (cString == null) {
+            throw new NullPointerException();
+        }
+        
+        //result: Wird während dem Parsen mit Listen gefüllt, eine 'Sub-Liste' wird einem Cycle entsprechen: (1,2)(3) -> [[1,2],[3]]
+        //        Dises Liste wird an cycle(List<List<Integer>> cycles) übergeben
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
 
+        //Leerzeichen löchen
+        cString = cString.replaceAll(" ", "");
+        
+        
+        //Hilfsvariablen, die beim parsen des Strings benötigt werden:
+        //cycle: Liste zum Zwischenspeichern der einzelnen Cycles
+        List<Integer> cycle = null;
+        //cStatus: true, wenn Kreis durch '(' geöffnet wurde
+        boolean cStatus = false;
+        //currentNumber: Wichtig für mehrstellige Zahlen, einzelne Ziffern werden an den String angefügt
+        String currentNumber = "";
+
+        //Zeichenweises Parsen des übergebenden Strings
+        for (char c : cString.toCharArray()) {
+            
+            //Wenn öffnende Klammer, neuen Kreis "beginnen"
+            if (c == '(' && cStatus == false) {
+                cStatus = true;
+                cycle = new ArrayList<Integer>();
+            
+            //Wenn schließende Klammer, aktuelle Zahl in Kreis einfügen und den Kreis beenden
+            } else if (c == ')' && cStatus == true && currentNumber!= "") {
+                cStatus = false;
+                cycle.add(Integer.valueOf(currentNumber));
+                currentNumber = "";
+                result.add(cycle);
+            
+            //Wenn Ziffer, dann an currentNumber-Variable anfügen
+            } else if (c >= '0' && c <= '9'&& cStatus == true) {
+                currentNumber = currentNumber.concat(String.valueOf(c));
+            
+            //Wenn Komma, aktuelle Zahl in Kreis einfügen
+            } else if (c == ','&& cStatus == true && currentNumber!= "") {
+                cycle.add(Integer.valueOf(currentNumber));
+                currentNumber = "";
+            
+            //Sonst handelt es sich um ein ungültiges Zeichen
+            } else {
+                throw new IllegalArgumentException(String.valueOf(c).concat(" is not valid here. Use Cycle Format like '(2)(3,1)(4,6,7)(5)'"));
+            }
+        }
+        return createCycle(result);
+    }    
+    
+	/**
+     * Create a new permutation, based on cycle-notation
+     *
+     * @author Tobias Meurer
+     * @author Stephan Berngruber
+     * 
+     * @param Cycle "Sub"-Lists in a List. 
+     * @return a new permutation object from symmetric group S(n) where \u03c3(i)=ai for all 1\u2264i\u2264n
+     * @throws IllegalArgumentException if \u03c3(i)=\u03c3(j) for i\u2260j or if not 1\u2264\u03c3(i)\u2264n for all 1<\u2264i\u2264n
+     * @throws NullPointerException if the argument is null
+     *
+     */
+    public static Permutation createCycle(List<List<Integer>> cycles) {
+        if (cycles == null) {
+            throw new NullPointerException();
+        }
+        //values: Liste result ist übergabeparameter für valueOf-Methode
+        List<Integer> result = new ArrayList<Integer>();
+
+        //n: Wert für Sn, also größe der Permutation
+        int n=0;
+        for (List<Integer> c : cycles) {
+            for (Integer value : c) {
+                if (value > n) {
+                    n= value;
+                }
+            }
+        }
+        
+        //result mit Nullen vorinitialisieren, welche anschließend mit den korrekten Werten überschrieben werden
+        //  Notwendig, uum in den nachfolgenden Schritten IndexOutOfBoundsException zu vermeiden
+        for (int i = 0; i < n; i++) {
+           result.add(0); 
+        }
+        
+        //Eigentliche Umwandlung in Standard-Notation für calueOf-Methode 
+        for (List<Integer> currentCycle : cycles) {
+            // Das erste Element des Cycles an die Position des letzten Cycle-Elments setzen
+            result.set(currentCycle.get(currentCycle.size()-1)-1, currentCycle.get(0));
+            
+            // Wenn der Cycle mehr als ein Element hat (also kein fixpunkt ist), dann andere Werte setzen
+            for (int i = 1; i < currentCycle.size(); i++) {
+                result.set(currentCycle.get(i-1)-1, currentCycle.get(i));
+            }
+        }  
+        
+        //Aufruf der valueOf-Methode von Gruppe 1 mit der aus der Cycle-Notation umgewandelten Liste.
+        return valueOf(result);
+    }
+    
 	private PermutationImpl(List<Integer> imageList) {
 		this.elements = imageList;
 	}

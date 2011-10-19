@@ -85,6 +85,16 @@ toString:</td>
 <td>id:</td>
 <td>Permutation ---> Permutation</td>
 <td>Gibt die Id der Permutation an</td>
+</tr><tr>
+<td>toTransposition:</td>
+<td>Permutation ---> Sequenz&lt;Sequenz&lt;int>></td>
+<td>Wandelt die Permutation in eine Transpositionsdarstellung um</td>
+</tr><td>toTranspositionString:</td>
+<td>Permutation ---> String</td>
+<td>Wandelt die Permutation in eine Transpositionsdarstellung in Stringform um</td>
+</tr><td>Sign:</td>
+<td>Permutation ---> int</td>
+<td>Gibt an ob die Permutation even(1) oder odd(-1) ist.</td>
 </tr></table> 
 
 Axioms

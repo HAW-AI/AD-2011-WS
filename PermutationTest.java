@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -703,7 +702,6 @@ public class PermutationTest {
 		Permutation p2 = PermutationImpl.s(2,1,3,5,6,4);
 		Permutation p3 = PermutationImpl.s(1,2,3,4,5,6);
 		Permutation p4 = PermutationImpl.s();
-		Permutation p5 = PermutationImpl.s(2,3,1,4);
 		
 		// Order = 1
 		assertEquals(1, p1.order());
@@ -747,6 +745,7 @@ public class PermutationTest {
 		assertEquals(p1.inverse(), p1.permPower(-1));
 		
 		assertEquals(p1.inverse().permPower(100), p1.permPower(-100));
+	
 	}
 	
 }

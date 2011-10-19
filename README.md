@@ -74,10 +74,6 @@ toString:</td>
 <td>Permutation x int ---> Permutation</td>
 <td>Gibt die Permutation^n an</td>
 </tr><tr>
-<td>permPower:</td>
-<td>Permutation x int ---> Permutation</td>
-<td>Gibt die Permutation^n an</td>
-</tr><tr>
 <td>order:</td>
 <td>Permutation ---> int</td>
 <td>Gibt die Ordnung der Permutation an</td>

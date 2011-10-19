@@ -824,27 +824,32 @@ public class PermutationTest {
 		public void testToTranspositions() {
 			
 			Permutation p1 = PermutationImpl.s(3,4,6,5,7,1,2);
-			Permutation p2 = PermutationImpl.s(1,2,3);
-			Permutation p3 = PermutationImpl.s(4,6,3,1,2,5);
-			Permutation p4 = PermutationImpl.s(1);
-			
-			System.out.println(p1.toTranspositionString());
-			System.out.println(p2.toTranspositionString());
-			System.out.println(p2.toCycleNotationString());
-//			System.out.println(p3.toTranspositionString());
-//			System.out.println(p4.toTranspositionString());
+			Permutation p2 = PermutationImpl.s(2,3,1);
+			Permutation p3 = PermutationImpl.s(1,2,3);
+			Permutation p4 = PermutationImpl.s(4,6,3,1,2,5);
+			Permutation p5 = PermutationImpl.s(1);
 			
 			assertEquals("((31)(36)(42)(47)(45))",p1.toTranspositionString());
+			assertEquals("((21)(23))",p2.toTranspositionString());
+			assertEquals("()",p3.toTranspositionString());
+			assertEquals("((41)(62)(65))",p4.toTranspositionString());
+			assertEquals("()",p5.toTranspositionString());
 			
 		}
 		
 		@Test
 		public void testSign() {
 			Permutation p1 = PermutationImpl.s(3,4,6,5,7,1,2);
-			Permutation p2 = PermutationImpl.s(1,2,3,4,5,7,6);
+			Permutation p2 = PermutationImpl.s(2,3,1);
+			Permutation p3 = PermutationImpl.s(1,2,3);
+			Permutation p4 = PermutationImpl.s(4,6,3,1,2,5);
+			Permutation p5 = PermutationImpl.s(1);
 			
 			assertEquals(-1, p1.sign());
-			assertEquals(-1, p2.sign());
+			assertEquals(1, p2.sign());
+			assertEquals(-1, p3.sign());
+			assertEquals(-1, p4.sign());
+			assertEquals(-1, p5.sign());
 		}
 	  
 	  

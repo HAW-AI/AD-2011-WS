@@ -669,12 +669,12 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     	
     	for (int i = 0; i < list.size(); i++) {
     		
-			for (int j = list.get(i).size(); j > 1; j--) {
-				List<Integer> tempList = new ArrayList<Integer>();
-				tempList.add(list.get(i).get(0));
-				tempList.add(list.get(i).get(j-1));
-				result.add(tempList);
-			}
+    			for (int j = list.get(i).size(); j > 1; j--) {
+					List<Integer> tempList = new ArrayList<Integer>();
+					tempList.add(list.get(i).get(0));
+					tempList.add(list.get(i).get(j-1));
+					result.add(tempList);
+				}
     		
 		}
     	
@@ -707,6 +707,8 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
      * @author Marc Wüseke
      */
     public int sign(){
-    	return (int) ( Math.pow((-1.0), this.toTranspositions().size()) );
+    	int s = this.toTranspositions().size();
+    	//s==0 : if the permutation is like (1,2,3,4,5,...)
+    	return (int) ( s == 0 ? (-1) : Math.pow((-1.0), this.toTranspositions().size()) );
     }
 }

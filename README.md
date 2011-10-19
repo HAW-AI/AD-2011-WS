@@ -15,7 +15,7 @@ Operations
 <table><tr>
 <td>Permutation:</td>
 <td>Sequenz<int> ---> Permutation</td>
-<td>Sequenz<Sequenz<int>> ---> Permutation</td>
+<tr>Sequenz<Sequenz<int>> ---> Permutation</tr>
 <td>String -/-> Permutation</td>
 <td>Erzeugt eine Permutation</td>
 </tr><tr>

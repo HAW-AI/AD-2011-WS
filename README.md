@@ -18,7 +18,8 @@ Operations
 <td>Erzeugt eine Permutation</td>
 </tr><tr>
 <td><td>Sequenz&lt;Sequenz&lt;int>> ---> Permutation</td></td>
-<td>String -/-> Permutation</td>
+</tr><tr>
+<td><td>String -/-> Permutation</td></td>
 </tr><tr>
 <td>sigma:</td>
 <td>int x Permutation -/-> int</td>

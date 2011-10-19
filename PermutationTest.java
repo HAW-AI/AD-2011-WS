@@ -7,6 +7,50 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class PermutationTest {
+	
+	@Test
+	public void testCreateCycle(){
+		assertEquals(pInput41, PermutationImpl.createCycle("(1)(2)(3)(4)"));
+		assertEquals(pInput41, PermutationImpl.createCycle("(4)(2)(1)(3)"));
+		
+		assertEquals(pInput42, PermutationImpl.createCycle("(1)(2,4)(3)"));
+		
+		assertEquals(pInput71, PermutationImpl.createCycle("(1)(2)(3,5)(4)(7,6)"));
+		
+		assertEquals(pInput72, PermutationImpl.createCycle("(1)(2)(3)(4)(5)(6)(7)"));
+		
+		assertEquals(pInput101, PermutationImpl.createCycle("(1)(2)(3)(4)(5)(6)(7)(8)(9)(10)"));
+		assertEquals(pInput101, PermutationImpl.createCycle("(10)(8)(2)(4)(6)(5)(7)(3)(9)(1)"));
+		
+		
+		assertEquals(pInput102, PermutationImpl.createCycle("(1)(2)(3)(5,4)(8,6)(7)(9)(10)"));
+		
+		try {
+			String nullString = null;
+			PermutationImpl.createCycle(nullString);
+			fail("Should have raised an NullPointerException");			
+		    } catch (NullPointerException expected) {}
+		
+		try {
+			PermutationImpl.createCycle("(1)(3)(3)(4)");
+			fail("Should have raised an IllegalArgumentException");			
+		    } catch (IllegalArgumentException expected) {}
+		
+		try {
+			PermutationImpl.createCycle("()(3)(3)(4)");
+			fail("Should have raised an IllegalArgumentException");			
+		    } catch (IllegalArgumentException expected) {}
+		
+		try {
+			PermutationImpl.createCycle("(1,,2)(3)(4)");
+			fail("Should have raised an IllegalArgumentException");			
+		    } catch (IllegalArgumentException expected) {}
+		
+		try {
+			PermutationImpl.createCycle("(1)(2)(3)((4)");
+			fail("Should have raised an IllegalArgumentException");			
+		    } catch (IllegalArgumentException expected) {}
+	}
   
 	// Erstellen häufig verwendeter Permutationen
 	// pInput41: [1, 2, 3, 4]

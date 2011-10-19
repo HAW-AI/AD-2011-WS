@@ -44,7 +44,7 @@ public class PermutationImpl implements Permutation {
      * @throws NullPointerException if the argument is null
      *
      */
-    public static Permutation createCycle(String cString) {
+    public static Permutation valueOf(String cString) {
         if (cString == null) {
             throw new NullPointerException();
         }
@@ -94,7 +94,7 @@ public class PermutationImpl implements Permutation {
                 throw new IllegalArgumentException(String.valueOf(c).concat(" is not valid here. Use Cycle Format like '(2)(3,1)(4,6,7)(5)'"));
             }
         }
-        return createCycle(result);
+        return valueOfCycleList(result);
     }    
     
 	/**
@@ -109,7 +109,7 @@ public class PermutationImpl implements Permutation {
      * @throws NullPointerException if the argument is null
      *
      */
-    public static Permutation createCycle(List<List<Integer>> cycles) {
+    public static Permutation valueOfCycleList(List<List<Integer>> cycles) {
         if (cycles == null) {
             throw new NullPointerException();
         }
@@ -132,7 +132,7 @@ public class PermutationImpl implements Permutation {
            result.add(0); 
         }
         
-        //Eigentliche Umwandlung in Standard-Notation für calueOf-Methode 
+        //Eigentliche Umwandlung in Standard-Notation für valueOf-Methode 
         for (List<Integer> currentCycle : cycles) {
             // Das erste Element des Cycles an die Position des letzten Cycle-Elments setzen
             result.set(currentCycle.get(currentCycle.size()-1)-1, currentCycle.get(0));

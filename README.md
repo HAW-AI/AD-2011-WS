@@ -14,10 +14,10 @@ Operations
 ---------
 <table><tr>
 <td>Permutation:</td>
-<td>Sequenz<int> ---> Permutation</td>
+<td>Sequenz&lt;int> ---> Permutation</td>
 <td>Erzeugt eine Permutation</td>
 </tr><tr>
-<td><td>Sequenz<Sequenz<int>> ---> Permutation</td></td>
+<td><td>Sequenz&lt;Sequenz&lt;int>> ---> Permutation</td></td>
 <td>String -/-> Permutation</td>
 </tr><tr>
 <td>sigma:</td>

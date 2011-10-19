@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -281,29 +282,29 @@ public class PermutationTest {
 	
 	// Negativtest von cycle()
 	
-	@Test (expected=IllegalArgumentException.class)
+	@Test
 	public void testCycleException1(){
-		assertEquals(3, pInput41.cycle(5));
+		assertEquals(Arrays.asList(), pInput41.cycle(5));
 	}
-	@Test (expected=IllegalArgumentException.class)
+	@Test
 	public void testCycleException2(){
-		assertEquals(3, pInput42.cycle(-1));
+		assertEquals(Arrays.asList(), pInput42.cycle(-1));
 	}
-	@Test (expected=IllegalArgumentException.class)
+	@Test
 	public void testCycleException3(){
-		assertEquals(3, pInput71.cycle(8));
+		assertEquals(Arrays.asList(), pInput71.cycle(8));
 	}
-	@Test (expected=IllegalArgumentException.class)
+	@Test
 	public void testCycleException4(){
-		assertEquals(3, pInput72.cycle(-1));
+		assertEquals(Arrays.asList(), pInput72.cycle(-1));
 	}
-	@Test (expected=IllegalArgumentException.class)
+	@Test
 	public void testCycleException5(){
-		assertEquals(3, pInput101.cycle(11));
+		assertEquals(Arrays.asList(), pInput101.cycle(11));
 	}
-	@Test (expected=IllegalArgumentException.class)
+	@Test
 	public void testCycleException6(){
-		assertEquals(3, pInput102.cycle(-1));
+		assertEquals(Arrays.asList(), pInput102.cycle(-1));
 	}
 	
 	// Test von allCycles()
@@ -675,17 +676,17 @@ public class PermutationTest {
 
 	}
 	
-    	@Test(expected = IllegalArgumentException.class)
+    	@Test
     	public void testComposeException1() {
-    		assertEquals(pInput42.compose(pInput73),pInput44);
+    		assertEquals(pInput42.compose(pInput73),NoPermutation.valueOf());
 	}
-    	@Test(expected = IllegalArgumentException.class)
+    	@Test
     	public void testComposeException2() {
-    		assertEquals(pInput71.compose(pInput103),pInput74);
+    		assertEquals(pInput71.compose(pInput103),NoPermutation.valueOf());
     	}
-    	@Test(expected = IllegalArgumentException.class)
+    	@Test
     	public void testComposeException3() {
-    		assertEquals(pInput102.compose(pInput43),pInput104);
+    		assertEquals(pInput102.compose(pInput43),NoPermutation.valueOf());
     	}
 	
 	// Test von permutationClass()

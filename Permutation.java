@@ -22,7 +22,7 @@ public interface Permutation extends Iterable<Integer> {
      * Return the image of a value.
      * 
      * @param  inverseImage the inverse image
-     * @return the image
+     * @return the image or -1 if is a NoPermution
      * @throws IllegalArgumentException unless 1 <= inverseImage <= permutationClass()
      */
     int sigma(int inverseImage) throws IllegalArgumentException;
@@ -31,10 +31,9 @@ public interface Permutation extends Iterable<Integer> {
      * Return the n-th cycle of the permutation.
      * 
      * @param index the cycle index (beginning at 1)
-     * @return the cycle
-     * @throws IllegalArgumentException unless 1 <= index <= permutationClass()
+     * @return the cycle or NoPermution unless 1 <= index <= permutationClass()
      */
-    List<Integer> cycle(int index) throws IllegalArgumentException;
+    List<Integer> cycle(int index);
     
     /**
      * All the cycles of the image.
@@ -61,12 +60,9 @@ public interface Permutation extends Iterable<Integer> {
      * Compose this permutation with the other one.
      * 
      * @param other the Permutation to compose with
-     * @return the composition
-     * @throws IllegalArgumentException if the classes of both permutations are 
-     *                                  not the same
-     * @throws NullPointerException     if the argument is null
+     * @return the composition or NoPermutation if exception
      */
-    Permutation compose(Permutation other) throws IllegalArgumentException, NullPointerException;
+    Permutation compose(Permutation other);
     
     /**
      * The permutation in mathematical notation.

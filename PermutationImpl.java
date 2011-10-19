@@ -30,7 +30,7 @@ import java.lang.StringBuilder;
  */
 
 
-public class PermutationImpl implements Permutation {
+public class PermutationImpl implements Permutation, Iterable<Integer> {
 	private List<Integer> elements;
 	
 	/**
@@ -46,59 +46,59 @@ public class PermutationImpl implements Permutation {
      * @throws NullPointerException if the argument is null
      *
      */
-    public static Permutation valueOf(String cString) {
+	public static Permutation valueOf(String cString) {
         if (cString == null) {
             throw new NullPointerException();
         }
         
-        //result: Wird während dem Parsen mit Listen gefüllt, eine 'Sub-Liste' wird einem Cycle entsprechen: (1,2)(3) -> [[1,2],[3]]
-        //        Dises Liste wird an cycle(List<List<Integer>> cycles) übergeben
+        //result: Wird wÃ¤hrend dem Parsen mit Listen gefÃ¼llt, eine 'Sub-Liste' wird einem Cycle entsprechen: (1,2)(3) -> [[1,2],[3]]
+        //        Dises Liste wird an cycle(List<List<Integer>> cycles) Ã¼bergeben
         List<List<Integer>> result = new ArrayList<List<Integer>>();
 
-        //Leerzeichen löchen
+        //Leerzeichen lÃ¶chen
         cString = cString.replaceAll(" ", "");
         
         
-        //Hilfsvariablen, die beim parsen des Strings benötigt werden:
+        //Hilfsvariablen, die beim parsen des Strings benÃ¶tigt werden:
         //cycle: Liste zum Zwischenspeichern der einzelnen Cycles
         List<Integer> cycle = null;
-        //cStatus: true, wenn Kreis durch '(' geöffnet wurde
+        //cStatus: true, wenn Kreis durch '(' geÃ¶ffnet wurde
         boolean cStatus = false;
-        //currentNumber: Wichtig für mehrstellige Zahlen, einzelne Ziffern werden an den String angefügt
+        //currentNumber: Wichtig fÃ¼r mehrstellige Zahlen, einzelne Ziffern werden an den String angefÃ¼gt
         String currentNumber = "";
 
-        //Zeichenweises Parsen des übergebenden Strings
+        //Zeichenweises Parsen des Ã¼bergebenden Strings
         for (char c : cString.toCharArray()) {
             
-            //Wenn öffnende Klammer, neuen Kreis "beginnen"
+            //Wenn Ã¶ffnende Klammer, neuen Kreis "beginnen"
             if (c == '(' && cStatus == false) {
                 cStatus = true;
                 cycle = new ArrayList<Integer>();
             
-            //Wenn schließende Klammer, aktuelle Zahl in Kreis einfügen und den Kreis beenden
+            //Wenn schlieÃŸende Klammer, aktuelle Zahl in Kreis einfÃ¼gen und den Kreis beenden
             } else if (c == ')' && cStatus == true && currentNumber!= "") {
                 cStatus = false;
                 cycle.add(Integer.valueOf(currentNumber));
                 currentNumber = "";
                 result.add(cycle);
             
-            //Wenn Ziffer, dann an currentNumber-Variable anfügen
+            //Wenn Ziffer, dann an currentNumber-Variable anfÃ¼gen
             } else if (c >= '0' && c <= '9'&& cStatus == true) {
                 currentNumber = currentNumber.concat(String.valueOf(c));
             
-            //Wenn Komma, aktuelle Zahl in Kreis einfügen
+            //Wenn Komma, aktuelle Zahl in Kreis einfÃ¼gen
             } else if (c == ','&& cStatus == true && currentNumber!= "") {
                 cycle.add(Integer.valueOf(currentNumber));
                 currentNumber = "";
             
-            //Sonst handelt es sich um ein ungültiges Zeichen
+            //Sonst handelt es sich um ein ungÃ¼ltiges Zeichen
             } else {
                 throw new IllegalArgumentException(String.valueOf(c).concat(" is not valid here. Use Cycle Format like '(2)(3,1)(4,6,7)(5)'"));
             }
         }
         return valueOfCycleList(result);
-    }    
-    
+    }  
+	
 	/**
      * Create a new permutation, based on cycle-notation
      *
@@ -111,14 +111,14 @@ public class PermutationImpl implements Permutation {
      * @throws NullPointerException if the argument is null
      *
      */
-    public static Permutation valueOfCycleList(List<List<Integer>> cycles) {
+	public static Permutation valueOfCycleList(List<List<Integer>> cycles) {
         if (cycles == null) {
             throw new NullPointerException();
         }
-        //values: Liste result ist übergabeparameter für valueOf-Methode
+        //values: Liste result ist Ã¼bergabeparameter fÃ¼r valueOf-Methode
         List<Integer> result = new ArrayList<Integer>();
 
-        //n: Wert für Sn, also größe der Permutation
+        //n: Wert fÃ¼r Sn, also grÃ¶ÃŸe der Permutation
         int n=0;
         for (List<Integer> c : cycles) {
             for (Integer value : c) {
@@ -128,13 +128,13 @@ public class PermutationImpl implements Permutation {
             }
         }
         
-        //result mit Nullen vorinitialisieren, welche anschließend mit den korrekten Werten überschrieben werden
+        //result mit Nullen vorinitialisieren, welche anschlieÃŸend mit den korrekten Werten Ã¼berschrieben werden
         //  Notwendig, uum in den nachfolgenden Schritten IndexOutOfBoundsException zu vermeiden
         for (int i = 0; i < n; i++) {
            result.add(0); 
         }
         
-        //Eigentliche Umwandlung in Standard-Notation für valueOf-Methode 
+        //Eigentliche Umwandlung in Standard-Notation fÃ¼r valueOf-Methode 
         for (List<Integer> currentCycle : cycles) {
             // Das erste Element des Cycles an die Position des letzten Cycle-Elments setzen
             result.set(currentCycle.get(currentCycle.size()-1)-1, currentCycle.get(0));
@@ -148,7 +148,6 @@ public class PermutationImpl implements Permutation {
         //Aufruf der valueOf-Methode von Gruppe 1 mit der aus der Cycle-Notation umgewandelten Liste.
         return valueOf(result);
     }
-    
 	private PermutationImpl(List<Integer> imageList) {
 		this.elements = imageList;
 	}
@@ -168,7 +167,7 @@ public class PermutationImpl implements Permutation {
      * @throws NullPointerException
      * @throws IllegalArgumentException
      */
-    public static Permutation valueOf(List<Integer> imageList) throws NullPointerException, IllegalArgumentException {
+	public static Permutation valueOf(List<Integer> imageList) throws NullPointerException, IllegalArgumentException {
         if (imageList == null) {
             throw new NullPointerException();
         } else if (!checkPreconditionList(imageList, imageList.size())) {
@@ -234,7 +233,7 @@ public class PermutationImpl implements Permutation {
 		// result erzeugen mit der noetigen groesse, gefuellt mit Nullen
 		result = createArray(this.getElements().size());
 
-		// inverse in Array gieÂ§en
+		// inverse in Array gieÃŸen
 
 		for (Map.Entry<Integer, Integer> entry : inverse.entrySet()) {
 			result.set(entry.getKey() - 1, entry.getValue());
@@ -327,7 +326,7 @@ public class PermutationImpl implements Permutation {
 		// Einzelnen Cycle bestimmen
 		while (map.containsKey(currentKey)) {
 			newCurrentKey = map.get(currentKey); 	// Wert bestimmen durch Key
-			singleCycle.add(newCurrentKey); 	// Wert zum Cycle hinzufÅ¸gen
+			singleCycle.add(newCurrentKey); 	// Wert zum Cycle hinzufÃ¼gen
 			map.remove(currentKey); 		// Wert aus Map entfernen
 			currentKey = newCurrentKey; 		// Wert fuer naechsten Key festlegen
 		}
@@ -350,11 +349,11 @@ public class PermutationImpl implements Permutation {
 	 * @author Daniel Liesener
 	 * @author Fenja Harbke
 	 */
-	public List<Integer> cycle(int index) throws IllegalArgumentException {
+	public List<Integer> cycle(int index){
 		try {
 			return getAllCyclesAsList().get(index - 1);
 		} catch (Exception e) {
-			throw new IllegalArgumentException();
+			return new ArrayList<Integer>();
 		}
 	}
 
@@ -363,7 +362,7 @@ public class PermutationImpl implements Permutation {
 	 * @author Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>
 	 */
 	@Override
-	public Permutation compose(Permutation other) throws NullPointerException, IllegalArgumentException {
+	public Permutation compose(Permutation other){
 		// Checks:
 		// Same cardinality
 		// Same range (1...n)
@@ -374,11 +373,11 @@ public class PermutationImpl implements Permutation {
 		// [3,5,1,4,2] other
 		// [5,4,2,3,1] composite
 		if (other == null) {
-			throw new NullPointerException();
+			return NoPermutation.valueOf();
 		}
 		
 		if (permutationClass() != other.permutationClass()) {
-			throw new IllegalArgumentException();
+			return NoPermutation.valueOf();
 		}
 
 		ArrayList<Integer> resultList = new ArrayList<Integer>();
@@ -530,7 +529,7 @@ public class PermutationImpl implements Permutation {
 	 * @author Tobias Mainusch
 	 * 
 	 * Gibt die Order der Permutation aus.
-	 * Order als KGV der Größe der einzelnen Cycles implementiert
+	 * Order als KGV der GrÃ¶ÃŸe der einzelnen Cycles implementiert
 	 * BSP: (1 2 3)(4 5)(6) = KGV(3, 2, 1) = 6
 	 * @return int (order of the permutation)
 	 */
@@ -539,14 +538,14 @@ public class PermutationImpl implements Permutation {
     	if (this.getElements().isEmpty()) 
     		return 0;
     	else{
-    		// pCycle enthällt alle Cycle als Liste.
+    		// pCycle enthÃ¤llt alle Cycle als Liste.
     		Set<List<Integer>> pCycle = this.allCycles();
-    		// Liste mit allen Cyclelängen
+    		// Liste mit allen CyclelÃ¤ngen
     		List<Integer> cycleLength = new ArrayList<Integer>();
     	for(List<Integer> cycle : pCycle){
     		cycleLength.add(cycle.size());
     	}
-    	//KGV aller Cycle Längen entspricht der Ordnung
+    	//KGV aller Cycle LÃ¤ngen entspricht der Ordnung
     	return kgv(cycleLength);}
     }
     
@@ -558,9 +557,7 @@ public class PermutationImpl implements Permutation {
 	 * @return int (KGV aller Integer der Liste)
 	 */
     //
-    private int kgv(List<Integer> l)throws IllegalArgumentException{
-    	if (l.isEmpty()){throw new IllegalArgumentException("KGV von einer Liste ohne Elemente nicht berechenbar"); }
-    	
+    private int kgv(List<Integer> l){
     	Iterator<Integer> it = l.iterator();	
     	int result = it.next();   	
     	
@@ -587,7 +584,7 @@ public class PermutationImpl implements Permutation {
 	 * @author Kai Bielenberg
 	 * @author Tobias Mainusch
 	 * 
-	 * Berechnet ggt von 2 Zahlen, benötigt zur KGV Berechnung.
+	 * Berechnet ggt von 2 Zahlen, benÃ¶tigt zur KGV Berechnung.
 	 * @return int  (ggt(m,n))
 	 */
     
@@ -602,7 +599,7 @@ public class PermutationImpl implements Permutation {
 	 * @author Tobias Mainusch
 	 * 
 	 * Performante Implementation von Potenzen z.b. (1, 2, 3, 4)^4
-	 *  Keine Änderungen bei: n == 1
+	 *  Keine Ã„nderungen bei: n == 1
 	 *  					  id bei n == 0
 	 */
 
@@ -631,7 +628,7 @@ public class PermutationImpl implements Permutation {
     	return this.compose(this.inverse());
     }
     /**
-     * @author Kathrin Kahlhšfer
+     * @author Kathrin KahlhÃ¶fer
      * @author Aleksandr Nosov
      */
     public Map<Integer,Integer> cycleType(){

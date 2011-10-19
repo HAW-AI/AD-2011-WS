@@ -61,7 +61,7 @@ public interface Permutation extends Iterable<Integer> {
      * 
      * @param other the Permutation to compose with
      * @return the composition
-     * @throws IllegalArgumentException if the classes of both permutations are
+     * @throws IllegalArgumentException if the classes of both permutations are 
      *                                  not the same
      * @throws NullPointerException     if the argument is null
      */

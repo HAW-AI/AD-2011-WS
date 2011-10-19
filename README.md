@@ -33,6 +33,10 @@ Operations
 <td>Permutation ---> Menge&lt;Sequenz&lt;int>></td>
 <td>Gibt alle Zyklen aus der Permutation</td>
 </tr><tr>
+<td>cycleType:</td>
+<td>Permutation ---> Hashtabelle&lt;int,int>></td>
+<td>Gibt den Zyklentyp der Permutation</td>
+</tr><tr>
 <td>fixedPoints:</td>
 <td>Permutation ---> Menge&lt;Sequenz&lt;int>></td>
 <td>Gibt alle Fixpunkt aus der Permutation</td>
@@ -49,6 +53,10 @@ toString:</td>
 <td>toCycleNotationString:</td>
 <td>Permutation ---> String</td>
 <td>Darstellung der Zyklen als String</td>
+</tr><tr>
+<td>toCycleTypeString:</td>
+<td>Permutation ---> String</td>
+<td>Darstellung des Zyklentyps als String</td>
 </tr><tr>
 <td>equals:</td>
 <td>Permutation x Permutation ---> Bool</td>
@@ -123,3 +131,5 @@ permPower(σ1,-1) = inverse(σ1)
 permPower(σ1, order(σ1)) = id
 
 permPower(σ1,-n) = permPower(inverse(σ1), n)
+
+cycleType(id) = [1^permutationClass(id)]

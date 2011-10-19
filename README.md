@@ -91,7 +91,9 @@ equals(σ,σ) = true
 
 
 **σ1,σ2,σ3,id :Permutation σ1,σ2,σ3,id ∈ Sn**
-**n : Integer n ∈N && n!=0
+
+**n : Integer n ∈N && n!=0**
+
 id(σ1) = id;
 
 id(id) = id;

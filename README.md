@@ -74,10 +74,6 @@ toString:</td>
 <td>Permutation x int ---> Permutation</td>
 <td>Gibt die Permutation^n an</td>
 </tr><tr>
-<td>permPower:</td>
-<td>Permutation x int ---> Permutation</td>
-<td>Gibt die Permutation^n an</td>
-</tr><tr>
 <td>order:</td>
 <td>Permutation ---> int</td>
 <td>Gibt die Ordnung der Permutation an</td>
@@ -85,6 +81,18 @@ toString:</td>
 <td>id:</td>
 <td>Permutation ---> Permutation</td>
 <td>Gibt die Id der Permutation an</td>
+</tr><tr>
+<td>toTransposition:</td>
+<td>Permutation ---> Sequenz&lt;Sequenz&lt;int>></td>
+<td>Wandelt die Permutation in eine Transpositionsdarstellung um</td>
+</tr><tr>
+<td>toTranspositionString:</td>
+<td>Permutation ---> String</td>
+<td>Wandelt die Permutation in eine Transpositionsdarstellung in Stringform um</td>
+</tr><tr>
+<td>Sign:</td>
+<td>Permutation ---> [-1; 1]</td>
+<td>Gibt an ob die Permutation even(1) oder odd(-1) ist.</td>
 </tr></table> 
 
 Axioms

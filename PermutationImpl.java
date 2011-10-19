@@ -25,6 +25,8 @@ import java.lang.StringBuilder;
  * @since 2011-10-12
  * 
  * @author Kai Bielenberg
+ * @author Tobias Meurer
+ * @author Stephan Berngruber
  */
 
 

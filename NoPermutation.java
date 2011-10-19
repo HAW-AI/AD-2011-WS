@@ -85,5 +85,17 @@ public class NoPermutation implements Permutation {
 	public Map<Integer, Integer> cycleType() {
 		return new HashMap<Integer, Integer>();
 	}
+	@Override
+	public List<List<Integer>> toTranspositions() {
+		return new ArrayList<List<Integer>>();
+	}
+	@Override
+	public String toTranspositionString() {
+		return "NoTransposition";
+	}
+	@Override
+	public int sign() {
+		return 0;
+	}
 
 }

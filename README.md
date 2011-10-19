@@ -34,7 +34,7 @@ Operations
 <td>Gibt alle Zyklen aus der Permutation</td>
 </tr><tr>
 <td>cycleType:</td>
-<td>Permutation ---> Hashtabelle&lt;int,int>></td>
+<td>Permutation ---> Hashtabelle&lt;int,int></td>
 <td>Gibt den Zyklentyp der Permutation</td>
 </tr><tr>
 <td>fixedPoints:</td>

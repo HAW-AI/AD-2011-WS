@@ -630,5 +630,34 @@ public class PermutationImpl implements Permutation {
     public Permutation id(){
     	return this.compose(this.inverse());
     }
-  
+    /**
+     * @author Kathrin Kahlhšfer
+     * @author Aleksandr Nosov
+     */
+    public Map<Integer,Integer> cycleType(){
+      Map<Integer,Integer> typeMap = new HashMap<Integer,Integer>();
+      for (List<Integer> c: allCycles()) {
+            int type = c.size();
+            if (typeMap.containsKey(type)) {
+                  typeMap.put(type, typeMap.get(type) + 1);
+            } else {
+                  typeMap.put(type, 1);
+            }
+      }
+      return typeMap;
+    }
+   
+    public String toCycleTypeString(){
+      String cycleTypeString = "[";
+      int i = 1;
+      for(Map.Entry<Integer,Integer> e: cycleType().entrySet()){
+            cycleTypeString += e.getKey() + "^" + e.getValue();
+            if (i < cycleType().size()){
+                  cycleTypeString += ", ";
+                  i += 1;
+            }
+      }
+      cycleTypeString += "]";
+      return cycleTypeString;
+    }  
 }

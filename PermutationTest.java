@@ -1,8 +1,11 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import org.junit.*;
+
 import static org.junit.Assert.*;
 
 public class PermutationTest {
@@ -791,6 +794,29 @@ public class PermutationTest {
 		assertEquals(p1.inverse().permPower(100), p1.permPower(-100));
 	
 	}
-	
+	@Test
+	  public void testCycleType(){
+	        Permutation p1 = PermutationImpl.s(2,1,3,5,6,4);
+	        Permutation p2 = PermutationImpl.s(1,2,3,4,5,6);
+	        Permutation p3 = PermutationImpl.s(6,4,1,3,2,5);
+	        Map<Integer,Integer> erg1 = new HashMap<Integer,Integer>();
+	        Map<Integer,Integer> erg2 = new HashMap<Integer,Integer>();
+	        Map<Integer,Integer> erg3 = new HashMap<Integer,Integer>();
+	        erg1.put(1,1);
+	        erg1.put(2,1);
+	        erg1.put(3,1);
+	        erg2.put(1,6);
+	        erg3.put(6,1);
+	        assertEquals(erg1,p1.cycleType());
+	        assertEquals(erg2,p2.cycleType());
+	        assertEquals(erg3,p3.cycleType());
+	  }
+	  @Test
+	  public void testToCycleTypeString(){
+	        Permutation p1 = PermutationImpl.s(2,1,3,5,6,4);
+	        Permutation p2 = PermutationImpl.s(1,2,3,4,5,6);
+	        assertEquals("[1^1, 2^1, 3^1]",p1.toCycleTypeString());
+	        assertEquals("[1^6]",p2.toCycleTypeString());
+	  }
 }
 

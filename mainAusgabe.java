@@ -44,6 +44,13 @@ public class mainAusgabe {
 	      
 	    long t2= java.lang.System.currentTimeMillis() -t1;
 	    System.out.println(p3 + " in "+t2+"ms");
+	    
+	    Permutation p4 = PermutationImpl.s(4,5,1,2,3);
+	    Permutation p5= PermutationImpl.s(1,3,5,4,2);
+	    
+	    System.out.println(p4.compose(p5));
+	    System.out.println(p5.compose(p4));
+
 	}
 
 

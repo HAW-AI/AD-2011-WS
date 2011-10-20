@@ -572,6 +572,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     public Permutation permPower(int n){
     	Permutation result = PermutationImpl.valueOf(this.getElements());
     	if(n>1){
+    		// p1.PermPower(order(p1) + 1) = p1
     		for(int i = 1; i < (n % (this.order() + 1)); i++) {
     			result = result.compose(this);
     		}
@@ -580,7 +581,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     		result = result.id();
     	}
     	else if(n<0){
-    			result =  this.inverse().permPower(n*-1);
+    			result =  this.inverse().permPower(n*(-1));
     	}
     	return result;
     }
@@ -666,6 +667,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
         		resStr.append(elem);
         	}
         	resStr.append(")");
+        	
     	}
         resStr.append(")");
 

@@ -141,7 +141,7 @@ public interface Permutation extends Iterable<Integer> {
     public String toTranspositionString();
     
     /**
-     * 
+     * make the signature of transposition
      * 
      * @return int
      */

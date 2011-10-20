@@ -127,21 +127,21 @@ public interface Permutation extends Iterable<Integer> {
     public Map<Integer,Integer> cycleType();
 
     /**
-     * The cycle notation will be formed into transposition notation.
+     * cycle notation will be formed into transposition notation.
      * 
      * @return the transposition notation
      */
     public List<List<Integer>> toTranspositions();
     
     /**
-     * The cycle notation will be formed into transposition notation.
+     * transposition notation as String
      * 
      * @return the transposition notation
      */
     public String toTranspositionString();
     
     /**
-     * The cycle notation will be formed into transposition notation.
+     * 
      * 
      * @return int
      */

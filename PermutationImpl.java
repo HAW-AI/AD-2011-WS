@@ -656,9 +656,13 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
      */
     public String toTranspositionString(){
 
+    	if(this.id().equals(this) || this.getElements().isEmpty()){
+    		return "NoTransposition";
+    	}
+    	
     	List<List<Integer>> list = this.toTranspositions();
     	StringBuilder resStr = new StringBuilder();
-
+    	
         resStr.append("(");
         for (List<Integer> listInt : list){
         	resStr.append("("); //braket for every 2-cycle
@@ -677,8 +681,14 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
      */
     public int sign(){
     	int s = this.toTranspositions().size();
-    	//s==0 : if the permutation is like (1,2,3,4,5,...)
-    	return (int) ( s == 0 ? (-1) : Math.pow((-1.0), s) );
+    	if(s==0 || (this.id().equals(this))){
+    		return 0;
+    	}
+    	else {
+    		//s==0 : if the permutation is the id
+        	return (int) ( s == 0 ? (-1) : Math.pow((-1.0), s) );
+    	}
+    	
     }
     
     

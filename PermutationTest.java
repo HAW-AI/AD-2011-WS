@@ -809,13 +809,17 @@ public class PermutationTest {
 			Permutation p3 = PermutationImpl.s(1,2,3);
 			Permutation p4 = PermutationImpl.s(4,6,3,1,2,5);
 			Permutation p5 = PermutationImpl.s(1);
+			String s=null;
+			Permutation p6 = PermutationImpl.valueOf(s);
+			Permutation p7 = PermutationImpl.s();
 			
 			assertEquals("((31)(36)(42)(47)(45))",p1.toTranspositionString());
 			assertEquals("((21)(23))",p2.toTranspositionString());
-			assertEquals("()",p3.toTranspositionString());
+			assertEquals("NoTransposition",p3.toTranspositionString());
 			assertEquals("((41)(62)(65))",p4.toTranspositionString());
-			assertEquals("()",p5.toTranspositionString());
-			
+			assertEquals("NoTransposition",p5.toTranspositionString());
+			assertEquals("NoTransposition",p6.toTranspositionString());
+			assertEquals("NoTransposition",p7.toTranspositionString());
 		}
 		
 		@Test
@@ -825,12 +829,17 @@ public class PermutationTest {
 			Permutation p3 = PermutationImpl.s(1,2,3);
 			Permutation p4 = PermutationImpl.s(4,6,3,1,2,5);
 			Permutation p5 = PermutationImpl.s(1);
+			Permutation p6 = PermutationImpl.s();
+			String s=null;
+			Permutation p7 = PermutationImpl.valueOf(s);
 			
 			assertEquals(-1, p1.sign());
 			assertEquals(1, p2.sign());
-			assertEquals(-1, p3.sign());
+			assertEquals(0, p3.sign());
 			assertEquals(-1, p4.sign());
-			assertEquals(-1, p5.sign());
+			assertEquals(0, p5.sign());
+			assertEquals(0, p6.sign());
+			assertEquals(0, p7.sign());
 		}
 	  
 	  

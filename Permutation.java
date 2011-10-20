@@ -25,7 +25,7 @@ public interface Permutation extends Iterable<Integer> {
      * @return the image or -1 if is a NoPermution
      * @throws IllegalArgumentException unless 1 <= inverseImage <= permutationClass()
      */
-    int sigma(int inverseImage) throws IllegalArgumentException;
+    int getPermElement(int inverseImage) throws IllegalArgumentException;
     
     /**
      * Return the n-th cycle of the permutation.

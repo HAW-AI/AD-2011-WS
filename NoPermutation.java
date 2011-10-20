@@ -25,7 +25,7 @@ public class NoPermutation implements Permutation {
 	}
 	
 	@Override
-	public int sigma(int inverseImage){
+	public int getPermElement(int inverseImage){
 		return 0;
 	}
 
@@ -81,7 +81,7 @@ public class NoPermutation implements Permutation {
 
 	@Override
 	public String toCycleTypeString() {
-		return "NoPermutation";
+		return "[ ]";
 	}
 
 	@Override
@@ -99,6 +99,11 @@ public class NoPermutation implements Permutation {
 	@Override
 	public int sign() {
 		return 0;
+	}
+	
+	@Override
+	public String toString(){
+		return "NaP";
 	}
 
 }

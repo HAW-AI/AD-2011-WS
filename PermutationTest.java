@@ -186,14 +186,14 @@ public class PermutationTest {
 
 	@Test
 	public void testSigma(){
-		assertEquals(3, pInput41.sigma(3));		
-		assertEquals(4, pInput42.sigma(2));
+		assertEquals(3, pInput41.getPermElement(3));		
+		assertEquals(4, pInput42.getPermElement(2));
 		
-		assertEquals(5, pInput71.sigma(3));		
-		assertEquals(2, pInput72.sigma(2));
+		assertEquals(5, pInput71.getPermElement(3));		
+		assertEquals(2, pInput72.getPermElement(2));
 		
-		assertEquals(3, pInput101.sigma(3));		
-		assertEquals(2, pInput102.sigma(2));
+		assertEquals(3, pInput101.getPermElement(3));		
+		assertEquals(2, pInput102.getPermElement(2));
 		
 	}
 
@@ -201,27 +201,27 @@ public class PermutationTest {
 
 	@Test (expected=IllegalArgumentException.class)
 	public void testSigmaException1(){
-		assertEquals(3, pInput41.sigma(5));
+		assertEquals(3, pInput41.getPermElement(5));
 	}
 	@Test (expected=IllegalArgumentException.class)
 	public void testSigmaException2(){
-		assertEquals(3, pInput42.sigma(-1));
+		assertEquals(3, pInput42.getPermElement(-1));
 	}
 	@Test (expected=IllegalArgumentException.class)
 	public void testSigmaException3(){
-		assertEquals(3, pInput71.sigma(8));
+		assertEquals(3, pInput71.getPermElement(8));
 	}
 	@Test (expected=IllegalArgumentException.class)
 	public void testSigmaException4(){
-		assertEquals(3, pInput72.sigma(-1));
+		assertEquals(3, pInput72.getPermElement(-1));
 	}
 	@Test (expected=IllegalArgumentException.class)
 	public void testSigmaException5(){
-		assertEquals(3, pInput101.sigma(11));
+		assertEquals(3, pInput101.getPermElement(11));
 	}
 	@Test (expected=IllegalArgumentException.class)
 	public void testSigmaException6(){
-		assertEquals(3, pInput102.sigma(-1));
+		assertEquals(3, pInput102.getPermElement(-1));
 	}
 	
 	// Positivtest von cycle()

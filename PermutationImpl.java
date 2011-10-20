@@ -57,9 +57,9 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
         }
         
         //result: Wird während dem Parsen mit Listen gefüllt, eine 'Sub-Liste' wird einem Cycle entsprechen: (1,2)(3) -> [[1,2],[3]]
-        //        Dises Liste wird an cycle(List<List<Integer>> cycles) übergeben
+        //        Diese Liste wird an cycle(List<List<Integer>> cycles) übergeben
         List<List<Integer>> result = new ArrayList<List<Integer>>();
-        //Löscht die Leerzeichen, dann löscht den ersten und den lezten Zeichen, danach splitet den String bei )( und macht daraus 
+        //Löscht die Leerzeichen, dann löscht das erste und das lezte Zeichen, danach splittet den String bei )( und macht daraus 
         //eine Liste wie z.B. "(1,2,3)" -> ["1,2"],["3"] 
         List<String> preSplit=Arrays.asList(cString.replaceAll(" ", "").substring(1, cString.length()-1).split("\\)\\("));
         for (String string : preSplit) {
@@ -348,7 +348,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 
 		ArrayList<Integer> resultList = new ArrayList<Integer>();
 		for (Integer element : this) {
-			resultList.add(other.sigma(element));
+			resultList.add(other.getPermElement(element));
 		}
 		Permutation result = new PermutationImpl(resultList);
 		return result;
@@ -402,7 +402,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	 * @author Sebastian Krome
 	 */
 	@Override
-	public int sigma(int index) throws IllegalArgumentException {
+	public int getPermElement(int index) throws IllegalArgumentException {
 		try {
 			return getElements().get(index - 1); // -1 cause typicaly sigma
 													// starts at 1, arrays at 0
@@ -680,4 +680,6 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     	//s==0 : if the permutation is like (1,2,3,4,5,...)
     	return (int) ( s == 0 ? (-1) : Math.pow((-1.0), s) );
     }
+    
+    
 }

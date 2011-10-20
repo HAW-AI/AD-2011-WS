@@ -21,7 +21,7 @@ Operations
 </tr><tr>
 <td><td>String -/-> Permutation</td></td>
 </tr><tr>
-<td>sigma:</td>
+<td>getPermElement:</td>
 <td>int x Permutation -/-> int</td>
 <td>Gibt das gewählte Abbild</td>
 </tr><tr>

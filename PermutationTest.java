@@ -27,32 +27,13 @@ public class PermutationTest {
 		
 		
 		assertEquals(pInput102, PermutationImpl.valueOf("(1)(2)(3)(5,4)(8,6)(7)(9)(10)"));
-		
-		try {
-			String nullString = null;
-			PermutationImpl.valueOf(nullString);
-			fail("Should have raised an NullPointerException");			
-		    } catch (NullPointerException expected) {}
-		
-		try {
-			PermutationImpl.valueOf("(1)(3)(3)(4)");
-			fail("Should have raised an IllegalArgumentException");			
-		    } catch (IllegalArgumentException expected) {}
-		
-		try {
-			PermutationImpl.valueOf("()(3)(3)(4)");
-			fail("Should have raised an IllegalArgumentException");			
-		    } catch (IllegalArgumentException expected) {}
-		
-		try {
-			PermutationImpl.valueOf("(1,,2)(3)(4)");
-			fail("Should have raised an IllegalArgumentException");			
-		    } catch (IllegalArgumentException expected) {}
-		
-		try {
-			PermutationImpl.valueOf("(1)(2)(3)((4)");
-			fail("Should have raised an IllegalArgumentException");			
-		    } catch (IllegalArgumentException expected) {}
+		String s=null;
+		assertEquals(NoPermutation.valueOf(),PermutationImpl.valueOf(s));
+		assertEquals(NoPermutation.valueOf(),PermutationImpl.valueOf("(1)(3)(3)(4)"));	
+		assertEquals(NoPermutation.valueOf(), PermutationImpl.valueOf("()(3)(3)(4)"));
+		assertEquals(NoPermutation.valueOf(), PermutationImpl.valueOf("(1,,2)(3)(4)"));
+		assertEquals(NoPermutation.valueOf(), PermutationImpl.valueOf("(1)(2)(3)((4)"));
+
 	}
   
 	// Erstellen häufig verwendeter Permutationen

@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -7,7 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
+/**
+ * 
+ * @author Aleksandr Nosov
+ * @author Kai Bielenberg
+ */
 public class NoPermutation implements Permutation {
 	private static NoPermutation instance=new NoPermutation();
 	private NoPermutation(){

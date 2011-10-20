@@ -1,10 +1,13 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.List;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.regex.Pattern;
 import java.lang.StringBuilder;
 
 /**
@@ -27,6 +30,8 @@ import java.lang.StringBuilder;
  * @author Kai Bielenberg
  * @author Tobias Meurer
  * @author Stephan Berngruber
+ * @author Aleksandr Nosov
+ * @author Kathrin Kahlhöfer
  */
 
 
@@ -41,64 +46,50 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
      *
      * @param String in cycle format. Space ignored, cycle opens with "(" and closes with ")". Elements in one cycle seperated by ",". e.g.: "(2) ( 3,1) (4,6,7)(5) "
      * @return a new permutation object from symmetric group S(n) where \u03c3(i)=ai for all 1\u2264i\u2264n
-     * @throws IllegalArgumentException if \u03c3(i)=\u03c3(j) for i\u2260j or if not 1\u2264\u03c3(i)\u2264n for all 1<\u2264i\u2264n
-     * @throws IllegalArgumentException if parameter cString does not match cycle notation
-     * @throws NullPointerException if the argument is null
+     * 		   NoPermutation if \u03c3(i)=\u03c3(j) for i\u2260j or if not 1\u2264\u03c3(i)\u2264n for all 1<\u2264i\u2264n
+     *         NoPermutation if parameter cString does not match cycle notation
+     *         NoPermutation if the argument is null
      *
      */
 	public static Permutation valueOf(String cString) {
         if (cString == null) {
-            throw new NullPointerException();
+        	return NoPermutation.valueOf();
         }
         
         //result: Wird während dem Parsen mit Listen gefüllt, eine 'Sub-Liste' wird einem Cycle entsprechen: (1,2)(3) -> [[1,2],[3]]
         //        Dises Liste wird an cycle(List<List<Integer>> cycles) übergeben
         List<List<Integer>> result = new ArrayList<List<Integer>>();
-
-        //Leerzeichen löchen
-        cString = cString.replaceAll(" ", "");
+        //Löscht die Leerzeichen, dann löscht den ersten und den lezten Zeichen, danach splitet den String bei )( und macht daraus 
+        //eine Liste wie z.B. "(1,2,3)" -> ["1,2"],["3"] 
+        List<String> preSplit=Arrays.asList(cString.replaceAll(" ", "").substring(1, cString.length()-1).split("\\)\\("));
+        for (String string : preSplit) {
+        	//Schau ob der String like "1,2,3" aussieht
+			if(!string.matches("^(\\d+,)*\\d+$"))
+				return NoPermutation.valueOf();
+			List<Integer> l=new ArrayList<Integer>();
+			//Spliten nach , und wandeln in Integer um.
+			for (String i : string.split(",")) {
+				l.add(Integer.valueOf(i));	
+			};
+			result.add(l);
+		}
         
-        
-        //Hilfsvariablen, die beim parsen des Strings benötigt werden:
-        //cycle: Liste zum Zwischenspeichern der einzelnen Cycles
-        List<Integer> cycle = null;
-        //cStatus: true, wenn Kreis durch '(' geöffnet wurde
-        boolean cStatus = false;
-        //currentNumber: Wichtig für mehrstellige Zahlen, einzelne Ziffern werden an den String angefügt
-        String currentNumber = "";
-
-        //Zeichenweises Parsen des übergebenden Strings
-        for (char c : cString.toCharArray()) {
-            
-            //Wenn öffnende Klammer, neuen Kreis "beginnen"
-            if (c == '(' && cStatus == false) {
-                cStatus = true;
-                cycle = new ArrayList<Integer>();
-            
-            //Wenn schließende Klammer, aktuelle Zahl in Kreis einfügen und den Kreis beenden
-            } else if (c == ')' && cStatus == true && currentNumber!= "") {
-                cStatus = false;
-                cycle.add(Integer.valueOf(currentNumber));
-                currentNumber = "";
-                result.add(cycle);
-            
-            //Wenn Ziffer, dann an currentNumber-Variable anfügen
-            } else if (c >= '0' && c <= '9'&& cStatus == true) {
-                currentNumber = currentNumber.concat(String.valueOf(c));
-            
-            //Wenn Komma, aktuelle Zahl in Kreis einfügen
-            } else if (c == ','&& cStatus == true && currentNumber!= "") {
-                cycle.add(Integer.valueOf(currentNumber));
-                currentNumber = "";
-            
-            //Sonst handelt es sich um ein ungültiges Zeichen
-            } else {
-                throw new IllegalArgumentException(String.valueOf(c).concat(" is not valid here. Use Cycle Format like '(2)(3,1)(4,6,7)(5)'"));
-            }
-        }
         return valueOfCycleList(result);
     }  
-	
+	/**
+	 * @author Aleksandr Nosov
+	 * @param list List<List<Integer>>
+	 * @return list List<Integer>
+	 */
+	private static List<Integer> flatt(List<List<Integer>> list){
+		List<Integer> l=new ArrayList<Integer>();
+		for (List<Integer> list2 : list) {
+			for (Integer integer : list2) {
+				l.add(integer);
+			}
+		}
+		return l;
+	}
 	/**
      * Create a new permutation, based on cycle-notation
      *
@@ -107,32 +98,12 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
      * 
      * @param Cycle "Sub"-Lists in a List. 
      * @return a new permutation object from symmetric group S(n) where \u03c3(i)=ai for all 1\u2264i\u2264n
-     * @throws IllegalArgumentException if \u03c3(i)=\u03c3(j) for i\u2260j or if not 1\u2264\u03c3(i)\u2264n for all 1<\u2264i\u2264n
-     * @throws NullPointerException if the argument is null
-     *
+     *			or NoPermutation if not valid
      */
 	public static Permutation valueOfCycleList(List<List<Integer>> cycles) {
-        if (cycles == null) {
-            throw new NullPointerException();
-        }
-        //values: Liste result ist übergabeparameter für valueOf-Methode
-        List<Integer> result = new ArrayList<Integer>();
-
+        List<Integer> result=PermutationImpl.flatt(cycles);
+        if(cycles == null || !checkPreconditionList(result, result.size())) return NoPermutation.valueOf();
         //n: Wert für Sn, also größe der Permutation
-        int n=0;
-        for (List<Integer> c : cycles) {
-            for (Integer value : c) {
-                if (value > n) {
-                    n= value;
-                }
-            }
-        }
-        
-        //result mit Nullen vorinitialisieren, welche anschließend mit den korrekten Werten überschrieben werden
-        //  Notwendig, uum in den nachfolgenden Schritten IndexOutOfBoundsException zu vermeiden
-        for (int i = 0; i < n; i++) {
-           result.add(0); 
-        }
         
         //Eigentliche Umwandlung in Standard-Notation für valueOf-Methode 
         for (List<Integer> currentCycle : cycles) {
@@ -163,16 +134,11 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
      */
     /**
      * @param imageList
-     * @return
-     * @throws NullPointerException
-     * @throws IllegalArgumentException
+     * @return  Permutation or NoPermutation if not valid
      */
-	public static Permutation valueOf(List<Integer> imageList) throws NullPointerException, IllegalArgumentException {
-        if (imageList == null) {
-            throw new NullPointerException();
-        } else if (!checkPreconditionList(imageList, imageList.size())) {
-            throw new IllegalArgumentException();
-        }
+	public static Permutation valueOf(List<Integer> imageList){
+        if (imageList == null || !checkPreconditionList(imageList, imageList.size()))
+            return NoPermutation.valueOf();
         return new PermutationImpl(imageList);
     }
     
@@ -643,7 +609,10 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
       }
       return typeMap;
     }
-   
+    /**
+     * @author Kathrin Kahlhöfer
+     * @author Aleksandr Nosov
+     */
     public String toCycleTypeString(){
       String cycleTypeString = "[";
       int i = 1;
@@ -660,7 +629,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     
     /**
 	 * @author Andrej Braining
-	 * @author Marc W�seke
+	 * @author Marc W�seke
 	 */
     public List<List<Integer>> toTranspositions() {
     	
@@ -682,7 +651,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	}
     
     /**
-     * @author Marc W�seke
+     * @author Marc W�seke
      * 
      */
     public String toTranspositionString(){
@@ -704,7 +673,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     }
     
     /**
-     * @author Marc W�seke
+     * @author Marc W�seke
      */
     public int sign(){
     	int s = this.toTranspositions().size();

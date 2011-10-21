@@ -98,7 +98,7 @@ public class NoPermutation implements Permutation {
 	}
 	@Override
 	public int sign() {
-		return 0;
+		return 1;
 	}
 	
 	@Override

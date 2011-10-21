@@ -837,8 +837,9 @@ public class PermutationTest {
 			
 			assertEquals(-1, p1.sign());
 			assertEquals(1, p2.sign());
-			assertEquals(0, p3.sign());
+			assertEquals(1, p3.sign());
 			assertEquals(-1, p4.sign());
+			assertEquals(1, NoPermutation.valueOf().sign());
 		}
 	  
 	  

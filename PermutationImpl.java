@@ -61,7 +61,12 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         //Löscht die Leerzeichen, dann löscht das erste und das lezte Zeichen, danach splittet den String bei )( und macht daraus 
         //eine Liste wie z.B. "(1,2,3)" -> ["1,2"],["3"] 
-        List<String> preSplit=Arrays.asList(cString.replaceAll(" ", "").substring(1, cString.length()-1).split("\\)\\("));
+        List<String> preSplit;
+        try{
+        	preSplit=Arrays.asList(cString.replaceAll(" ", "").substring(1, cString.length()-1).split("\\)\\("));
+        }catch (Exception e) {
+        	return NoPermutation.valueOf();
+        }
         for (String string : preSplit) {
         	//Schau ob der String like "1,2,3" aussieht
 			if(!string.matches("^(\\d+,)*\\d+$"))

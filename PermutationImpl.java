@@ -680,7 +680,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     public int sign(){
     	int s = this.toTranspositions().size();
     	//s==0 : if the permutation is like (1,2,3,4,5,...)
-    	return (int) ( s == 0 ? (-1) : Math.pow((-1.0), s) );
+    	return (int) (this.equals(this.id()) ? NoPermutation.valueOf().sign() : Math.pow((-1.0), s));
     }
     
     

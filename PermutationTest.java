@@ -29,6 +29,8 @@ public class PermutationTest {
 		assertEquals(pInput102, PermutationImpl.valueOf("(1)(2)(3)(5,4)(8,6)(7)(9)(10)"));
 		String s=null;
 		assertEquals(NoPermutation.valueOf(),PermutationImpl.valueOf(s));
+		assertEquals(NoPermutation.valueOf(),PermutationImpl.valueOf(""));
+		assertEquals(NoPermutation.valueOf(),PermutationImpl.valueOf("1"));
 		assertEquals(NoPermutation.valueOf(),PermutationImpl.valueOf("(1)(3)(3)(4)"));	
 		assertEquals(NoPermutation.valueOf(), PermutationImpl.valueOf("()(3)(3)(4)"));
 		assertEquals(NoPermutation.valueOf(), PermutationImpl.valueOf("(1,,2)(3)(4)"));

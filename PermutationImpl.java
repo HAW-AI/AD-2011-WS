@@ -661,15 +661,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
      * 
      */
     public String toTranspositionString(){
-<<<<<<< HEAD
-
-    	if(this.id().equals(this) || this.getElements().isEmpty()){
-    		return "NoTransposition";
-    	}
-    	
-=======
     	if (this.equals(this.id())) {return NoPermutation.valueOf().toTranspositionString();}
->>>>>>> c9e16f98b663861e922d97450aed5827115a481c
     	List<List<Integer>> list = this.toTranspositions();
     	StringBuilder resStr = new StringBuilder();
     	
@@ -692,19 +684,8 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
      */
     public int sign(){
     	int s = this.toTranspositions().size();
-<<<<<<< HEAD
-    	if(s==0 || (this.id().equals(this))){
-    		return 0;
-    	}
-    	else {
-    		//s==0 : if the permutation is the id
-        	return (int) ( s == 0 ? (-1) : Math.pow((-1.0), s) );
-    	}
-    	
-=======
     	//s==0 : if the permutation is like (1,2,3,4,5,...)
     	return (int) (this.equals(this.id()) ? NoPermutation.valueOf().sign() : Math.pow((-1.0), s));
->>>>>>> c9e16f98b663861e922d97450aed5827115a481c
     }
     
     

@@ -577,6 +577,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     public Permutation permPower(int n){
     	Permutation result = PermutationImpl.valueOf(this.getElements());
     	if(n>1){
+    		// p1.PermPower(order(p1) + 1) = p1
     		for(int i = 1; i < (n % (this.order() + 1)); i++) {
     			result = result.compose(this);
     		}
@@ -585,7 +586,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     		result = result.id();
     	}
     	else if(n<0){
-    			result =  this.inverse().permPower(n*-1);
+    			result =  this.inverse().permPower(n*(-1));
     	}
     	return result;
     }
@@ -660,11 +661,15 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
      * 
      */
     public String toTranspositionString(){
+<<<<<<< HEAD
 
     	if(this.id().equals(this) || this.getElements().isEmpty()){
     		return "NoTransposition";
     	}
     	
+=======
+    	if (this.equals(this.id())) {return NoPermutation.valueOf().toTranspositionString();}
+>>>>>>> c9e16f98b663861e922d97450aed5827115a481c
     	List<List<Integer>> list = this.toTranspositions();
     	StringBuilder resStr = new StringBuilder();
     	
@@ -675,6 +680,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
         		resStr.append(elem);
         	}
         	resStr.append(")");
+        	
     	}
         resStr.append(")");
 
@@ -686,6 +692,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
      */
     public int sign(){
     	int s = this.toTranspositions().size();
+<<<<<<< HEAD
     	if(s==0 || (this.id().equals(this))){
     		return 0;
     	}
@@ -694,6 +701,10 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
         	return (int) ( s == 0 ? (-1) : Math.pow((-1.0), s) );
     	}
     	
+=======
+    	//s==0 : if the permutation is like (1,2,3,4,5,...)
+    	return (int) (this.equals(this.id()) ? NoPermutation.valueOf().sign() : Math.pow((-1.0), s));
+>>>>>>> c9e16f98b663861e922d97450aed5827115a481c
     }
     
     

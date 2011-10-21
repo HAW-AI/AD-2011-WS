@@ -839,9 +839,12 @@ public class PermutationTest {
 			assertEquals(1, p2.sign());
 			assertEquals(0, p3.sign());
 			assertEquals(-1, p4.sign());
+<<<<<<< HEAD
 			assertEquals(0, p5.sign());
 			assertEquals(0, p6.sign());
 			assertEquals(0, p7.sign());
+=======
+>>>>>>> c9e16f98b663861e922d97450aed5827115a481c
 		}
 	  
 	  

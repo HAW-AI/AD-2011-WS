@@ -128,7 +128,7 @@ id(id) = id;
 
 compose(σ1,compose(σ2,σ3)) = compose(compose(σ1,σ2),σ3)
 
-equals(σ1,id) = true & equals(σ1,σ2) = false => fixedPoints(σ1) != fixedPoints(σ2)
+!equals(id, σ1) => |fixedPoints(σ1)| < n
 
 inverse(inverse(σ3)) = σ3
 

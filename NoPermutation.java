@@ -107,12 +107,12 @@ public class NoPermutation implements Permutation {
 	}
         
         @Override
-        public Permutation getSnByRank(int permClass, int rank) {
+        public Permutation rankToPerm(int rank) {
                return NoPermutation.valueOf();
         }
 
         @Override
-        public int getRankOfPerm() {
+        public int rank() {
                return -1;
         }
 

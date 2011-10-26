@@ -105,5 +105,15 @@ public class NoPermutation implements Permutation {
 	public String toString(){
 		return "NaP";
 	}
+        
+        @Override
+        public Permutation getSnByRank(int permClass, int rank) {
+               return NoPermutation.valueOf();
+        }
+
+        @Override
+        public int getRankOfPerm() {
+               return -1;
+        }
 
 }

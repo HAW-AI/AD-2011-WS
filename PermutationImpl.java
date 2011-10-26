@@ -37,6 +37,7 @@ import java.lang.StringBuilder;
 
 public class PermutationImpl implements Permutation, Iterable<Integer> {
 	private List<Integer> elements;
+	private static Map<Integer, Permutation> idPool = new HashMap();
 	
 	/**
      * Create a new permutation, based on cycle-notation
@@ -591,14 +592,26 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     	return result;
     }
 	/**
-	 * @author Kai Bielenberg
-	 * @author Tobias Mainusch
-	 * 
-	 * Angabe der ID der Permutationsklasse
-	 */
-    public Permutation id(){
-    	return this.compose(this.inverse());
+    * @author Kai Bielenberg
+    * @author Tobias Mainusch
+    * @author Benjamin Kahlau
+    *
+    * Ausgabe der Identität einer Permutationsklasse
+    */
+    public Permutation id() {
+        // Wenn die Identität der Permutationsklasse nicht im Pool vorhanden ist, wird sie erzeugt
+        if (!PermutationImpl.idPool.containsKey(this.permutationClass())) {
+            Permutation elem = this;
+            // k = order
+            // Die Identität für durch k maliges komponieren
+            for(int i = 0; i < this.order()-1; i++) {
+                elem = elem.compose(this);
+            }
+            PermutationImpl.idPool.put(this.permutationClass(), elem);
+        }
+        return PermutationImpl.idPool.get(this.permutationClass());
     }
+
     /**
      * @author Kathrin Kahlhöfer
      * @author Aleksandr Nosov
@@ -635,7 +648,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     
     /**
 	 * @author Andrej Braining
-	 * @author Marc W�seke
+	 * @author Marc Wüseke
 	 */
     public List<List<Integer>> toTranspositions() {
     	
@@ -657,7 +670,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	}
     
     /**
-     * @author Marc W�seke
+     * @author Marc Wüseke
      * 
      */
     public String toTranspositionString(){
@@ -680,12 +693,82 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     }
     
     /**
-     * @author Marc W�seke
+     * @author Marc Wüseke
      */
     public int sign(){
     	int s = this.toTranspositions().size();
     	return (int) Math.pow((-1.0), s);
     }
     
+	/**
+    * @author Sebastian Bartels
+    * @param int permutationClass, int rank
+    * @return Permutation
+    *
+    * Gives the n-th permutation in lexical order (rank) of a given permutation-class
+    */
+
+   public Permutation getSnByRank(int permClass, int rank) {
+       //Create a list of all objects in the list as determined by the permutation-class
+       List<Integer> classId = new ArrayList<Integer>();
+       for(int i = 1; i <= permClass; i++) classId.add(i);
+       //Create the list that will eventually become the wanted permutation
+       List<Integer> result = new ArrayList<Integer>();
+
+       if(permClass > 0 && rank >= 0 && rank < factorial(permClass)) {
+               //Prepare an int needed in the calculation
+               int f = factorial(permClass);
+
+               while(permClass > 0) {
+                       f /= permClass;
+                       result.add(classId.remove(rank/f));
+                       permClass--;
+                       rank %= f;
+               }
+       }
+       else result = null;
+
+       return PermutationImpl.valueOf(result);
+   }
+
+   /**
+	* @author Sebastian Bartels
+    * @param Permutation p
+    * @return int rank
+    *
+    * Returns the rank of a given Permutation
+    */
+   public int getRankOfPerm() {
+       int result = 0;
+       int wantedElement = 1;          //Wanted element in the Permutation; Can be Integer because our implementation only allows for permutations of Integers that include all numbers 1...|Elements|
+       int currentElement = 0;         //index for elementCopy.get(index); will also count elements in front of the wanted element of the given Permutation
+       List<Integer> elementCopy = new ArrayList<Integer>(this.elements); //Creates a copy of the permutations elements so we can remove elements
+
+       while(elementCopy.size() > 0) {
+               while(elementCopy.get(currentElement) != wantedElement)
+                       currentElement++;
+               //Rank of Permutation = (PermutationClass - 1)! * (Number of elements in front of the 1st element of the Permutations id)
+               //                      + (PermutationClass-2)! * (Number of Elements in front of the 2nd element of the id after removing the 1st)
+               //                                       ...+ 1!                                        * 0             (-->Only 1 Element left)
+               result += factorial(elementCopy.size()-1) * (currentElement);
+               elementCopy.remove(currentElement);
+               currentElement = 0;
+               wantedElement++;
+       }
+       return result;
+   }
+
+   /**
+    * @param int n
+    * @return int f
+    *
+    * Returns the factorial (n!) of a given n
+    */
+
+   private static int factorial(int n) {
+       int f = 1;
+       for(; n > 0; f*=n--);
+       return f;
+   }
     
 }

@@ -146,4 +146,19 @@ public interface Permutation extends Iterable<Integer> {
      * @return int
      */
     public int sign();
+
+ 	/**
+    * Returns the n-th permutation in lexical order (rank) of a given permutation-class
+    *
+    * @return Permutation
+    * @see http://bytes.com/topic/java/insights/632857-permutations-b
+    */
+    public Permutation getSnByRank(int permutationClass, int rank);
+
+	/**
+    * Returns the rank of a given Permutation or -1, if the permutation is invalid
+    *
+    * @return int
+    */
+    public int getRankOfPerm();
 }

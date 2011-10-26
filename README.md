@@ -26,7 +26,7 @@ Operations
 <td>Gibt das gewählte Abbild</td>
 </tr><tr>
 <td>cycle:</td>
-<td>Permutation x int -/-> Sequenz&lt;int></td>
+<td>Permutation x int -/-> Permutation></td>
 <td>Gibt den gewählten Zyklus</td>
 </tr><tr>
 <td>allCycles:</td>

@@ -131,7 +131,7 @@ public interface Permutation extends Iterable<Integer> {
      * 
      * @return the transposition notation
      */
-    public List<List<Integer>> toTranspositions();
+    public List<Permutation> toTranspositions();
     
     /**
      * transposition notation as String

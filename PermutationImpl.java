@@ -650,10 +650,10 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	 * @author Andrej Braining
 	 * @author Marc Wüseke
 	 */
-    public List<List<Integer>> toTranspositions() {
+    public List<Permutation> toTranspositions() {
     	
     	List<List<Integer>> list = this.getAllCyclesAsList(); 
-    	List<List<Integer>> result = new ArrayList<List<Integer>>(); 
+    	List<Permutation> result = new ArrayList<Permutation>(); 
     	
     	for (int i = 0; i < list.size(); i++) {
     		
@@ -661,13 +661,32 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 					List<Integer> tempList = new ArrayList<Integer>();
 					tempList.add(list.get(i).get(0));
 					tempList.add(list.get(i).get(j-1));
-					result.add(tempList);
+                    Permutation tempPerm = cycleToPermutation(tempList, this.permutationClass());
+					result.add(tempPerm);
 				}
     		
 		}
-    	
+    //	this.permutationClass();
 		return result;
 	}
+    
+    private Permutation cycleToPermutation(List<Integer> cycle, int permClass){
+        List<Integer> result = new ArrayList<Integer>();
+        
+        for(int i=1; i<=permClass;i++){
+            result.add(i);
+        }
+        for(int i=0; i<(cycle.size()-1);i++){
+            result.remove(cycle.get(i)-1);
+            result.add(cycle.get(i)-1, cycle.get(i+1));
+        }
+        
+        result.remove(cycle.get(cycle.size()-1)-1);
+        result.add((cycle.get(cycle.size()-1)-1),cycle.get(0));
+
+        return new PermutationImpl(result);
+        
+    }
     
     /**
      * @author Marc Wüseke
@@ -675,15 +694,25 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
      */
     public String toTranspositionString(){
     	if (this.equals(this.id())) {return NoPermutation.valueOf().toTranspositionString();}
-    	List<List<Integer>> list = this.toTranspositions();
+    	List<Permutation> list = this.toTranspositions();
     	StringBuilder resStr = new StringBuilder();
+    	List<List<Integer>> iList = new ArrayList<List<Integer>>();
     	
+    	for (int i = 0; i < list.size(); i++) {
+    		for(List<Integer> cList: list.get(i).allCycles()){
+    			if (cList.size() > 1){
+    				iList.add(cList);
+    			}
+    		}
+    	}
         resStr.append("(");
-        for (List<Integer> listInt : list){
+        for (List<Integer> cycle : iList){
         	resStr.append("("); //braket for every 2-cycle
-        	for (int elem : listInt) {
+        	for (int elem : cycle) {
         		resStr.append(elem);
+        		resStr.append(" ");
         	}
+        	resStr.delete(resStr.length()-1, resStr.length());
         	resStr.append(")");
         	
     	}

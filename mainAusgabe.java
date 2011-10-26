@@ -5,12 +5,13 @@ public class mainAusgabe {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println(PermutationImpl.valueOf("(1,2,3)(4,5)"));
-		System.out.println(PermutationImpl.valueOf("(2,3,1)(4)"));
-		System.out.println(PermutationImpl.valueOf("(1,2,3)(4)(5,6)(7)(8)"));
-		
-		System.out.println("===");
-		System.out.println(PermutationImpl.s(1,5,9,2,6,10,3,7,11,4,8,12).allCycles());
+        
+        System.out.println(PermutationImpl.valueOf("(1,2,3)(4,5)"));
+        System.out.println(PermutationImpl.valueOf("(2,3,1)(4)"));
+        System.out.println(PermutationImpl.valueOf("(1,2,3)(4)(5,6)(7)(8)"));
+
+        System.out.println("===");
+        System.out.println(PermutationImpl.s(1,5,9,2,6,10,3,7,11,4,8,12).allCycles());
 	    System.out.println(PermutationImpl.s(1,5,9,2,6,10,3,7,11,4,8,12).toCycleNotationString());
 	    System.out.println(PermutationImpl.valueOf("(1,2,3)").toCycleTypeString());
 	    System.out.println(PermutationImpl.s(1,5,9,2,6,10,3,7,11,4,8,12).toCycleTypeString());
@@ -50,7 +51,12 @@ public class mainAusgabe {
 	    
 	    System.out.println(p4.compose(p5));
 	    System.out.println(p5.compose(p4));
-
+        
+        System.out.println("===");
+        System.out.println(PermutationImpl.s(1,5,9,2,6,10,3,7,11,4,8,12).toTranspositions());
+        System.out.println(PermutationImpl.s(1,5,9,2,6,10,3,7,11,4,8,12).toTranspositionString());
+        System.out.println(PermutationImpl.s(1,5,9,2,6,10,3,7,11,4,8,12).toTranspositions().get(0).toCycleNotationString());
+        System.out.println("===");
 	}
 
 

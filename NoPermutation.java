@@ -89,8 +89,8 @@ public class NoPermutation implements Permutation {
 		return new HashMap<Integer, Integer>();
 	}
 	@Override
-	public List<List<Integer>> toTranspositions() {
-		return new ArrayList<List<Integer>>();
+	public List<Permutation> toTranspositions() {
+		return new ArrayList<Permutation>();
 	}
 	@Override
 	public String toTranspositionString() {

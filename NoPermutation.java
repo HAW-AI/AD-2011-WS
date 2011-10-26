@@ -30,8 +30,8 @@ public class NoPermutation implements Permutation {
 	}
 
 	@Override
-	public List<Integer> cycle(int index){
-		return new ArrayList<Integer>();
+	public Permutation cycle(int index){
+		return valueOf();
 	}
 
 	@Override

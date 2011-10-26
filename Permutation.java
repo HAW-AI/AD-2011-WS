@@ -33,7 +33,7 @@ public interface Permutation extends Iterable<Integer> {
      * @param index the cycle index (beginning at 1)
      * @return the cycle or NoPermution unless 1 <= index <= permutationClass()
      */
-    List<Integer> cycle(int index);
+    Permutation cycle(int index);
     
     /**
      * All the cycles of the image.

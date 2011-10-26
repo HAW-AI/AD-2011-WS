@@ -320,13 +320,10 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	 * @author Sebastian Krome
 	 * @author Daniel Liesener
 	 * @author Fenja Harbke
+	 * @author Philipp Gillé
 	 */
-	public List<Integer> cycle(int index){
-		try {
-			return getAllCyclesAsList().get(index - 1);
-		} catch (Exception e) {
-			return new ArrayList<Integer>();
-		}
+	public Permutation cycle(int index){
+		return cycleToPermutation(getAllCyclesAsList().get(index - 1), permutationClass());
 	}
 
 	/**

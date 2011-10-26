@@ -83,7 +83,7 @@ toString:</td>
 <td>Gibt die Id der Permutation an</td>
 </tr><tr>
 <td>toTranspositions:</td>
-<td>Permutation -/-> List<Permutation></td>
+<td>Permutation -/-> List&lt;Permutation></td>
 <td>Wandelt die Permutation in eine Transpositionsdarstellung um</td>
 </tr><tr>
 <td>toTranspositionString:</td>

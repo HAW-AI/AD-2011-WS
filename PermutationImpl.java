@@ -737,14 +737,15 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     * Gives the n-th permutation in lexical order (rank) of a given permutation-class
     */
 
-   public Permutation getSnByRank(int permClass, int rank) {
+   public Permutation rankToPerm(int rank) {
+       int permClass = this.permutationClass();
        //Create a list of all objects in the list as determined by the permutation-class
        List<Integer> classId = new ArrayList<Integer>();
        for(int i = 1; i <= permClass; i++) classId.add(i);
        //Create the list that will eventually become the wanted permutation
        List<Integer> result = new ArrayList<Integer>();
 
-       if(permClass > 0 && rank >= 0 && rank < factorial(permClass)) {
+       if(rank >= 0 && rank < factorial(permClass)) {
                //Prepare an int needed in the calculation
                int f = factorial(permClass);
 
@@ -761,13 +762,13 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
    }
 
    /**
-	* @author Sebastian Bartels
+    * @author Sebastian Bartels
     * @param Permutation p
     * @return int rank
     *
     * Returns the rank of a given Permutation
     */
-   public int getRankOfPerm() {
+   public int rank() {
        int result = 0;
        int wantedElement = 1;          //Wanted element in the Permutation; Can be Integer because our implementation only allows for permutations of Integers that include all numbers 1...|Elements|
        int currentElement = 0;         //index for elementCopy.get(index); will also count elements in front of the wanted element of the given Permutation

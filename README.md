@@ -93,6 +93,14 @@ toString:</td>
 <td>Sign:</td>
 <td>Permutation ---> [-1; 1]</td>
 <td>Gibt an ob die Permutation even(1) oder odd(-1) ist.</td>
+</tr><tr>
+<td>rank:</td>
+<td>Permutation ---> int</td>
+<td>Gibt den Rank der Permutation an.</td>
+</tr><tr>
+<td>rankToPerm:</td>
+<td>Permutation x int ---> Permutation</td>
+<td>Gibt die Permutation für den gewählten Rank</td>
 </tr></table> 
 
 Axioms

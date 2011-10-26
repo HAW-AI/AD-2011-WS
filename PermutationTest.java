@@ -852,28 +852,27 @@ public class PermutationTest {
         assertEquals(p5, p8.id());
     }
 	   @Test
-       public void testGetSnByRank() {
+       public void testRankToPerm() {
            Permutation p1 = PermutationImpl.s(1,2,3,4);
            Permutation p2 = PermutationImpl.s(2,1,4,3);
            Permutation p3 = PermutationImpl.s(4,3,2,1);
 
-           assertEquals(p1, p1.getSnByRank(4, 0));
-           assertEquals(p2, p1.getSnByRank(4, 7));
-           assertEquals(p3, p1.getSnByRank(4, 23));
+           assertEquals(p1, p1.rankToPerm(0));
+           assertEquals(p2, p1.rankToPerm(7));
+           assertEquals(p3, p1.rankToPerm(23));
 
-           assertEquals(NoPermutation.valueOf(), p1.getSnByRank(0, 0));
-           assertEquals(NoPermutation.valueOf(), p1.getSnByRank(4, 24));
+           assertEquals(NoPermutation.valueOf(), p1.rankToPerm(24));
        }
 
        @Test
-       public void testGetRankOfPerm() {
+       public void testRank() {
            Permutation p1 = PermutationImpl.s(1,2,3,4);
            Permutation p2 = PermutationImpl.s(2,1,4,3);
 
-           assertEquals(0, p1.getRankOfPerm());
-           assertEquals(7, p2.getRankOfPerm());
+           assertEquals(0, p1.rank());
+           assertEquals(7, p2.rank());
 
-           assertEquals(-1, NoPermutation.valueOf().getRankOfPerm());
+           assertEquals(-1, NoPermutation.valueOf().rank());
        }	  
 }
 

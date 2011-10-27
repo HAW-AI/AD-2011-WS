@@ -244,30 +244,30 @@ public class PermutationTest {
 	
 	// Negativtest von cycle()
 	
-//	@Test
-//	public void testCycleException1(){
-//		assertEquals(Arrays.asList(), pInput41.cycle(5));
-//	}
-//	@Test
-//	public void testCycleException2(){
-//		assertEquals(Arrays.asList(), pInput42.cycle(-1));
-//	}
-//	@Test
-//	public void testCycleException3(){
-//		assertEquals(Arrays.asList(), pInput71.cycle(8));
-//	}
-//	@Test
-//	public void testCycleException4(){
-//		assertEquals(Arrays.asList(), pInput72.cycle(-1));
-//	}
-//	@Test
-//	public void testCycleException5(){
-//		assertEquals(Arrays.asList(), pInput101.cycle(11));
-//	}
-//	@Test
-//	public void testCycleException6(){
-//		assertEquals(Arrays.asList(), pInput102.cycle(-1));
-//	}
+	@Test
+	public void testCycleException1(){
+		assertEquals(NoPermutation.valueOf(), pInput41.cycle(5));
+	}
+	@Test
+	public void testCycleException2(){
+		assertEquals(NoPermutation.valueOf(), pInput42.cycle(-1));
+	}
+	@Test
+	public void testCycleException3(){
+		assertEquals(NoPermutation.valueOf(), pInput71.cycle(8));
+	}
+	@Test
+	public void testCycleException4(){
+		assertEquals(NoPermutation.valueOf(), pInput72.cycle(-1));
+	}
+	@Test
+	public void testCycleException5(){
+		assertEquals(NoPermutation.valueOf(), pInput101.cycle(11));
+	}
+	@Test
+	public void testCycleException6(){
+		assertEquals(NoPermutation.valueOf(), pInput102.cycle(-1));
+	}
 	
 	// Test von allCycles()
 	
@@ -774,25 +774,23 @@ public class PermutationTest {
 	  }
 	  
 	  @Test
-		public void testToTranspositions() {
-			
-			Permutation p1 = PermutationImpl.s(3,4,6,5,7,1,2);
-			Permutation p2 = PermutationImpl.s(2,3,1);
-			Permutation p3 = PermutationImpl.s(1,2,3);
-			Permutation p4 = PermutationImpl.s(4,6,3,1,2,5);
-			Permutation p5 = PermutationImpl.s(1);
-			String s=null;
-			Permutation p6 = PermutationImpl.valueOf(s);
-			Permutation p7 = PermutationImpl.s();
-			
-//			assertEquals("((3 1)(3 6)(4 2)(4 7)(4 5))",p1.toTranspositionString());
-//			assertEquals("((2 1)(2 3))",p2.toTranspositionString());
-			assertEquals("NoTransposition",p3.toTranspositionString());
-//			assertEquals("((4 1)(6 2)(6 5))",p4.toTranspositionString());
-			assertEquals("NoTransposition",p5.toTranspositionString());
-			assertEquals("NoTransposition",p6.toTranspositionString());
-			assertEquals("NoTransposition",p7.toTranspositionString());
-		}
+	  	public void testToTranspositions() {
+		  	Permutation p1 = PermutationImpl.s(3,4,6,5,7,1,2);
+		  	Permutation p2 = PermutationImpl.s(2,3,1);
+		  	Permutation p3 = PermutationImpl.s(1,2,3);
+		  	Permutation p4 = PermutationImpl.s(4,6,3,1,2,5);
+		  	Permutation p5 = PermutationImpl.s(1);
+		  	String s=null;
+		  	Permutation p6 = PermutationImpl.valueOf(s);
+		  	Permutation p7 = PermutationImpl.s();
+		  	assertEquals("((3 1)(6 3)(4 2)(7 4)(5 4))",p1.toTranspositionString());
+		  	assertEquals("((2 1)(3 2))",p2.toTranspositionString());
+		  	assertEquals("NoTransposition",p3.toTranspositionString());
+		  	assertEquals("((4 1)(6 2)(6 5))",p4.toTranspositionString());
+		  	assertEquals("NoTransposition",p5.toTranspositionString());
+		  	assertEquals("NoTransposition",p6.toTranspositionString());
+		  	assertEquals("NoTransposition",p7.toTranspositionString());
+		  	}
 		
 		@Test
 		public void testSign() {

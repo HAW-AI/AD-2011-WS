@@ -59,6 +59,7 @@ public class mainAusgabe {
         System.out.println("===");
         System.out.println(PermutationImpl.s(1,5,9,2,6,10,3,7,11,4,8,12).cycle(2));
         System.out.println(PermutationImpl.s(1,5,9,2,6,10,3,7,11,4,8,12).cycle(2).compose(PermutationImpl.s(1,5,9,2,6,10,3,7,11,4,8,12)));
+        System.out.println(PermutationImpl.s(4,5,1,2,3).cycle(6));
 	}
 
 

@@ -28,10 +28,10 @@ public interface Permutation extends Iterable<Integer> {
     int getPermElement(int inverseImage) throws IllegalArgumentException;
     
     /**
-     * Return the n-th cycle of the permutation.
+     * Return the permutation that is built of the n-th cycle of the original permutation and its class.
      * 
      * @param index the cycle index (beginning at 1)
-     * @return the cycle or NoPermution unless 1 <= index <= permutationClass()
+     * @return the cycle Permutation or NoPermution
      */
     Permutation cycle(int index);
     

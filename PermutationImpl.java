@@ -323,7 +323,12 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	 * @author Philipp Gillé
 	 */
 	public Permutation cycle(int index){
-		return cycleToPermutation(getAllCyclesAsList().get(index - 1), permutationClass());
+		if (!(index>getAllCyclesAsList().size() || index<1)){
+			return cycleToPermutation(getAllCyclesAsList().get(index - 1), permutationClass());
+		}
+		else{
+			return NoPermutation.valueOf();
+		}
 	}
 
 	/**

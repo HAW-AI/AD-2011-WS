@@ -244,30 +244,30 @@ public class PermutationTest {
 	
 	// Negativtest von cycle()
 	
-	@Test
-	public void testCycleException1(){
-		assertEquals(Arrays.asList(), pInput41.cycle(5));
-	}
-	@Test
-	public void testCycleException2(){
-		assertEquals(Arrays.asList(), pInput42.cycle(-1));
-	}
-	@Test
-	public void testCycleException3(){
-		assertEquals(Arrays.asList(), pInput71.cycle(8));
-	}
-	@Test
-	public void testCycleException4(){
-		assertEquals(Arrays.asList(), pInput72.cycle(-1));
-	}
-	@Test
-	public void testCycleException5(){
-		assertEquals(Arrays.asList(), pInput101.cycle(11));
-	}
-	@Test
-	public void testCycleException6(){
-		assertEquals(Arrays.asList(), pInput102.cycle(-1));
-	}
+//	@Test
+//	public void testCycleException1(){
+//		assertEquals(Arrays.asList(), pInput41.cycle(5));
+//	}
+//	@Test
+//	public void testCycleException2(){
+//		assertEquals(Arrays.asList(), pInput42.cycle(-1));
+//	}
+//	@Test
+//	public void testCycleException3(){
+//		assertEquals(Arrays.asList(), pInput71.cycle(8));
+//	}
+//	@Test
+//	public void testCycleException4(){
+//		assertEquals(Arrays.asList(), pInput72.cycle(-1));
+//	}
+//	@Test
+//	public void testCycleException5(){
+//		assertEquals(Arrays.asList(), pInput101.cycle(11));
+//	}
+//	@Test
+//	public void testCycleException6(){
+//		assertEquals(Arrays.asList(), pInput102.cycle(-1));
+//	}
 	
 	// Test von allCycles()
 	

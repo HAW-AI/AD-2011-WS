@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.junit.*;
+import org.omg.CORBA.portable.ValueOutputStream;
 
 import static org.junit.Assert.*;
 
@@ -230,37 +231,15 @@ public class PermutationTest {
 	
 	@Test
 	public void testCycle(){
+		assertEquals(pInput42, pInput42.cycle(2));
+		assertEquals(pInput41, pInput42.cycle(1));
 		
-		List<Integer> erg41 = new ArrayList<Integer>();
-		erg41.add(4);
-		erg41.add(2);
-		
-		List<Integer> erg42 = new ArrayList<Integer>();
-		erg42.add(1);
-		
-		assertEquals(erg41, pInput42.cycle(2));
-		assertEquals(erg42, pInput42.cycle(1));
-		
-		List<Integer> erg71 = new ArrayList<Integer>();
-		erg71.add(5);
-		erg71.add(3);
-		
-		List<Integer> erg72 = new ArrayList<Integer>();
-		erg72.add(5);
-		
-		assertEquals(erg71, pInput71.cycle(3));
-		assertEquals(erg72, pInput72.cycle(5));
+		assertEquals(PermutationImpl.valueOf("(1)(2)(3,5)(4)(6)(7)"), pInput71.cycle(3));
+		assertEquals(PermutationImpl.valueOf("(1)(2)(3)(4)(5)(7,6)"), pInput71.cycle(5));
+		assertEquals(PermutationImpl.valueOf("(1)(2)(3)(4)(5)(6)(7)"), pInput72.cycle(5));
 
-		List<Integer> erg101 = new ArrayList<Integer>();
-		erg101.add(4);
-		
-		List<Integer> erg102 = new ArrayList<Integer>();
-		erg102.add(5);
-		erg102.add(4);
-		
-		assertEquals(erg101, pInput101.cycle(4));
-		assertEquals(erg102, pInput102.cycle(4));
-
+		assertEquals(pInput101, pInput101.cycle(4));
+		assertEquals(PermutationImpl.valueOf("(1)(2)(3)(5,4)(6)(7)(8)(9)(10)"), pInput102.cycle(4));
 	}
 	
 	// Negativtest von cycle()

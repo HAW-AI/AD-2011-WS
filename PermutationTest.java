@@ -13,6 +13,11 @@ import static org.junit.Assert.*;
 public class PermutationTest {
 	
 	@Test
+	public void testNothing(){
+		//TODO: nix
+	}
+	
+	@Test
 	public void testCreateCycle(){
 		assertEquals(pInput41, PermutationImpl.valueOf("(1)(2)(3)(4)"));
 		assertEquals(pInput41, PermutationImpl.valueOf("(4)(2)(1)(3)"));

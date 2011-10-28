@@ -11,7 +11,7 @@ import java.util.Set;
  * @author Aleksandr Nosov
  * @author Kai Bielenberg
  */
-public class NoPermutation implements Permutation {
+public class NoPermutation implements Permutation, Cycle, Transposition {
 	private static NoPermutation instance=new NoPermutation();
 	private NoPermutation(){
 		
@@ -30,7 +30,7 @@ public class NoPermutation implements Permutation {
 	}
 
 	@Override
-	public Permutation cycle(int index){
+	public Cycle cycle(int index){
 		return valueOf();
 	}
 
@@ -89,8 +89,8 @@ public class NoPermutation implements Permutation {
 		return new HashMap<Integer, Integer>();
 	}
 	@Override
-	public List<Permutation> toTranspositions() {
-		return new ArrayList<Permutation>();
+	public List<Transposition> toTranspositions() {
+		return new ArrayList<Transposition>();
 	}
 	@Override
 	public String toTranspositionString() {

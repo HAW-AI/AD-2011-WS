@@ -125,7 +125,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
         //Aufruf der valueOf-Methode von Gruppe 1 mit der aus der Cycle-Notation umgewandelten Liste.
         return valueOf(result);
     }
-	private PermutationImpl(List<Integer> imageList) {
+	protected PermutationImpl(List<Integer> imageList) {
 		this.elements = imageList;
 	}
 
@@ -322,7 +322,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	 * @author Fenja Harbke
 	 * @author Philipp Gillé
 	 */
-	public Permutation cycle(int index){
+	public Cycle cycle(int index){
 		if (!(index>getAllCyclesAsList().size() || index<1)){
 			return cycleToPermutation(getAllCyclesAsList().get(index - 1), permutationClass());
 		}
@@ -652,10 +652,10 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	 * @author Andrej Braining
 	 * @author Marc WÃ¼seke
 	 */
-    public List<Permutation> toTranspositions() {
+    public List<Transposition> toTranspositions() {
     	
     	List<List<Integer>> list = this.getAllCyclesAsList(); 
-    	List<Permutation> result = new ArrayList<Permutation>(); 
+    	List<Transposition> result = new ArrayList<Transposition>(); 
     	
     	for (int i = 0; i < list.size(); i++) {
     		
@@ -663,8 +663,8 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 					List<Integer> tempList = new ArrayList<Integer>();
 					tempList.add(list.get(i).get(0));
 					tempList.add(list.get(i).get(j-1));
-                    Permutation tempPerm = cycleToPermutation(tempList, this.permutationClass());
-					result.add(tempPerm);
+//                    Cycle tempCycle = cycleToPermutation(tempList, this.permutationClass());
+					result.add(TranspsitionImpl.generate(tempList));
 				}
     		
 		}
@@ -672,7 +672,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 		return result;
 	}
     
-    private Permutation cycleToPermutation(List<Integer> cycle, int permClass){
+    private Cycle cycleToPermutation(List<Integer> cycle, int permClass){
         List<Integer> result = new ArrayList<Integer>();
         
         for(int i=1; i<=permClass;i++){
@@ -686,7 +686,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
         result.remove(cycle.get(cycle.size()-1)-1);
         result.add((cycle.get(cycle.size()-1)-1),cycle.get(0));
 
-        return new PermutationImpl(result);
+        return CycleImpl.generate(result);
         
     }
     
@@ -696,7 +696,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
      */
     public String toTranspositionString(){
     	if (this.equals(this.id())) {return NoPermutation.valueOf().toTranspositionString();}
-    	List<Permutation> list = this.toTranspositions();
+    	List<Transposition> list = this.toTranspositions();
     	StringBuilder resStr = new StringBuilder();
     	List<List<Integer>> iList = new ArrayList<List<Integer>>();
     	

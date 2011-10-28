@@ -33,7 +33,7 @@ public interface Permutation extends Iterable<Integer> {
      * @param index the cycle index (beginning at 1)
      * @return the cycle Permutation or NoPermution
      */
-    Permutation cycle(int index);
+    Cycle cycle(int index);
     
     /**
      * All the cycles of the image.
@@ -131,7 +131,7 @@ public interface Permutation extends Iterable<Integer> {
      * 
      * @return the transposition notation
      */
-    public List<Permutation> toTranspositions();
+    public List<Transposition> toTranspositions();
     
     /**
      * transposition notation as String

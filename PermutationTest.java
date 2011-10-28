@@ -13,8 +13,24 @@ import static org.junit.Assert.*;
 public class PermutationTest {
 	
 	@Test
-	public void testNothing(){
-		//TODO: nix
+	public void testRankUnrank(){
+		List<Integer> permList = new ArrayList<Integer>();
+		
+		int upTo = 1;
+		for(int i=1; i<=10; ++i){
+			permList.add(i);
+			upTo*= i;
+		}
+		
+		Permutation p = PermutationImpl.valueOf(permList);
+		
+		for(int i=0; i<upTo; ++i){
+			System.out.println("Rank["+i+"]: "+p.rankToPerm(i)+" ==> "+p.rankToPerm(i).rank());
+		}
+		
+		for(int i=0; i<upTo; ++i){
+			assertEquals(i, p.rankToPerm(i).rank());
+		}
 	}
 	
 	@Test

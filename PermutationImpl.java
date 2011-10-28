@@ -775,17 +775,24 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
        int wantedElement = 1;          //Wanted element in the Permutation; Can be Integer because our implementation only allows for permutations of Integers that include all numbers 1...|Elements|
        int currentElement = 0;         //index for elementCopy.get(index); will also count elements in front of the wanted element of the given Permutation
        List<Integer> elementCopy = new ArrayList<Integer>(this.elements); //Creates a copy of the permutations elements so we can remove elements
-
+       List<Integer> id = new ArrayList<Integer>(); //Creates a copy of the permutations elements so we can remove elements
+       
+       for(int i=1; i<=permutationClass(); ++i){
+    	   id.add(i);
+       }
+       
+       
        while(elementCopy.size() > 0) {
-               while(elementCopy.get(currentElement) != wantedElement)
+           wantedElement = elementCopy.remove(0);
+    	   
+    	   while(id.get(currentElement) != wantedElement)
                        currentElement++;
-               //Rank of Permutation = (PermutationClass - 1)! * (Number of elements in front of the 1st element of the Permutations id)
-               //                      + (PermutationClass-2)! * (Number of Elements in front of the 2nd element of the id after removing the 1st)
-               //                                       ...+ 1!                                        * 0             (-->Only 1 Element left)
-               result += factorial(elementCopy.size()-1) * (currentElement);
-               elementCopy.remove(currentElement);
-               currentElement = 0;
-               wantedElement++;
+    	   id.remove(currentElement);
+           //Rank of Permutation = (PermutationClass - 1)! * (Number of elements in front of the 1st element of the Permutations id)
+           //                      + (PermutationClass-2)! * (Number of Elements in front of the 2nd element of the id after removing the 1st)
+           //                                       ...+ 1!                                        * 0             (-->Only 1 Element left)
+           result += factorial(elementCopy.size()) * (currentElement);
+           currentElement = 0;
        }
        return result;
    }

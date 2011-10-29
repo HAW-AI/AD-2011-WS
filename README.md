@@ -149,3 +149,9 @@ permPower(σ1, order(σ1)) = id
 permPower(σ1,-n) = permPower(inverse(σ1), n)
 
 cycleType(id) = [1^permutationClass(id)]
+
+rank(rankToPerm(n)) = n
+
+rankToPerm(rank(σ1)) = σ1
+
+id(x) = id(x).rank(0)

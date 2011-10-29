@@ -135,10 +135,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
      * @param imageList a n-size list of integer [a1, ..., an]
      * @return a new permutation object from symmetric group S(n) where \u03c3(i)=ai for all 1\u2264i\u2264n
      * @throws IllegalArgumentException if \u03c3(i)=\u03c3(j) for i\u2260j or if not 1\u2264\u03c3(i)\u2264n for all 1<\u2264i\u2264n
-     * @throws NullPointerException if the argument is null 
-     * 
-     */
-    /**
+     * @throws NullPointerException if the argument is null
      * @param imageList
      * @return  Permutation or NoPermutation if not valid
      */
@@ -146,6 +143,28 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
         if (imageList == null || !checkPreconditionList(imageList, imageList.size()))
             return NoPermutation.valueOf();
         return new PermutationImpl(imageList);
+    }
+	
+	/**
+	 * Create new Permutation, based on permutation class.
+	 * The permutation is the identity.
+	 * Ex.: valueOf(3) --> [1, 2, 3]
+	 * @param permClass the class of the permutation. Should be > 0.
+	 * @return the identity permutation if permClass is > 0, NoPermutation if permClass is <= 0
+	 * 
+	 * @author Philipp Gill�
+	 */
+    public static Permutation valueOf(int permClass){
+    	if (permClass <= 0){
+    		return NoPermutation.valueOf();
+    	}
+    	else {
+	    	List<Integer> result = new ArrayList<Integer>();
+	    	for(int i = 1; i <= permClass; i++){
+	    		result.add(i);
+	    	}
+	    	return PermutationImpl.valueOf(result);
+    	}
     }
     
     public static Permutation s(int...ints){
@@ -571,6 +590,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	/**
 	 * @author Kai Bielenberg
 	 * @author Tobias Mainusch
+	 * @author Philipp Gill�
 	 * 
 	 * Performante Implementation von Potenzen z.b. (1, 2, 3, 4)^4
 	 *  Keine Änderungen bei: n == 1
@@ -586,32 +606,40 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     		}
     	}
     	else if(n == 0) {
-    		result = result.id();
+    		result = id();
     	}
     	else if(n<0){
     			result =  this.inverse().permPower(n*(-1));
     	}
     	return result;
     }
-	/**
-    * @author Kai Bielenberg
-    * @author Tobias Mainusch
-    * @author Benjamin Kahlau
-    *
-    * Ausgabe der Identität einer Permutationsklasse
-    */
-    public Permutation id() {
-        // Wenn die Identität der Permutationsklasse nicht im Pool vorhanden ist, wird sie erzeugt
-        if (!PermutationImpl.idPool.containsKey(this.permutationClass())) {
-            Permutation elem = this;
-            // k = order
-            // Die Identität für durch k maliges komponieren
-            for(int i = 0; i < this.order()-1; i++) {
-                elem = elem.compose(this);
-            }
-            PermutationImpl.idPool.put(this.permutationClass(), elem);
-        }
-        return PermutationImpl.idPool.get(this.permutationClass());
+//	/**
+//    * @author Kai Bielenberg
+//    * @author Tobias Mainusch
+//    * @author Benjamin Kahlau
+//    *
+//    * Ausgabe der Identität einer Permutationsklasse
+//    */
+//    public Permutation id() {
+//        // Wenn die Identität der Permutationsklasse nicht im Pool vorhanden ist, wird sie erzeugt
+//        if (!PermutationImpl.idPool.containsKey(this.permutationClass())) {
+//            Permutation elem = this;
+//            // k = order
+//            // Die Identität für durch k maliges komponieren
+//            for(int i = 0; i < this.order()-1; i++) {
+//                elem = elem.compose(this);
+//            }
+//            PermutationImpl.idPool.put(this.permutationClass(), elem);
+//        }
+//        return PermutationImpl.idPool.get(this.permutationClass());
+//    }
+    /**
+     * @author Philipp Gill�
+     * 
+     * Ausgabe der Identit�t einer Permutationsklasse
+     */
+    private Permutation id(){
+    	return valueOf(this.permutationClass());
     }
 
     /**
@@ -739,7 +767,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     * Gives the n-th permutation in lexical order (rank) of a given permutation-class
     */
 
-   public Permutation rankToPerm(int rank) {
+   public Permutation unRank(int rank) {
        int permClass = this.permutationClass();
        //Create a list of all objects in the list as determined by the permutation-class
        List<Integer> classId = new ArrayList<Integer>();

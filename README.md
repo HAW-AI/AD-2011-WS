@@ -78,10 +78,6 @@ toString:</td>
 <td>Permutation ---> int</td>
 <td>Gibt die Ordnung der Permutation an</td>
 </tr><tr>
-<td>id:</td>
-<td>Permutation ---> Permutation</td>
-<td>Gibt die Id der Permutation an</td>
-</tr><tr>
 <td>toTranspositions:</td>
 <td>Permutation -/-> List&lt;Permutation></td>
 <td>Wandelt die Permutation in eine Transpositionsdarstellung um</td>

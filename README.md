@@ -79,7 +79,7 @@ toString:</td>
 <td>Gibt die Ordnung der Permutation an</td>
 </tr><tr>
 <td>toTranspositions:</td>
-<td>Permutation -/-> List&lt;Permutation></td>
+<td>Permutation ---> List&lt;Permutation></td>
 <td>Wandelt die Permutation in eine Transpositionsdarstellung um</td>
 </tr><tr>
 <td>toTranspositionString:</td>

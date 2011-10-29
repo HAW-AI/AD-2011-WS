@@ -70,11 +70,6 @@ public class NoPermutation implements Permutation, Cycle, Transposition {
 	}
 
 	@Override
-	public Permutation id() {
-		return NoPermutation.valueOf();
-	}
-
-	@Override
 	public Permutation permPower(int n) {
 		return NoPermutation.valueOf();
 	}
@@ -107,7 +102,7 @@ public class NoPermutation implements Permutation, Cycle, Transposition {
 	}
         
         @Override
-        public Permutation rankToPerm(int rank) {
+        public Permutation unRank(int rank) {
                return NoPermutation.valueOf();
         }
 

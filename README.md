@@ -78,10 +78,6 @@ toString:</td>
 <td>Permutation ---> int</td>
 <td>Gibt die Ordnung der Permutation an</td>
 </tr><tr>
-<td>id:</td>
-<td>Permutation ---> Permutation</td>
-<td>Gibt die Id der Permutation an</td>
-</tr><tr>
 <td>toTranspositions:</td>
 <td>Permutation -/-> List&lt;Permutation></td>
 <td>Wandelt die Permutation in eine Transpositionsdarstellung um</td>
@@ -149,3 +145,15 @@ permPower(σ1, order(σ1)) = id
 permPower(σ1,-n) = permPower(inverse(σ1), n)
 
 cycleType(id) = [1^permutationClass(id)]
+
+rank(rankToPerm(n)) = n
+
+rankToPerm(rank(σ1)) = σ1
+
+id = id.rank(0)
+
+rank(id) = 0
+
+rankToPerm(0) = id
+
+rank(id(σ1)) = rank(id(σ2)) = 0

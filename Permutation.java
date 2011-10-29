@@ -103,12 +103,6 @@ public interface Permutation extends Iterable<Integer> {
 	int order();
 	
 	  /**
-     * Returns the ID(Identity) of the Permutation
-     * @return Permutation
-     */
-	Permutation id();
-	
-	  /**
      * Calculates the Potentenz of the Permutation
      * @return Permutation
      */
@@ -153,7 +147,7 @@ public interface Permutation extends Iterable<Integer> {
     * @return Permutation
     * @see http://bytes.com/topic/java/insights/632857-permutations-b
     */
-    public Permutation rankToPerm(int rank);
+    public Permutation unRank(int rank);
 
 	/**
     * Returns the rank of a given Permutation or -1, if the permutation is invalid

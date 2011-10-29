@@ -24,7 +24,7 @@ public class TranspsitionImpl extends CycleImpl implements Transposition {
 	
 	@Override
 	public String toString() {
-		return getClass().getSimpleName() +": "+ super.toString();
+		return "TranspositionImpl: "+ super.toString();
 	}
 
 	@Override

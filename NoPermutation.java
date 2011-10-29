@@ -115,5 +115,9 @@ public class NoPermutation implements Permutation, Cycle, Transposition {
         public int rank() {
                return -1;
         }
+		@Override
+		public String toShortString() {
+			return "NaP";
+		}
 
 }

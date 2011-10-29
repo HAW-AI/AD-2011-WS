@@ -698,26 +698,31 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     	if (this.equals(this.id())) {return NoPermutation.valueOf().toTranspositionString();}
     	List<Transposition> list = this.toTranspositions();
     	StringBuilder resStr = new StringBuilder();
-    	List<List<Integer>> iList = new ArrayList<List<Integer>>();
-    	
-    	for (int i = 0; i < list.size(); i++) {
-    		for(List<Integer> cList: list.get(i).allCycles()){
-    			if (cList.size() > 1){
-    				iList.add(cList);
-    			}
-    		}
-    	}
+//    	List<List<Integer>> iList = new ArrayList<List<Integer>>();
+//    	
+//    	for (int i = 0; i < list.size(); i++) {
+//    		for(List<Integer> cList: list.get(i).allCycles()){
+//    			if (cList.size() > 1){
+//    				iList.add(cList);
+//    			}
+//    		}
+//    	}
         resStr.append("(");
-        for (List<Integer> cycle : iList){
-        	resStr.append("("); //braket for every 2-cycle
-        	for (int elem : cycle) {
-        		resStr.append(elem);
-        		resStr.append(" ");
-        	}
-        	resStr.delete(resStr.length()-1, resStr.length());
-        	resStr.append(")");
-        	
-    	}
+        
+        for(Transposition transpo : list){
+        	resStr.append(transpo.toShortString());
+        }
+        
+//        for (List<Integer> cycle : iList){
+//        	resStr.append("("); //braket for every 2-cycle
+//        	for (int elem : cycle) {
+//        		resStr.append(elem);
+//        		resStr.append(" ");
+//        	}
+//        	resStr.delete(resStr.length()-1, resStr.length());
+//        	resStr.append(")");
+//        	
+//    	}
         resStr.append(")");
 
 		return resStr.toString();
@@ -808,6 +813,14 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
        int f = 1;
        for(; n > 0; f*=n--);
        return f;
+   }
+   
+   /**
+    * Needs for Transpositions
+    * @return
+    */
+   protected Iterator<Integer> getElems() {
+	   return elements.iterator();
    }
     
 }

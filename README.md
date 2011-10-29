@@ -154,4 +154,10 @@ rank(rankToPerm(n)) = n
 
 rankToPerm(rank(σ1)) = σ1
 
-id(x) = id(x).rank(0)
+id = id.rank(0)
+
+rank(id) = 0
+
+rankToPerm(0) = id
+
+rank(id(σ1)) = rank(id(σ2)) = 0

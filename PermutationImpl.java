@@ -784,7 +784,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
      * 
      */
     public String toTranspositionString(){
-    	if (this.equals(this.id())) {return NoPermutation.valueOf().toTranspositionString();}
+    	if (this.equals(unRank(0))) {return NoPermutation.valueOf().toTranspositionString();}
     	List<Transposition> list = this.toTranspositions();
     	StringBuilder resStr = new StringBuilder();
 //    	List<List<Integer>> iList = new ArrayList<List<Integer>>();

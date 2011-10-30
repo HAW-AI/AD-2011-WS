@@ -262,18 +262,25 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	}
 
 	/**
+	 * Wandelt Permutation in Cycle Notation um
+	 * Bsp.: [2,1,3,4] -> [[2,1][3][4]]
+	 * 
 	 * @author Daniel Liesener
 	 * @author Fenja Harbke
+	 * @author Philipp Gillé
 	 */
 	public Set<List<Integer>> allCyclesAsSetOfIntegerList() {
-		// Wandelt Permutation in Cycle Notation um
-		// Bsp.: [2,1,3] -> [[2,1][3]]
 		Map<Integer, Integer> elementsMap = getElementsAsMap();
 
         return new HashSet<List<Integer>>(getAllCycles_(new ArrayList<List<Integer>>(),
                                           elementsMap, 1));
 	}
 	
+	/**
+	 * Ex.: [2,1,3,4] -> [[2,1,3,4][1,2,3,4][1,2,3,4]]
+	 * @return List of complete cyclic permutations
+	 * @author Philipp Gillé
+	 */
 	public List<Cycle> allCyclesAsPermutaion() {
 		List<Cycle> result = new ArrayList<Cycle>();
 		

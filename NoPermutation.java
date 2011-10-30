@@ -35,8 +35,8 @@ public class NoPermutation implements Permutation, Cycle, Transposition {
 	}
 
 	@Override
-	public Set<List<Integer>> allCycles() {
-		return new HashSet<List<Integer>>();
+	public List<Cycle> allCycles() {
+		return new ArrayList<Cycle>();
 	}
 
 	@Override

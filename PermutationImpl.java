@@ -268,7 +268,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	 * @author Daniel Liesener
 	 * @author Fenja Harbke
 	 */
-	public Set<List<Integer>> allCycles() {
+	public Set<List<Integer>> allCyclesOld() {
 		// Wandelt Permutation in Cycle Notation um
 		// Bsp.: [2,1,3] -> [[2,1][3]]
 		Map<Integer, Integer> elementsMap = getElementsAsMap();
@@ -282,7 +282,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	 * 
 	 * @return
 	 */
-	public List<Cycle> allCycles2() {
+	public List<Cycle> allCycles() {
 		List<Integer> elemCopy = new ArrayList<Integer>();
 		List<Boolean> elemTouched = new ArrayList<Boolean>();
 		List<Integer> tmpCycle = new ArrayList<Integer>();
@@ -593,7 +593,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     		return 0;
     	else{
     		// pCycle enthällt alle Cycle als Liste.
-    		Set<List<Integer>> pCycle = this.allCycles();
+    		Set<List<Integer>> pCycle = this.allCyclesOld();
     		// Liste mit allen Cyclelängen
     		List<Integer> cycleLength = new ArrayList<Integer>();
     	for(List<Integer> cycle : pCycle){
@@ -709,7 +709,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
      */
     public Map<Integer,Integer> cycleType(){
       Map<Integer,Integer> typeMap = new HashMap<Integer,Integer>();
-      for (List<Integer> c: allCycles()) {
+      for (List<Integer> c: allCyclesOld()) {
             int type = c.size();
             if (typeMap.containsKey(type)) {
                   typeMap.put(type, typeMap.get(type) + 1);

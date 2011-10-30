@@ -294,163 +294,22 @@ public class PermutationTest {
 	
 	@Test
 	public void testAllCycles(){
-		
-		// Erstellen zusätzlicher Ergebniswerte
-		//erg41: [[3], [4], [1], [2]]
-		//erg42: [[3], [1], [4, 2]]
-		//erg71: [[4], [5, 3], [1], [7, 6], [2]]
-		//erg72: [[3], [4], [1], [2], [7], [5], [6]]
-		//erg101: [[3], [4], [1], [2], [7], [8], [5], [6], [9], [10]]
-		//erg102: [[3], [1], [2], [7], [9], [10], [8, 6], [5, 4]]
-		
-		List<Integer> inErg411 = new ArrayList<Integer>();
-		List<Integer> inErg412 = new ArrayList<Integer>();
-		List<Integer> inErg413 = new ArrayList<Integer>();
-		List<Integer> inErg414 = new ArrayList<Integer>();
-		Set<List<Integer>> erg41 = new HashSet<List<Integer>>();
-		
-		List<Integer> inErg421 = new ArrayList<Integer>();
-		List<Integer> inErg422 = new ArrayList<Integer>();
-		List<Integer> inErg423 = new ArrayList<Integer>();
-		Set<List<Integer>> erg42 = new HashSet<List<Integer>>();
-		
-		List<Integer> inErg711 = new ArrayList<Integer>();
-		List<Integer> inErg712 = new ArrayList<Integer>();
-		List<Integer> inErg713 = new ArrayList<Integer>();
-		List<Integer> inErg714 = new ArrayList<Integer>();
-		List<Integer> inErg715 = new ArrayList<Integer>();
-		Set<List<Integer>> erg71 = new HashSet<List<Integer>>();
-		
-		List<Integer> inErg721 = new ArrayList<Integer>();
-		List<Integer> inErg722 = new ArrayList<Integer>();
-		List<Integer> inErg723 = new ArrayList<Integer>();
-		List<Integer> inErg724 = new ArrayList<Integer>();
-		List<Integer> inErg725 = new ArrayList<Integer>();
-		List<Integer> inErg726 = new ArrayList<Integer>();
-		List<Integer> inErg727 = new ArrayList<Integer>();
-		Set<List<Integer>> erg72 = new HashSet<List<Integer>>();
-		
-		List<Integer> inErg1011 = new ArrayList<Integer>();
-		List<Integer> inErg1012 = new ArrayList<Integer>();
-		List<Integer> inErg1013 = new ArrayList<Integer>();
-		List<Integer> inErg1014 = new ArrayList<Integer>();
-		List<Integer> inErg1015 = new ArrayList<Integer>();
-		List<Integer> inErg1016 = new ArrayList<Integer>();
-		List<Integer> inErg1017 = new ArrayList<Integer>();
-		List<Integer> inErg1018 = new ArrayList<Integer>();
-		List<Integer> inErg1019 = new ArrayList<Integer>();
-		List<Integer> inErg10110 = new ArrayList<Integer>();
-		Set<List<Integer>> erg101 = new HashSet<List<Integer>>();
-		
-		List<Integer> inErg1021 = new ArrayList<Integer>();
-		List<Integer> inErg1022 = new ArrayList<Integer>();
-		List<Integer> inErg1023 = new ArrayList<Integer>();
-		List<Integer> inErg1024 = new ArrayList<Integer>();
-		List<Integer> inErg1025 = new ArrayList<Integer>();
-		List<Integer> inErg1026 = new ArrayList<Integer>();
-		List<Integer> inErg1027 = new ArrayList<Integer>();
-		List<Integer> inErg1028 = new ArrayList<Integer>();
-		Set<List<Integer>> erg102 = new HashSet<List<Integer>>();
-		
-		inErg411.add(1);
-		inErg412.add(2);
-		inErg413.add(3);
-		inErg414.add(4);
-			
-		inErg421.add(1);
-		inErg422.add(4);
-		inErg423.add(3);
-		inErg422.add(2);
-		
-		inErg711.add(1);
-		inErg712.add(2);
-		inErg713.add(5);
-		inErg714.add(4);
-		inErg713.add(3);
-		inErg715.add(7);
-		inErg715.add(6);
-		
-		inErg721.add(1);
-		inErg722.add(2);
-		inErg723.add(3);
-		inErg724.add(4);
-		inErg725.add(5);
-		inErg726.add(6);
-		inErg727.add(7);
-			
-		inErg1011.add(1);
-		inErg1012.add(2);
-		inErg1013.add(3);
-		inErg1014.add(4);
-		inErg1015.add(5);
-		inErg1016.add(6);
-		inErg1017.add(7);
-		inErg1018.add(8);
-		inErg1019.add(9);
-		inErg10110.add(10);
-		
-		inErg1021.add(1);
-		inErg1022.add(2);
-		inErg1023.add(3);
-		inErg1024.add(5);
-		inErg1024.add(4);
-		inErg1025.add(8);
-		inErg1028.add(7);
-		inErg1025.add(6);
-		inErg1026.add(9);
-		inErg1027.add(10);
+		//Tests from "http://en.wikipedia.org/wiki/Cyclic_permutation" [p1-p3]
+ 	   //allCycles2 is needed --> others have to put it into the interface and noPermutation
+ 	   
+        Permutation p1 = PermutationImpl.s(3,4,5,7,6,1,8,2);
+        Permutation p2 = PermutationImpl.s(4,5,7,6,8,2,1,3);
+        Permutation p3 = PermutationImpl.s(4,2,7,6,5,8,1,3);
 
-		erg41.add(inErg411);
-		erg41.add(inErg412);
-		erg41.add(inErg413);
-		erg41.add(inErg414);
-		
-		erg42.add(inErg421);
-		erg42.add(inErg422);
-		erg42.add(inErg423);
-		
-		erg71.add(inErg711);
-		erg71.add(inErg712);
-		erg71.add(inErg713);
-		erg71.add(inErg714);
-		erg71.add(inErg715);
-		
-		erg72.add(inErg721);
-		erg72.add(inErg722);
-		erg72.add(inErg723);
-		erg72.add(inErg724);
-		erg72.add(inErg725);
-		erg72.add(inErg726);
-		erg72.add(inErg727);
-		
-		erg101.add(inErg1011);
-		erg101.add(inErg1012);
-		erg101.add(inErg1013);
-		erg101.add(inErg1014);
-		erg101.add(inErg1015);
-		erg101.add(inErg1016);
-		erg101.add(inErg1017);
-		erg101.add(inErg1018);
-		erg101.add(inErg1019);
-		erg101.add(inErg10110);
-		
-		erg102.add(inErg1021);
-		erg102.add(inErg1022);
-		erg102.add(inErg1023);
-		erg102.add(inErg1024);
-		erg102.add(inErg1025);
-		erg102.add(inErg1026);
-		erg102.add(inErg1027);
-		erg102.add(inErg1028);
-		
-		assertEquals(erg41, pInput41.allCycles());
-		assertEquals(erg42, pInput42.allCycles());
-		
-		assertEquals(erg71, pInput71.allCycles());
-		assertEquals(erg72, pInput72.allCycles());
-		
-		assertEquals(erg101, pInput101.allCycles());
-		assertEquals(erg102, pInput102.allCycles());
+        Permutation p4 = PermutationImpl.s();
+        Permutation p5 = PermutationImpl.s(3,2,1);
+        
+        assertEquals("[(1 3 5 6), (2 4 7 8)]", p1.allCycles().toString());
+        assertEquals("[(1 4 6 2 5 8 3 7)]", p2.allCycles().toString());
+        assertEquals("[(1 4 6 8 3 7), (2), (5)]", p3.allCycles().toString());
+        
+        assertEquals("[]", p4.allCycles().toString());
+        assertEquals("[(1 3), (2)]", p5.allCycles().toString());
 	}
 	
 	// Test von fixedPoints()
@@ -810,7 +669,7 @@ public class PermutationTest {
 		  	assertEquals("((4 1)(6 2)(6 5))",p4.toTranspositionString());
 		  	assertEquals("NoTransposition",p5.toTranspositionString());
 		  	assertEquals("NoTransposition",p6.toTranspositionString());
-//		  	assertEquals("NoTransposition",p7.toTranspositionString());
+		  	assertEquals("NoTransposition",p7.toTranspositionString());
 	} //TODO: fix
 		
 		@Test
@@ -872,24 +731,6 @@ public class PermutationTest {
            assertEquals(7, p2.rank());
 
            assertEquals(-1, NoPermutation.valueOf().rank());
-       }
-       
-       @Test
-       public void testAllCycles2() {
-    	   //Tests from "http://en.wikipedia.org/wiki/Cyclic_permutation"
-    	   //allCycles2 is needed --> others have to put it into the interface and noPermutation
-    	   
-           PermutationImpl p1 = (PermutationImpl) PermutationImpl.s(3,4,5,7,6,1,8,2);
-           PermutationImpl p2 = (PermutationImpl) PermutationImpl.s(4,5,7,6,8,2,1,3);
-           PermutationImpl p3 = (PermutationImpl) PermutationImpl.s(4,2,7,6,5,8,1,3);
-
-           PermutationImpl p4 = (PermutationImpl) PermutationImpl.s();
-           
-           assertEquals("[(1 3 5 6), (2 4 7 8)]", p1.allCycles2().toString());
-           assertEquals("[(1 4 6 2 5 8 3 7)]", p2.allCycles2().toString());
-           assertEquals("[(1 4 6 8 3 7), (2), (5)]", p3.allCycles2().toString());
-           
-           assertEquals("[]", p4.allCycles2().toString());
        }
 }
 

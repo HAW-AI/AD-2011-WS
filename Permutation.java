@@ -40,7 +40,7 @@ public interface Permutation extends Iterable<Integer> {
      * 
      * @return the cycles
      */
-    Set<List<Integer>> allCycles();
+    List<Cycle> allCycles();
     
     /**
      * All the fixed points.

@@ -20,6 +20,7 @@ public class CycleImpl extends PermutationImpl implements Cycle {
 	
 	@Override
 	public String toString() {
-		return "CycleImpl: "+ super.toString();
+//		return "CycleImpl: "+ super.toString();
+		return super.toString();
 	}
 }

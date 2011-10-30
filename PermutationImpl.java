@@ -276,7 +276,57 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
         return new HashSet<List<Integer>>(getAllCycles_(new ArrayList<List<Integer>>(),
                                           elementsMap, 1));
 	}
+	
+	public List<Cycle> allCycles2() {List<Integer> elemCopy = new ArrayList<Integer>();
+		List<Boolean> elemTouched = new ArrayList<Boolean>();
+		List<Integer> tmpCycle = new ArrayList<Integer>();
+		
+		if(elements.size() == 0) return new ArrayList<Cycle>();
+		
+		for(int elem : elements){
+			elemCopy.add(elem);
+			elemTouched.add(false);
+		}
+		
+        return toCycles2(0, elemCopy, elemTouched, tmpCycle);
+	}
 
+	/**
+	 * 
+	 * @param elemId => index of elems
+	 * @param elems => elems list (first unsorted)
+	 * @param elemTouched => if elem is not in tmpCycle or in CycleList
+	 * @param tmpCycle => list for int's before it will become a Cycle
+	 * @return a list with all cycles
+	 */
+	private List<Cycle> toCycles2(int elemId, List<Integer> elems, List<Boolean> elemTouched, List<Integer> tmpCycle) {
+		if(elemTouched.get(elemId)){
+			if(elemId+1 < elems.size()){
+				return new ArrayList<Cycle>(toCycles2(elemId+1, elems, elemTouched, tmpCycle));
+			}else{
+				return new ArrayList<Cycle>();
+			}
+		}else{
+			int nr = elems.get(elemId);
+			if(tmpCycle.isEmpty()) tmpCycle.add(elemId+1);
+			if(nr-1 == elemId){
+				elemTouched.set(elemId, true);
+				List<Cycle> tmpList = new ArrayList<Cycle>();
+				tmpList.add( CycleImpl.generate(tmpCycle) );
+				tmpCycle.clear();
+				tmpList.addAll( toCycles2(0, elems, elemTouched, tmpCycle) );
+				return tmpList;
+			}else{
+				tmpCycle.add(nr); //TODO: fix
+				
+				elems.set(elemId, elems.get(nr-1));
+				elems.set(nr-1, nr);
+				elemTouched.set(nr-1, true);
+				
+				return toCycles2(elemId, elems, elemTouched, tmpCycle);
+			}
+		}
+	}
 	/**
 	 * @author Ben Rexin <benjamin.rexin@haw-hamburg.de>
 	 * @author Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>

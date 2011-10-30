@@ -307,6 +307,9 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	/**
 	 * @author Joerg Lischka
 	 * 
+	 * pure recursive
+	 * ('getAllCycles_' is not pure recursive!)
+	 * 
 	 * @param elemId => index of elems
 	 * @param elems => elems list (first unsorted)
 	 * @param elemTouched => if elem is not in tmpCycle or in CycleList

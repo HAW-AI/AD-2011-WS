@@ -28,7 +28,7 @@ import java.util.Set;
  * @author Tobias Meurer
  * @author Stephan Berngruber
  * @author Aleksandr Nosov
- * @author Kathrin Kahlhöfer
+ * @author Kathrin KahlhÃ¶fer
  */
 
 
@@ -54,10 +54,10 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
         	return NoPermutation.valueOf();
         }
         
-        //result: Wird während dem Parsen mit Listen gefüllt, eine 'Sub-Liste' wird einem Cycle entsprechen: (1,2)(3) -> [[1,2],[3]]
-        //        Diese Liste wird an cycle(List<List<Integer>> cycles) übergeben
+        //result: Wird wÃ€hrend dem Parsen mit Listen gefÃŒllt, eine 'Sub-Liste' wird einem Cycle entsprechen: (1,2)(3) -> [[1,2],[3]]
+        //        Diese Liste wird an cycle(List<List<Integer>> cycles) ÃŒbergeben
         List<List<Integer>> result = new ArrayList<List<Integer>>();
-        //Löscht die Leerzeichen, dann löscht das erste und das lezte Zeichen, danach splittet den String bei )( und macht daraus 
+        //LÃ¶scht die Leerzeichen, dann lÃ¶scht das erste und das lezte Zeichen, danach splittet den String bei )( und macht daraus 
         //eine Liste wie z.B. "(1,2,3)" -> ["1,2"],["3"] 
         List<String> preSplit;
         try{
@@ -106,9 +106,9 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	public static Permutation valueOfCycleList(List<List<Integer>> cycles) {
         List<Integer> result=PermutationImpl.flatt(cycles);
         if(cycles == null || !checkPreconditionList(result, result.size())) return NoPermutation.valueOf();
-        //n: Wert für Sn, also größe der Permutation
+        //n: Wert fÃŒr Sn, also grÃ¶Ãe der Permutation
         
-        //Eigentliche Umwandlung in Standard-Notation für valueOf-Methode 
+        //Eigentliche Umwandlung in Standard-Notation fÃŒr valueOf-Methode 
         for (List<Integer> currentCycle : cycles) {
             // Das erste Element des Cycles an die Position des letzten Cycle-Elments setzen
             result.set(currentCycle.get(currentCycle.size()-1)-1, currentCycle.get(0));
@@ -149,7 +149,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	 * @param permClass the class of the permutation. Should be > 0.
 	 * @return the identity permutation if permClass is > 0, NoPermutation if permClass is <= 0
 	 * 
-	 * @author Philipp Gill�
+	 * @author Philipp Gillé
 	 */
     public static Permutation valueOf(int permClass){
     	if (permClass <= 0){
@@ -221,7 +221,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 		// result erzeugen mit der noetigen groesse, gefuellt mit Nullen
 		result = createArray(this.getElements().size());
 
-		// inverse in Array gießen
+		// inverse in Array gieÃen
 
 		for (Map.Entry<Integer, Integer> entry : inverse.entrySet()) {
 			result.set(entry.getKey() - 1, entry.getValue());
@@ -385,7 +385,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 		// Einzelnen Cycle bestimmen
 		while (map.containsKey(currentKey)) {
 			newCurrentKey = map.get(currentKey); 	// Wert bestimmen durch Key
-			singleCycle.add(newCurrentKey); 	// Wert zum Cycle hinzufügen
+			singleCycle.add(newCurrentKey); 	// Wert zum Cycle hinzufÃŒgen
 			map.remove(currentKey); 		// Wert aus Map entfernen
 			currentKey = newCurrentKey; 		// Wert fuer naechsten Key festlegen
 		}
@@ -407,7 +407,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	 * @author Sebastian Krome
 	 * @author Daniel Liesener
 	 * @author Fenja Harbke
-	 * @author Philipp Gill�
+	 * @author Philipp Gillé
 	 */
 	public Cycle cycle(int index){
 		if (!(index>getAllCyclesAsList().size() || index<1)){
@@ -590,7 +590,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	 * @author Tobias Mainusch
 	 * 
 	 * Gibt die Order der Permutation aus.
-	 * Order als KGV der Größe der einzelnen Cycles implementiert
+	 * Order als KGV der GrÃ¶Ãe der einzelnen Cycles implementiert
 	 * BSP: (1 2 3)(4 5)(6) = KGV(3, 2, 1) = 6
 	 * @return int (order of the permutation)
 	 */
@@ -599,14 +599,14 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     	if (this.getElements().isEmpty()) 
     		return 0;
     	else{
-    		// pCycle enthällt alle Cycle als Liste.
+    		// pCycle enthÃ€llt alle Cycle als Liste.
     		Set<List<Integer>> pCycle = this.allCyclesAsSetOfIntegerList();
-    		// Liste mit allen Cyclelängen
+    		// Liste mit allen CyclelÃ€ngen
     		List<Integer> cycleLength = new ArrayList<Integer>();
     	for(List<Integer> cycle : pCycle){
     		cycleLength.add(cycle.size());
     	}
-    	//KGV aller Cycle Längen entspricht der Ordnung
+    	//KGV aller Cycle LÃ€ngen entspricht der Ordnung
     	return kgv(cycleLength);}
     }
     
@@ -645,7 +645,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	 * @author Kai Bielenberg
 	 * @author Tobias Mainusch
 	 * 
-	 * Berechnet ggt von 2 Zahlen, benötigt zur KGV Berechnung.
+	 * Berechnet ggt von 2 Zahlen, benÃ¶tigt zur KGV Berechnung.
 	 * @return int  (ggt(m,n))
 	 */
     
@@ -658,10 +658,10 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	/**
 	 * @author Kai Bielenberg
 	 * @author Tobias Mainusch
-	 * @author Philipp Gill�
+	 * @author Philipp Gillé
 	 * 
 	 * Performante Implementation von Potenzen z.b. (1, 2, 3, 4)^4
-	 *  Keine Änderungen bei: n == 1
+	 *  Keine Ãnderungen bei: n == 1
 	 *  					  id bei n == 0
 	 */
 
@@ -686,14 +686,14 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 //    * @author Tobias Mainusch
 //    * @author Benjamin Kahlau
 //    *
-//    * Ausgabe der Identität einer Permutationsklasse
+//    * Ausgabe der IdentitÃ€t einer Permutationsklasse
 //    */
 //    public Permutation id() {
-//        // Wenn die Identität der Permutationsklasse nicht im Pool vorhanden ist, wird sie erzeugt
+//        // Wenn die IdentitÃ€t der Permutationsklasse nicht im Pool vorhanden ist, wird sie erzeugt
 //        if (!PermutationImpl.idPool.containsKey(this.permutationClass())) {
 //            Permutation elem = this;
 //            // k = order
-//            // Die Identität für durch k maliges komponieren
+//            // Die IdentitÃ€t fÃŒr durch k maliges komponieren
 //            for(int i = 0; i < this.order()-1; i++) {
 //                elem = elem.compose(this);
 //            }
@@ -702,16 +702,16 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 //        return PermutationImpl.idPool.get(this.permutationClass());
 //    }
     /**
-     * @author Philipp Gill�
+     * @author Philipp Gillé
      * 
-     * Ausgabe der Identit�t einer Permutationsklasse
+     * Ausgabe der Identität einer Permutationsklasse
      */
     private Permutation id(){
     	return valueOf(this.permutationClass());
     }
 
     /**
-     * @author Kathrin Kahlhöfer
+     * @author Kathrin KahlhÃ¶fer
      * @author Aleksandr Nosov
      */
     public Map<Integer,Integer> cycleType(){
@@ -727,7 +727,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
       return typeMap;
     }
     /**
-     * @author Kathrin Kahlhöfer
+     * @author Kathrin KahlhÃ¶fer
      * @author Aleksandr Nosov
      */
     public String toCycleTypeString(){
@@ -746,7 +746,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     
     /**
 	 * @author Andrej Braining
-	 * @author Marc Wüseke
+	 * @author Marc WÃŒseke
 	 */
     public List<Transposition> toTranspositions() {
     	
@@ -787,7 +787,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     }
     
     /**
-     * @author Marc Wüseke
+     * @author Marc WÃŒseke
      * 
      */
     public String toTranspositionString(){
@@ -825,7 +825,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     }
     
     /**
-     * @author Marc Wüseke
+     * @author Marc WÃŒseke
      */
     public int sign(){
     	int s = this.toTranspositions().size();

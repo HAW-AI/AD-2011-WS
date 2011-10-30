@@ -20,14 +20,15 @@ Operations
 <td><td>Sequenz&lt;Sequenz&lt;int>> ---> Permutation</td></td>
 </tr><tr>
 <td><td>String -/-> Permutation</td></td>
+<td>Erzeugt eine Permutation aus einer Zykelschreibweise (1,2)(3)</td>
 </tr><tr>
 <td>getPermElement:</td>
 <td>int x Permutation -/-> int</td>
-<td>Gibt das gewählte Abbild</td>
+<td>Gibt das gewählte Abbild, für 1 &lt; n &lt; Länge</td>
 </tr><tr>
 <td>cycle:</td>
 <td>Permutation x int -/-> Permutation></td>
-<td>Gibt den gewählten Zyklus</td>
+<td>Gibt den gewählten Zyklus, für 1 &lt; n &lt; cycle Anzahl</td>
 </tr><tr>
 <td>allCycles:</td>
 <td>Permutation ---> Menge&lt;Sequenz&lt;int>></td>
@@ -45,8 +46,7 @@ Operations
 <td>Permutation ---> Permutation	</td>
 <td>Gibt die invertierte Permutation</td>
 </tr><tr>
-<td>
-toString:</td>
+<td>toString:</td>
 <td>Permutation ---> String</td>
 <td>Darstellung als String</td>
 </tr><tr>
@@ -64,7 +64,7 @@ toString:</td>
 </tr><tr>
 <td>compose:</td>
 <td>Permutation x Permutation -/-> Permutation</td>
-<td>Gibt die Komposition der beiden Permutation wieder</td>
+<td>Gibt die Komposition der beiden Permutation wieder, wenn in der gleichen Permutatiosnklasse</td>
 </tr><tr>
 <td>permutationClass:</td>
 <td>Permutation ---> int</td>
@@ -94,7 +94,7 @@ toString:</td>
 <td>Permutation ---> int</td>
 <td>Gibt den Rank der Permutation an.</td>
 </tr><tr>
-<td>rankToPerm:</td>
+<td>unRank:</td>
 <td>Permutation x int ---> Permutation</td>
 <td>Gibt die Permutation für den gewählten Rank</td>
 </tr></table> 
@@ -146,14 +146,14 @@ permPower(σ1,-n) = permPower(inverse(σ1), n)
 
 cycleType(id) = [1^permutationClass(id)]
 
-rank(rankToPerm(n)) = n
+rank(unRank(n)) = n
 
-rankToPerm(rank(σ1)) = σ1
+unRank(rank(σ1)) = σ1
 
 id = id.rank(0)
 
 rank(id) = 0
 
-rankToPerm(0) = id
+unRank(0) = id
 
 rank(id(σ1)) = rank(id(σ2)) = 0

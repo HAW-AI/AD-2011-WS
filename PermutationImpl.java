@@ -34,7 +34,7 @@ import java.util.Set;
 
 public class PermutationImpl implements Permutation, Iterable<Integer> {
 	private List<Integer> elements;
-	private static Map<Integer, Permutation> idPool = new HashMap<Integer, Permutation>();
+	protected static Map<Integer, Permutation> idPool = new HashMap<Integer, Permutation>();
 	
 	/**
      * Create a new permutation, based on cycle-notation
@@ -154,13 +154,15 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     public static Permutation valueOf(int permClass){
     	if (permClass <= 0){
     		return NoPermutation.valueOf();
-    	}
-    	else {
+    	} else {
+            if(!PermutationImpl.idPool.containsKey(permClass)) {
 	    	List<Integer> result = new ArrayList<Integer>();
 	    	for(int i = 1; i <= permClass; i++){
 	    		result.add(i);
 	    	}
-	    	return PermutationImpl.valueOf(result);
+	    	PermutationImpl.idPool.put(permClass, PermutationImpl.valueOf(result));
+            }
+            return PermutationImpl.idPool.get(permClass);
     	}
     }
     
@@ -267,7 +269,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	 * 
 	 * @author Daniel Liesener
 	 * @author Fenja Harbke
-	 * @author Philipp Gillé
+	 * @author Philipp Gillï¿½
 	 */
 	public Set<List<Integer>> allCyclesAsSetOfIntegerList() {
 		Map<Integer, Integer> elementsMap = getElementsAsMap();
@@ -279,7 +281,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	/**
 	 * Ex.: [2,1,3,4] -> [[2,1,3,4][1,2,3,4][1,2,3,4]]
 	 * @return List of complete cyclic permutations
-	 * @author Philipp Gillé
+	 * @author Philipp Gillï¿½
 	 */
 	public List<Cycle> allCyclesAsPermutaion() {
 		List<Cycle> result = new ArrayList<Cycle>();

@@ -28,7 +28,7 @@ Operations
 </tr><tr>
 <td>cycle:</td>
 <td>Permutation x int -/-> Permutation></td>
-<td>Gibt den gewählten Zyklus, für 1 &lt; n &lt; cycle Anzahl</td>
+<td>Gibt den gewählten Zyklus, für 1 &lt; n &lt; Zykelanzahl</td>
 </tr><tr>
 <td>allCycles:</td>
 <td>Permutation ---> Menge&lt;Sequenz&lt;int>></td>

@@ -43,6 +43,12 @@ public interface Permutation extends Iterable<Integer> {
     List<Cycle> allCycles();
     
     /**
+     * 
+     * @return all cycle-states as permutation
+     */
+    List<Cycle> allCyclesAsPermutaion();
+    
+    /**
      * All the fixed points.
      * 
      * @return the fixed points

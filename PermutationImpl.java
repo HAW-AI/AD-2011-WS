@@ -274,6 +274,16 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
                                           elementsMap, 1));
 	}
 	
+	public List<Cycle> allCyclesAsPermutaion() {
+		List<Cycle> result = new ArrayList<Cycle>();
+		
+		for (List<Integer> c: allCyclesAsSetOfIntegerList()) {
+		   result.add(cycleToPermutation(c, this.permutationClass()));
+		}
+		
+		return result;
+	}
+	
 	/**
 	 * @author Joerg Lischka
 	 * 

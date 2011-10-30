@@ -114,5 +114,9 @@ public class NoPermutation implements Permutation, Cycle, Transposition {
 		public String toShortString() {
 			return "NaP";
 		}
+		@Override
+		public List<Cycle> allCyclesAsPermutaion() {
+			return new ArrayList<Cycle>();
+		}
 
 }

@@ -277,7 +277,13 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
                                           elementsMap, 1));
 	}
 	
-	public List<Cycle> allCycles2() {List<Integer> elemCopy = new ArrayList<Integer>();
+	/**
+	 * @author Joerg Lischka
+	 * 
+	 * @return
+	 */
+	public List<Cycle> allCycles2() {
+		List<Integer> elemCopy = new ArrayList<Integer>();
 		List<Boolean> elemTouched = new ArrayList<Boolean>();
 		List<Integer> tmpCycle = new ArrayList<Integer>();
 		
@@ -292,6 +298,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	}
 
 	/**
+	 * @author Joerg Lischka
 	 * 
 	 * @param elemId => index of elems
 	 * @param elems => elems list (first unsorted)
@@ -300,33 +307,37 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	 * @return a list with all cycles
 	 */
 	private List<Cycle> toCycles2(int elemId, List<Integer> elems, List<Boolean> elemTouched, List<Integer> tmpCycle) {
-		if(elemTouched.get(elemId)){
-			if(elemId+1 < elems.size()){
+		if(elemTouched.get(elemId)){ //element is bound to a cycle
+			if(elemId+1 < elems.size()){ //next elem recursive
 				return new ArrayList<Cycle>(toCycles2(elemId+1, elems, elemTouched, tmpCycle));
-			}else{
+			}else{ //exit recursion
 				return new ArrayList<Cycle>();
 			}
-		}else{
+		}else{ //new number to bound to cycle
 			int nr = elems.get(elemId);
 			if(tmpCycle.isEmpty()) tmpCycle.add(elemId+1);
-			if(nr-1 == elemId){
+			if(nr-1 == elemId){ //nr is on right position
 				elemTouched.set(elemId, true);
-				List<Cycle> tmpList = new ArrayList<Cycle>();
-				tmpList.add( CycleImpl.generate(tmpCycle) );
-				tmpCycle.clear();
-				tmpList.addAll( toCycles2(0, elems, elemTouched, tmpCycle) );
-				return tmpList;
-			}else{
-				tmpCycle.add(nr); //TODO: fix
 				
+				List<Cycle> tmpList = new ArrayList<Cycle>();
+				tmpList.add( CycleImpl.generate(tmpCycle) ); //add new cycle
+				tmpCycle.clear(); //clear tmp-cycleList
+				tmpList.addAll( toCycles2(0, elems, elemTouched, tmpCycle) ); //recursive search for new unbound nr's
+				return tmpList;
+			}else{ //nr must be cycled
+				tmpCycle.add(nr);
+				
+				//change the two numbers
 				elems.set(elemId, elems.get(nr-1));
 				elems.set(nr-1, nr);
+				
 				elemTouched.set(nr-1, true);
 				
 				return toCycles2(elemId, elems, elemTouched, tmpCycle);
 			}
 		}
 	}
+	
 	/**
 	 * @author Ben Rexin <benjamin.rexin@haw-hamburg.de>
 	 * @author Patrick Detlefsen <patrick.detlefsen@haw-hamburg.de>

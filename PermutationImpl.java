@@ -3,12 +3,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
-import java.util.SortedSet;
-import java.util.regex.Pattern;
-import java.lang.StringBuilder;
 
 /**
  * Gruppe1
@@ -37,7 +34,7 @@ import java.lang.StringBuilder;
 
 public class PermutationImpl implements Permutation, Iterable<Integer> {
 	private List<Integer> elements;
-	private static Map<Integer, Permutation> idPool = new HashMap();
+	private static Map<Integer, Permutation> idPool = new HashMap<Integer, Permutation>();
 	
 	/**
      * Create a new permutation, based on cycle-notation

@@ -1,14 +1,16 @@
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import org.junit.*;
-import org.omg.CORBA.portable.ValueOutputStream;
 
-import static org.junit.Assert.*;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 public class PermutationTest {
 	
@@ -692,6 +694,10 @@ public class PermutationTest {
 		assertEquals(1, p3.sign());
 		assertEquals(-1, p4.sign());
 		assertEquals(1, NoPermutation.valueOf().sign());
+		
+		assertEquals(1, p5.sign());
+		assertEquals(1, p6.sign());
+		assertEquals(1, p7.sign());
 	}
 
    @Test

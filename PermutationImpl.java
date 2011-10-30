@@ -268,7 +268,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	 * @author Daniel Liesener
 	 * @author Fenja Harbke
 	 */
-	public Set<List<Integer>> allCyclesOld() {
+	public Set<List<Integer>> allCyclesAsSetOfIntegerList() {
 		// Wandelt Permutation in Cycle Notation um
 		// Bsp.: [2,1,3] -> [[2,1][3]]
 		Map<Integer, Integer> elementsMap = getElementsAsMap();
@@ -294,7 +294,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 			elemTouched.add(false);
 		}
 		
-        return toCycles2(0, elemCopy, elemTouched, tmpCycle);
+        return toCycles(0, elemCopy, elemTouched, tmpCycle);
 	}
 
 	/**
@@ -306,10 +306,10 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 	 * @param tmpCycle => list for int's before it will become a Cycle
 	 * @return a list with all cycles
 	 */
-	private List<Cycle> toCycles2(int elemId, List<Integer> elems, List<Boolean> elemTouched, List<Integer> tmpCycle) {
+	private List<Cycle> toCycles(int elemId, List<Integer> elems, List<Boolean> elemTouched, List<Integer> tmpCycle) {
 		if(elemTouched.get(elemId)){ //element is bound to a cycle
 			if(elemId+1 < elems.size()){ //next elem recursive
-				return new ArrayList<Cycle>(toCycles2(elemId+1, elems, elemTouched, tmpCycle));
+				return new ArrayList<Cycle>(toCycles(elemId+1, elems, elemTouched, tmpCycle));
 			}else{ //exit recursion
 				return new ArrayList<Cycle>();
 			}
@@ -322,7 +322,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 				List<Cycle> tmpList = new ArrayList<Cycle>();
 				tmpList.add( CycleImpl.generate(tmpCycle) ); //add new cycle
 				tmpCycle.clear(); //clear tmp-cycleList
-				tmpList.addAll( toCycles2(0, elems, elemTouched, tmpCycle) ); //recursive search for new unbound nr's
+				tmpList.addAll( toCycles(0, elems, elemTouched, tmpCycle) ); //recursive search for new unbound nr's
 				return tmpList;
 			}else{ //nr must be cycled
 				tmpCycle.add(nr);
@@ -333,7 +333,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
 				
 				elemTouched.set(nr-1, true);
 				
-				return toCycles2(elemId, elems, elemTouched, tmpCycle);
+				return toCycles(elemId, elems, elemTouched, tmpCycle);
 			}
 		}
 	}
@@ -593,7 +593,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
     		return 0;
     	else{
     		// pCycle enthällt alle Cycle als Liste.
-    		Set<List<Integer>> pCycle = this.allCyclesOld();
+    		Set<List<Integer>> pCycle = this.allCyclesAsSetOfIntegerList();
     		// Liste mit allen Cyclelängen
     		List<Integer> cycleLength = new ArrayList<Integer>();
     	for(List<Integer> cycle : pCycle){
@@ -709,7 +709,7 @@ public class PermutationImpl implements Permutation, Iterable<Integer> {
      */
     public Map<Integer,Integer> cycleType(){
       Map<Integer,Integer> typeMap = new HashMap<Integer,Integer>();
-      for (List<Integer> c: allCyclesOld()) {
+      for (List<Integer> c: allCyclesAsSetOfIntegerList()) {
             int type = c.size();
             if (typeMap.containsKey(type)) {
                   typeMap.put(type, typeMap.get(type) + 1);

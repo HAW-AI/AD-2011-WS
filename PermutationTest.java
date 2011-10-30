@@ -518,18 +518,20 @@ public class PermutationTest {
 
 	}
 	
-    	@Test
-    	public void testComposeException1() {
-    		assertEquals(pInput42.compose(pInput73),NoPermutation.valueOf());
+    @Test
+    public void testComposeException1() {
+    	assertEquals(pInput42.compose(pInput73),NoPermutation.valueOf());
 	}
-    	@Test
-    	public void testComposeException2() {
-    		assertEquals(pInput71.compose(pInput103),NoPermutation.valueOf());
-    	}
-    	@Test
-    	public void testComposeException3() {
-    		assertEquals(pInput102.compose(pInput43),NoPermutation.valueOf());
-    	}
+    
+    @Test
+    public void testComposeException2() {
+    	assertEquals(pInput71.compose(pInput103),NoPermutation.valueOf());
+    }
+    
+    @Test
+    public void testComposeException3() {
+    	assertEquals(pInput102.compose(pInput43),NoPermutation.valueOf());
+    }
 	
 	// Test von permutationClass()
 	
@@ -628,8 +630,9 @@ public class PermutationTest {
 		assertEquals(p1.inverse().permPower(100), p1.permPower(-100));
 	
 	}
+	
 	@Test
-	  public void testCycleType(){
+	public void testCycleType(){
 	        Permutation p1 = PermutationImpl.s(2,1,3,5,6,4);
 	        Permutation p2 = PermutationImpl.s(1,2,3,4,5,6);
 	        Permutation p3 = PermutationImpl.s(6,4,1,3,2,5);
@@ -644,93 +647,75 @@ public class PermutationTest {
 	        assertEquals(erg1,p1.cycleType());
 	        assertEquals(erg2,p2.cycleType());
 	        assertEquals(erg3,p3.cycleType());
-	  }
-	  @Test
-	  public void testToCycleTypeString(){
-	        Permutation p1 = PermutationImpl.s(2,1,3,5,6,4);
-	        Permutation p2 = PermutationImpl.s(1,2,3,4,5,6);
-	        assertEquals("[1^1, 2^1, 3^1]",p1.toCycleTypeString());
-	        assertEquals("[1^6]",p2.toCycleTypeString());
-	  }
+	}
+	
+	@Test
+	public void testToCycleTypeString(){
+	    Permutation p1 = PermutationImpl.s(2,1,3,5,6,4);
+	    Permutation p2 = PermutationImpl.s(1,2,3,4,5,6);
+	    assertEquals("[1^1, 2^1, 3^1]",p1.toCycleTypeString());
+	    assertEquals("[1^6]",p2.toCycleTypeString());
+	}
 	  
-	  @Test
-	  	public void testToTranspositions() {
-		  	Permutation p1 = PermutationImpl.s(3,4,6,5,7,1,2);
-		  	Permutation p2 = PermutationImpl.s(2,3,1);
-		  	Permutation p3 = PermutationImpl.s(1,2,3);
-		  	Permutation p4 = PermutationImpl.s(4,6,3,1,2,5);
-		  	Permutation p5 = PermutationImpl.s(1);
-		  	String s=null;
-		  	Permutation p6 = PermutationImpl.valueOf(s);
-		  	Permutation p7 = PermutationImpl.s();
-		  	assertEquals("((3 1)(3 6)(4 2)(4 7)(4 5))",p1.toTranspositionString());
-		  	assertEquals("((2 1)(2 3))",p2.toTranspositionString());
-		  	assertEquals("NoTransposition",p3.toTranspositionString());
-		  	assertEquals("((4 1)(6 2)(6 5))",p4.toTranspositionString());
-		  	assertEquals("NoTransposition",p5.toTranspositionString());
-		  	assertEquals("NoTransposition",p6.toTranspositionString());
-		  	assertEquals("NoTransposition",p7.toTranspositionString());
-	} //TODO: fix
+	@Test
+  	public void testToTranspositions() {
+	  	Permutation p1 = PermutationImpl.s(3,4,6,5,7,1,2);
+	  	Permutation p2 = PermutationImpl.s(2,3,1);
+	  	Permutation p3 = PermutationImpl.s(1,2,3);
+	  	Permutation p4 = PermutationImpl.s(4,6,3,1,2,5);
+	  	Permutation p5 = PermutationImpl.s(1);
+	  	String s=null;
+	  	Permutation p6 = PermutationImpl.valueOf(s);
+	  	Permutation p7 = PermutationImpl.s();
+	  	assertEquals("((3 1)(3 6)(4 2)(4 7)(4 5))",p1.toTranspositionString());
+	  	assertEquals("((2 1)(2 3))",p2.toTranspositionString());
+	  	assertEquals("NoTransposition",p3.toTranspositionString());
+	  	assertEquals("((4 1)(6 2)(6 5))",p4.toTranspositionString());
+	  	assertEquals("NoTransposition",p5.toTranspositionString());
+	  	assertEquals("NoTransposition",p6.toTranspositionString());
+	  	assertEquals("NoTransposition",p7.toTranspositionString());
+	}
 		
-		@Test
-		public void testSign() {
-			Permutation p1 = PermutationImpl.s(3,4,6,5,7,1,2);
-			Permutation p2 = PermutationImpl.s(2,3,1);
-			Permutation p3 = PermutationImpl.s(1,2,3);
-			Permutation p4 = PermutationImpl.s(4,6,3,1,2,5);
-			Permutation p5 = PermutationImpl.s(1);
-			Permutation p6 = PermutationImpl.s();
-			String s=null;
-			Permutation p7 = PermutationImpl.valueOf(s);
-			
-			assertEquals(-1, p1.sign());
-			assertEquals(1, p2.sign());
-			assertEquals(1, p3.sign());
-			assertEquals(-1, p4.sign());
-			assertEquals(1, NoPermutation.valueOf().sign());
-		}
-		// since public method id() got deleted, these tests aren't needed anymore
-//	@Test
-//    public void testId() {
-//        Permutation p1 = PermutationImpl.s(1, 2, 3, 4, 5);
-//        Permutation p2 = PermutationImpl.s(2, 1, 3, 5, 4);
-//
-//        Permutation p3 = PermutationImpl.s(3, 4, 6, 5, 7, 1, 2);
-//        Permutation p4 = PermutationImpl.s(2, 3, 1);
-//        Permutation p5 = PermutationImpl.s(1, 2, 3);
-//        Permutation p6 = PermutationImpl.s(4, 6, 3, 1, 2, 5);
-//        Permutation p7 = PermutationImpl.s(2, 1, 3);
-//        Permutation p8 = PermutationImpl.s(3, 2, 1);
-//
-//        assertEquals(p1, p1.id());
-//        assertEquals(p1, p2.id());
-//       
-//        assertEquals(p5, p4.id());
-//        assertEquals(p5, p7.id());
-//        assertEquals(p5, p8.id());
-//    }
-	   @Test
-       public void testRankToPerm() {
-           Permutation p1 = PermutationImpl.s(1,2,3,4);
-           Permutation p2 = PermutationImpl.s(2,1,4,3);
-           Permutation p3 = PermutationImpl.s(4,3,2,1);
+	@Test
+	public void testSign() {
+		Permutation p1 = PermutationImpl.s(3,4,6,5,7,1,2);
+		Permutation p2 = PermutationImpl.s(2,3,1);
+		Permutation p3 = PermutationImpl.s(1,2,3);
+		Permutation p4 = PermutationImpl.s(4,6,3,1,2,5);
+		Permutation p5 = PermutationImpl.s(1);
+		Permutation p6 = PermutationImpl.s();
+		String s=null;
+		Permutation p7 = PermutationImpl.valueOf(s);
+		
+		assertEquals(-1, p1.sign());
+		assertEquals(1, p2.sign());
+		assertEquals(1, p3.sign());
+		assertEquals(-1, p4.sign());
+		assertEquals(1, NoPermutation.valueOf().sign());
+	}
 
-           assertEquals(p1, p1.unRank(0));
-           assertEquals(p2, p1.unRank(7));
-           assertEquals(p3, p1.unRank(23));
+   @Test
+   public void testRankToPerm() {
+       Permutation p1 = PermutationImpl.s(1,2,3,4);
+       Permutation p2 = PermutationImpl.s(2,1,4,3);
+       Permutation p3 = PermutationImpl.s(4,3,2,1);
 
-           assertEquals(NoPermutation.valueOf(), p1.unRank(24));
-       }
+       assertEquals(p1, p1.unRank(0));
+       assertEquals(p2, p1.unRank(7));
+       assertEquals(p3, p1.unRank(23));
 
-       @Test
-       public void testRank() {
-           Permutation p1 = PermutationImpl.s(1,2,3,4);
-           Permutation p2 = PermutationImpl.s(2,1,4,3);
+       assertEquals(NoPermutation.valueOf(), p1.unRank(24));
+   }
 
-           assertEquals(0, p1.rank());
-           assertEquals(7, p2.rank());
+   @Test
+   public void testRank() {
+       Permutation p1 = PermutationImpl.s(1,2,3,4);
+       Permutation p2 = PermutationImpl.s(2,1,4,3);
 
-           assertEquals(-1, NoPermutation.valueOf().rank());
-       }
+       assertEquals(0, p1.rank());
+       assertEquals(7, p2.rank());
+
+       assertEquals(-1, NoPermutation.valueOf().rank());
+   }
 }
 

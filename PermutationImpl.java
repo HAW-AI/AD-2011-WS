@@ -15,7 +15,7 @@ import java.util.Set;
  * @author Raimund Wege
  * @author Andreas Wimmer
  * @author Sebastian Krome
- * @author Daniel Liesener
+ * @author Daniel
  * @author Fenja Harbke
  * @author Felix Schmidt
  * @author Berthold Wiblishauser
